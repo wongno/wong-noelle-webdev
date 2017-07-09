@@ -1,4 +1,4 @@
-# web-dev-template
+# Noelle Wong Web Dev Summer 2 2017
 
 1. git clone https://github.com/jannunzi/web-dev-template.git
 1. cd web-dev-template
