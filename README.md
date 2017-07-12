@@ -6,6 +6,6 @@ I am a rising third year, undergraduate student at Northeastern. I am a combined
 The main purpose of this repository for the webdev course.
 
 ## **Important Links**
-1. Heroku App: https://webdev-summer2-2017.herokuapp.com/
-2. Link to project: will come back to
-3. Link to assignment: will come back to
+1. Heroku App: https://wong-noelle-webdev.herokuapp.com/
+2. Link to project: https://wong-noelle-webdev.herokuapp.com/project/index.html/
+3. Link to assignment: https://wong-noelle-webdev.herokuapp.com/assignment/index.html/
