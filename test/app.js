@@ -6,8 +6,9 @@ app.post("/api/test", createMessage);
 app.delete("/api/test/:id", deleteMessage);
 
 var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
+console.log("SOOOOOOOOOOOOOMETHING!!!!");
 if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
-console.log("SOMETHING");    
+console.log("SOMETHING!!!!!!!!!!!!!!!");    
 var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
     var password = process.env.MLAB_PASSWORD_WEBDEV;
     connectionString = 'mongodb://' + username + ':' + password;
