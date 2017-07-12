@@ -7,5 +7,5 @@ The main purpose of this repository for the webdev course.
 
 ## **Important Links**
 1. Heroku App: https://wong-noelle-webdev.herokuapp.com/
-2. Link to project: https://wong-noelle-webdev.herokuapp.com/project/index.html/
-3. Link to assignment: https://wong-noelle-webdev.herokuapp.com/assignment/index.html/
+2. Link to project: https://wong-noelle-webdev.herokuapp.com/project/
+3. Link to assignment: https://wong-noelle-webdev.herokuapp.com/assignment/
