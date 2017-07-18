@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Widget Youtube</title>
     <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Profile</a>
+            <a class="navbar-brand" href="#">Widget Edit</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,50 +44,35 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-    <div class="container-fluid">
+<div class="container-fluid">
+    <label for="name">Name</label>
+    <input name="name"
+           class="form-control"
+           type="text"
+           value="Header"
+           id="name">
 
-        <label for="username">Username</label>
-        <input name="username"
-               readonly
-               class="form-control"
-               type="text"
-               placeholder="jsmith"
-               id="username">
-
-        <label for="email">Email</label>
-        <input name="email"
-               class="form-control"
-               type="email"
-               placeholder="jackiesmith@tmail.com"
-               id="email">
-
-        <label for="firstName">First Name</label>
-        <input name="firstName"
-               class="form-control"
-               placeholder="Jackie"
-               type="text"
-               id="firstName">
-
-        <label for="lastName">Last Name</label>
-        <input name="lastName"
-               class="form-control"
-               placeholder="Smith"
-               type="text"
-               id="lastName">
-
-        <label for="dob">Date of Birth</label>
-        <input name="dob"
-               class="form-control"
-               type="date"
-               id="dob">
-
-        <a class="btn btn-default btn-block btn-primary"
-           href="website-list.html"
-           role="button">Websites</a>
-
-        <a class="btn btn-default btn-block btn-danger"
-           href="index.html"
-           role="button">Logout</a>
-    </div>
+    <label for="text">Text</label>
+    <input name="text"
+           class="form-control"
+           value="This is my text"
+           type="text"
+           id="text">
+    <label for="url">URL</label>
+    <input name="url"
+           class="form-control"
+           value="https://www.youtube.com/watch?v=4kQnrKvOTNg"
+           placeholder="https://www.youtube.com/"
+           type="url"
+           id="url">
+    <label for="width">Width</label>
+    <input name="width"
+           class="form-control"
+           value="3"
+           type="number"
+           id="width">
+    <a class="btn btn-default btn-block btn-danger"
+       href="widget-list.html"
+       role="button">Delete</a></div>
 </body>
 </html>

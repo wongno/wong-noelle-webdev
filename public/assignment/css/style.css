@@ -11,3 +11,21 @@ body {
     margin-left: -15px;
 
 }
+.white {
+    color:white;
+}
+.nw-split-view-left {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    overflow-y: scroll;
+    z-index: 1;
+}
+
+.nw-split-view-right {
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    bottom: 0px;
+    overflow-y: scroll;
+}
