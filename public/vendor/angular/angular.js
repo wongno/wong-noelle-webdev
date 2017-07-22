@@ -1670,7 +1670,7 @@ function allowAutoBootstrap(document) {
     }
     // Disabled bootstrapping unless angular.js was loaded from a known scheme used on the web.
     // This is to prevent angular.js bundled with browser extensions from being used to bypass the
-    // content security policy in web pages and other browser extensions.
+    // content security policy in web page and other browser extensions.
     switch (link.protocol) {
       case 'http:':
       case 'https:':
@@ -18970,7 +18970,7 @@ function adjustMatchers(matchers) {
  * <div class="alert alert-danger">
  * AngularJS strongly relies on contextual escaping for the security of bindings: disabling or
  * modifying this might cause cross site scripting (XSS) vulnerabilities. For libraries owners,
- * changes to this service will also influence users, so be extra careful and document your changes.
+ * changes to this service will also influence user, so be extra careful and document your changes.
  * </div>
  *
  * Typically, you would configure or override the {@link ng.$sceDelegate $sceDelegate} instead of
@@ -25035,7 +25035,7 @@ function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   var type = lowercase(element[0].type);
 
-  // In composition mode, users are still inputting intermediate text buffer,
+  // In composition mode, user are still inputting intermediate text buffer,
   // hold the listener until composition is done.
   // More about composition events: https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent
   if (!$sniffer.android) {
