@@ -3,8 +3,9 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-toggle collapsed nw-right-button"
-               href="profile.view.client.html"
-               data-toggle="collapse">
+               ng-click="model.updateUser(model.user)"
+               data-toggle="collapse"
+               role="button">
                 <span class="glyphicon glyphicon-ok"
                       aria-hidden="true"></span></a>
             <a class="navbar-brand"
@@ -16,7 +17,8 @@
                  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li>
-                        <a href="profile.view.client.html">
+                        <a ng-click="model.updateUser(model.user)"
+                           role="button">
                             <span class="glyphicon glyphicon-ok"
                                   aria-hidden="true">
                             </span>
@@ -54,6 +56,7 @@
         <input name="username"
                readonly
                class="form-control"
+               ng-model="model.user.username"
                type="text"
                placeholder="jsmith"
                id="username">
@@ -68,6 +71,7 @@
         <label for="firstName">First Name</label>
         <input name="firstName"
                class="form-control"
+               ng-model="model.user.firstName"
                placeholder="Jackie"
                type="text"
                id="firstName">
@@ -75,6 +79,7 @@
         <label for="lastName">Last Name</label>
         <input name="lastName"
                class="form-control"
+               ng-model="model.user.lastName"
                placeholder="Smith"
                type="text"
                id="lastName">
@@ -90,7 +95,10 @@
            role="button">Websites</a>
 
         <a class="btn btn-default btn-block btn-danger"
-           href="login.view.client.html"
-           role="button">Logout</a>
+           ng-click="model.deleteUser(model.user)"
+           role="button">Delete Profile</a>
+
+        <a class="btn btn-default btn-block btn-warning"
+           href="#!/login">Logout</a>
     </div>
 </div>

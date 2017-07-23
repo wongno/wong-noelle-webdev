@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WamApp")
+        .module("WebAppMaker")
         .factory("userService", userService);
 
     function userService() {
@@ -14,12 +14,26 @@
 
         var api = {
             "findUserByUsername": findUserByUsername,
-            "findUserByUsernameAndPassword": findUserByUsernameAndPassword,
+            "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
-            "registerUser": registerUser,
-            "updateUser": updateUser
+            "createUser": createUser,
+            "updateUser": updateUser,
+            "returnUsers": returnUsers,
+            "deleteUser": deleteUser,
         };
         return api;
+
+        function deleteUser(userId) {
+            for(var u in users) {
+                if(users[u]._id === userId) {
+                    if (u > -1) {
+                        users.splice(u, 1);
+                        return;
+                    }
+                }
+            }
+            return null;
+        }
 
         function updateUser(userId, user) {
             for(var u in users) {
@@ -31,7 +45,7 @@
             return null;
         }
 
-        function registerUser(user) {
+        function createUser(user) {
             user._id = (new Date()).getTime() + "";
             users.push(user);
             return user;
@@ -54,7 +68,7 @@
             return null;
         }
 
-        function findUserByUsernameAndPassword(username, password) {
+        function findUserByCredentials(username, password) {
             for(var u in users) {
                 var _user = users[u];
                 if(_user.username === username && _user.password === password) {
@@ -62,6 +76,10 @@
                 }
             }
             return null;
+        }
+
+        function returnUsers(){
+            return users;
         }
 
     }

@@ -1,7 +1,7 @@
 (function () {
 
     angular
-        .module("WamApp")
+        .module("WebAppMaker")
         .config(configuration);
 
     function configuration($routeProvider) {
@@ -29,13 +29,13 @@
             })
             .when("/user/:userId/website/new", {
                 templateUrl: "website/templates/website-new.view.client.html",
-                // controller: "websiteListController",
-                // controllerAs: "model"
+                controller: "websiteListController",
+                controllerAs: "model"
             })
             .when("/user/:userId/website/edit", {
                 templateUrl: "website/templates/website-edit.view.client.html",
-                // controller: "websiteListController",
-                // controllerAs: "model"
+                controller: "websiteListController",
+                controllerAs: "model"
             })
     }
 })();

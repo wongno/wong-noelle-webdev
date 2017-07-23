@@ -1,6 +1,6 @@
 (function (){
     angular
-        .module("WebApp")
+        .module("WebAppMaker")
         .controller(websiteEditController, "websiteEditController");
 
 })();

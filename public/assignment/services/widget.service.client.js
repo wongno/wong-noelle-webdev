@@ -1,6 +1,6 @@
 (function (){
 angular
-    .module("WamApp")
+    .module("WebAppMaker")
     .service("widgetService", widgetService);
 function widgetService (){
 var widgetService= [
