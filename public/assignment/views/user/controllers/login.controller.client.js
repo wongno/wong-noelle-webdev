@@ -4,7 +4,7 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, $rootScope) {
         var model = this;
 
         model.login = login;
@@ -24,6 +24,7 @@
                 model.errorMessage = "User not found2";
                 model.errorMessage = UserService.returnUsers();
             } else {
+                $rootScope.currentUser = user;
                 $location.url("profile/"+user._id);
             }
         }

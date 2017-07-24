@@ -92,14 +92,16 @@
             </div>
         </li>
 
-        <li ng-repeat="website in model.websites" class="list-group-item">
+        <li ng-repeat="website in model.websites"
+            class="list-group-item">
             <div class="row">
                 <div class="col-xs-4">{{website.name}}</div>
                 <div class="col-xs-6 col-sm-3">2017-07-05</div>
                 <div class="col-sm-3 hidden-xs">3,123,234</div>
                 <div class="col-xs-2">
-                    <a href="#!/user/{{model.userId}}/website/new">
-                        <span class="pull-right glyphicon glyphicon-cog white"></span>
+                    <a href="#!/user/{{model.userId}}/website/edit"
+                       role="button">
+                        <span class="pull-right glyphicon glyphicon-cog"></span>
                     </a>
                 </div>
             </div>
