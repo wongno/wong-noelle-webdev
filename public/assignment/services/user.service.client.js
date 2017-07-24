@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .factory("userService", userService);
+        .factory("UserService", UserService);
 
-    function userService() {
+    function UserService() {
 
         var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },

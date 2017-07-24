@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .service("websiteService", websiteService);
+        .service("WebsiteService", WebsiteService);
 
-    function websiteService() {
+    function WebsiteService() {
 
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -15,9 +15,52 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
         ];
 
-        this.findWebsitesForUser = findWebsitesForUser;
+        var api = {
+            "findWebsitesByUser": findWebsitesByUser,
+            "createWebsite": createWebsite,
+            "findWebsiteById": findWebsiteById,
+            "updateWebsite": updateWebsite,
+            "deleteWebsite": deleteWebsite,
+        };
+        return api;
 
-        function findWebsitesForUser(userId) {
+        function deleteWebsite(websiteId){
+            for(var w in websites) {
+                if(websites[w]._id === websiteId) {
+                    if (w > -1) {
+                        websites.splice(w, 1);
+                        return;
+                    }
+                }
+            }
+            return null;
+        }
+        function updateWebsite(websiteId, website) {
+            for (var w in websites){
+                if(websites[w]._id === websiteId){
+                    website[w] = website;
+                    return;
+                }
+            }
+            return null;
+        }
+
+        function findWebsiteById(websiteId){
+            for (var w in websites){
+                if (websites[w]._id === websiteId){
+                    return websites[w];
+                }
+            }
+            return null;
+        }
+        function createWebsite(userId, website){
+            website._id = (new Date()).getTime() + "";
+            website.developerId = userId;
+            websites.push(website);
+            return website;
+        }
+
+        function findWebsitesByUser(userId) {
             var sites = [];
 
             for(var w in websites) {

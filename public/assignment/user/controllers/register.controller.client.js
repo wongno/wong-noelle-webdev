@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("registerController", registerController);
+        .controller("RegisterController", RegisterController);
 
-    function registerController(userService, $location) {
+    function RegisterController(UserService, $location) {
         var model = this;
 
         model.createUser = createUser;
@@ -19,14 +19,14 @@
                 return;
             }
             if (user.password === user.password2) {
-                var _user = userService.findUserByUsername(user.username);
+                var _user = UserService.findUserByUsername(user.username);
                 if (!_user) {
-                    var user = userService.createUser(user);
+                    var user = UserService.createUser(user);
                     $location.url("/profile/" + user._id);
-                    model.errorMessage = userService.returnUsers();
+                    model.errorMessage = UserService.returnUsers();
                 } else {
                     model.errorMessage = "User already exists";
-                    model.errorMessage = userService.returnUsers();
+                    model.errorMessage = UserService.returnUsers();
                 }
             } else {
                 model.errorMessage = "Passwords don't match";

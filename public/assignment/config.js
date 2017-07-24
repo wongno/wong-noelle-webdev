@@ -8,34 +8,34 @@
         $routeProvider
             .when("/login", {
                 templateUrl: "user/templates/login.view.client.html",
-                controller: "loginController",
+                controller: "LoginController",
                 controllerAs: "model"
             })
             .when("/register", {
                 templateUrl: "user/templates/register.view.client.html",
-                controller: "registerController",
+                controller: "RegisterController",
                 controllerAs: "model"
             })
             .when("/profile/:userId", {
                 templateUrl: "user/templates/profile.view.client.html",
-                controller: "profileController",
+                controller: "ProfileController",
                 controllerAs: "model"
             })
             // website routes
             .when("/user/:userId/website", {
                 templateUrl: "website/templates/website-list.view.client.html",
-                controller: "websiteListController",
+                controller: "WebsiteListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/new", {
                 templateUrl: "website/templates/website-new.view.client.html",
-                controller: "websiteListController",
+                controller: "NewWebsiteController",
                 controllerAs: "model"
             })
-            .when("/user/:userId/website/edit", {
-                templateUrl: "website/templates/website-edit.view.client.html",
-                controller: "websiteListController",
-                controllerAs: "model"
-            })
+            // .when("/user/:userId/website/edit", {
+            //     templateUrl: "website/templates/website-edit.view.client.html",
+            //     controller: "websiteListController",
+            //     controllerAs: "model"
+            // })
     }
 })();

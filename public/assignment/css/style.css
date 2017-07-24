@@ -13,9 +13,10 @@ body {
 
 }
 
-.white {
+.nw-white {
     color:white;
 }
+
 .nw-split-view-left {
     position: absolute;
     top: 60px;
@@ -68,9 +69,10 @@ body {
     color:white;
 }
 
-.nw .navbar-default{
+.nw-navbar-default{
      background-color: #337ab7;
-     border-color: white;
+     border-color: #337ab7;
+    z-index: 3;
  }
 
 .nw .navbar-default .navbar-brand{

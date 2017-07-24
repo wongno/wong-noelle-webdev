@@ -2,9 +2,9 @@
 
     angular
         .module("WebAppMaker")
-        .controller("profileController", profileController)
+        .controller("ProfileController", ProfileController)
 
-    function profileController($routeParams, userService) {
+    function ProfileController($routeParams, UserService) {
         var model = this;
         var userId = $routeParams["userId"];
 
@@ -12,18 +12,18 @@
         model.deleteUser = deleteUser;
 
         function init() {
-            model.user = userService.findUserById(userId);
+            model.user = UserService.findUserById(userId);
         }
         init();
 
         function updateUser(user) {
-            userService.updateUser(user._id, user);
-            model.errorMessage = userService.returnUsers();
+            UserService.updateUser(user._id, user);
+            model.errorMessage = UserService.returnUsers();
         }
 
         function deleteUser(user) {
-            userService.deleteUser(user._id);
-            model.errorMessage = userService.returnUsers();
+            UserService.deleteUser(user._id);
+            model.errorMessage = UserService.returnUsers();
         }
     }
 
