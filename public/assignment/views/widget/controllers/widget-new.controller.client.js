@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("NewWidgetController", NewWidgetController);
 
-    function NewWidgetController() {
+    function NewWidgetController(WidgetService, $routeParams) {
 
         function init () {
 

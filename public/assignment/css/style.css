@@ -4,7 +4,7 @@ input {
 textarea{
     margin-bottom: 5px;
 }
-body {
+.body {
     padding-top: 60px;
     padding-bottom:60px;
 }
@@ -13,6 +13,9 @@ body {
 
 }
 
+.nw-padding{
+    padding-bottom:60px;
+}
 .nw-white {
     color:white;
 }
@@ -69,14 +72,9 @@ body {
     color:white;
 }
 
-.nw-navbar-default{
-     background-color: #337ab7;
-     border-color: #337ab7;
-    z-index: 3;
- }
-
-.nw .navbar-default .navbar-brand{
-    color: white;
+.nw .navbar-default{
+    background-color: #337ab7;
+    border-color: #337ab7;
 }
 
 .nw-split-view-right {

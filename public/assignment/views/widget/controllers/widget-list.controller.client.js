@@ -3,35 +3,39 @@
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController);
 
-    function WidgetListController($sce) {
+    function WidgetListController($sce, WidgetService, $routeParams) {
         var model = this;
+
+        model.pageId = $routeParams.pageId;
+        model.websiteId = $routeParams.websiteId;
+        model.userId = $routeParams.userId;
+        model.findWidgetById = findWidgetById;
+        model.getWidgetIncludeUrl = getWidgetIncludeUrl;
+        model.trustUrlResource = trustUrlResource;
         model.trustHtmlContent = trustHtmlContent;
-
         function init() {
-            model.widgets = [
-                { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-                { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-                { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                    "url": "http://lorempixel.com/400/200/"},
-                { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-                { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-                { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                    "url": "https://youtu.be/AM2Ivdi9c4E" },
-                { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-            ];
-
+            model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
         }
         init();
-    function trustHtmlContent(htmlContent) {
-        return $sce.trustAsHtml(htmlContent);
-    }
 
-    function trustUrlResource(url) {
-        var youtubeUrl = "https://www.youtube.com/embed";
-        var urlParts = url.split("/");
-        youtubeUrl += urlParts[urlParts.length-1];
-        return $sce.trustAsUrl(youtubeUrl);
-    }
+        function findWidgetById(widgetId) {
+            model.widget = WidgetService.findWidgetById(widgetId);
+        }
+
+        function trustHtmlContent(htmlContent) {
+            return $sce.trustAsHtml(htmlContent);
+        }
+
+        function getWidgetIncludeUrl(widgetType) {
+            return "views/widget/templates/widgets/widget-" + widgetType + ".view.client.html";
+        }
+
+        function trustUrlResource(url) {
+            var youtubeUrl = "https://www.youtube.com/embed/";
+            var urlParts = url.split("/");
+            youtubeUrl += urlParts[urlParts.length-1];
+            return $sce.trustAsResourceUrl(youtubeUrl);
+        }
 
     }
 })();

@@ -91,7 +91,9 @@
                 <li ng-repeat="page in model.pages"
                     class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-9">{{page.name}}</div>
+                        <div class="col-xs-9">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"
+                               role="button">{{page.name}}</a></div>
                         <div class="col-xs-3">
                             <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"
                                role="button">

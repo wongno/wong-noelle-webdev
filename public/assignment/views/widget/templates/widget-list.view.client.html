@@ -1,33 +1,46 @@
-<div class="nw">
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header pull-left">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left pull-left">
-                        <li><a class="navbar-header" href="../../page/templates/page-list.view.client.html">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <li><a class="navbar-header"
+                               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
+                               role="button">
+                            <span class="glyphicon glyphicon-chevron-left"
+                                  aria-hidden="true"></span>
                         </a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="navbar-header">
-                <a class="navbar-toggle collapsed nw-right-button" href="widget-chooser.html" aria-expanded="false">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                <a class="navbar-toggle collapsed nw-right-button"
+                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+                   role="button"
+                   aria-expanded="false">
+                    <span class="glyphicon glyphicon-plus"
+                          aria-hidden="true">
                     </span></a>
 
-                <a class="navbar-toggle collapsed nw-back-button " href="../../page/templates/page-list.view.client.html" aria-expanded="false">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
+                <a class="navbar-toggle collapsed nw-back-button "
+                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
+                   role="button"
+                   aria-expanded="false">
+                    <span class="glyphicon glyphicon-chevron-left"
+                          aria-hidden="true">
                     </span></a>
 
-                <a class="navbar-brand" href="widget-list.view.client.html">Widgets</a>
+                <a class="navbar-brand"
+                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">Widgets</a>
             </div>
 
             <div class="navbar-header pull-right">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav ">
-                        <li><a href="widget-chooser.html">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <li><a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                            <span class="glyphicon glyphicon-plus"
+                                  aria-hidden="true"></span>
                         </a></li>
                     </ul>
                 </div>
@@ -38,152 +51,28 @@
         <div class="navbar-header pull-right">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="navbar-header nw-user-button-1" href="../../user/templates/profile.view.client.html">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <li><a class="navbar-header nw-user-button-1"
+                           href="#!/profile/{{model.userId}}"
+                           role="button">
+                        <span class="glyphicon glyphicon-user"
+                              aria-hidden="true"></span>
                     </a></li>
                 </ul>
             </div>
         </div>
         <div class="navbar-header">
 
-            <a class="navbar-toggle collapsed nw-user-button-2" href="../../user/templates/profile.view.client.html" aria-expanded="false">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+            <a class="navbar-toggle collapsed nw-user-button-2"
+               href="#!/profile/{{model.userId}}"
+               role="button"
+               aria-expanded="false">
+                <span class="glyphicon glyphicon-user"
+                      aria-hidden="true"></span></a>
         </div>
     </nav>
+
+<div ng-repeat="widget in model.widgets">
+    <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
 </div>
 
-<div class="container-fluid">
-    <div ng-switch="widgets.widgetType">
-        <div ng-switch-when="HEADING">
-            <div ng-switch="widgets.size">
-                <h1 ng-switch-when="1">{{widgets.text}}</h1>
-                <h2 ng-switch-when="2">{{widgets.text}}</h2>
-                <h3 ng-switch-when="3">{{widgets.text}}</h3>
-                <h4 ng-switch-when="4">{{widgets.text}}</h4>
-                <h5 ng-switch-when="5">{{widgets.text}}</h5>
-                <h6 ng-switch-when="6">{{widgets.text}}</h6>
-            </div>
-        </div>
-        <div ng-switch-when="IMAGE">
-            <img ng-src="{{widgets.url}}"
-                 width="100%"/>
-        </div>
-        <div ng-switch-when="HTML"
-             ng-bind="model.trustHtmlContent(widgets.text)">
-        </div>
-        <div ng-switch-when="YOUTUBE">
-            <iframe src="{{model.trustUrlResource(widgets.url)}}"></iframe>
-        </div>
-    </div>
-    <!--<div class="row">-->
-    <!--<div>-->
-        <!--<h1>GIZMODO</h1></div>-->
-    <!--<div class="nw-widget-buttons">-->
-        <!--<a class="btn btn-default btn-block"-->
-           <!--aria-hidden="true">-->
-        <!--<span class="glyphicon glyphicon-cog"-->
-              <!--aria-hidden="true"></span>-->
-        <!--<span class="glyphicon glyphicon-align-justify"-->
-              <!--aria-hidden="true"></span></a>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<div>-->
-            <!--<h3>US Senate Reaches Compromise on Emergency Zika Funding</h3></div>-->
-        <!--<div class="nw-widget-buttons">-->
-            <!--<a hrwidget-heading.view.client.htmlhtml"-->
-               <!--class="btn btn-default btn-block"-->
-               <!--aria-hidden="true">-->
-            <!--<span class="glyphicon glyphicon-cog"-->
-                  <!--aria-hidden="true"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"-->
-                  <!--aria-hidden="true"></span>-->
-        <!--</a>-->
-        <!--</div></div>-->
-    <!--<div class="row">-->
-        <!--<div class=>-->
-            <!--<img src="https://my.vetmatrixbase.com/clients/12679/images/Gorgeous_puppies.jpg"-->
-                 <!--alt="puppy image"-->
-                 <!--width="100%"-->
-                 <!--height="100%"></div>-->
-    <!--<div class="nw-widget-buttons">-->
-        <!--<a class="btn btn-default btn-block"-->
-           <!--href="widget-image.html"-->
-           <!--aria-hidden="true">-->
-        <!--<span class="glyphicon glyphicon-cog"-->
-              <!--aria-hidden="true"></span>-->
-        <!--<span class="glyphicon glyphicon-align-justify"-->
-              <!--aria-hidden="true"></span>-->
-    <!--</a>-->
-    <!--</div>-->
-    <!--</div>-->
 
-    <!--<div class="row">-->
-        <!--<div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor-->
-            <!--incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-            <!--laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit-->
-            <!--esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident,sunt in culpa qui-->
-            <!--officia deserunt mollit anim id est laborum.</p>-->
-        <!--</div>-->
-        <!--<div class="nw-widget-buttons">-->
-            <!--<a class="btn btn-default btn-block"-->
-               <!--aria-hidden="true">-->
-            <!--<span class="glyphicon glyphicon-cog"-->
-                  <!--aria-hidden="true"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"-->
-                  <!--aria-hidden="true"></span>-->
-        <!--</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<div>-->
-            <!--<h3>Man in a Wingsuit Flies Straight Through a Ring of Fire</h3>-->
-        <!--</div>-->
-        <!--<div class="nw-widget-buttons">-->
-            <!--<a class="btn btn-default btn-block"-->
-               <!--aria-hidden="true">-->
-            <!--<span class="glyphicon glyphicon-cog"-->
-                  <!--aria-hidden="true"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"-->
-                  <!--aria-hidden="true"></span>-->
-        <!--</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<div>-->
-            <!--<iframe width="420"-->
-                    <!--height="345"-->
-                    <!--src="https://www.youtube.com/watch?v=NONlkKMGFeA">-->
-        <!--</iframe>-->
-        <!--</div>-->
-        <!--<div class="nw-widget-buttons">-->
-            <!--<a class="btn btn-default btn-block"-->
-               <!--href="widget-youtube.html"-->
-               <!--aria-hidden="true">-->
-            <!--<span class="glyphicon glyphicon-cog"-->
-                  <!--aria-hidden="true"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"-->
-                  <!--aria-hidden="true"></span>-->
-        <!--</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container-fluid">-->
-    <!--<div class="row">-->
-        <!--<div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor-->
-            <!--incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-            <!--laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit-->
-            <!--esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident,sunt in culpa-->
-            <!--qui officia deserunt mollit anim id est laborum.</p>-->
-        <!--</div>-->
-        <!--<div class="nw-widget-buttons">-->
-            <!--<a class="btn btn-default btn-block"-->
-               <!--aria-hidden="true">-->
-            <!--<span class="glyphicon glyphicon-cog"-->
-                  <!--aria-hidden="true"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"-->
-                  <!--aria-hidden="true"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-</div>
