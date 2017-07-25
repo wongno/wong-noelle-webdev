@@ -1,14 +1,13 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("EditWidgetController", EditWidgetController);
+        .controller("PageListController", PageListController);
 
-    function EditWidgetController() {
+    function PageListController() {
 
         function init() {
 
         }
-
         init();
     }
 })();

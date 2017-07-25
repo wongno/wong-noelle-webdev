@@ -1,3 +1,13 @@
-/**
- * Created by Noni on 7/24/2017.
- */
+(function () {
+    angular
+        .module("WebAppMaker")
+        .controller("NewWidgetController", NewWidgetController);
+
+    function NewWidgetController() {
+
+        function init () {
+
+        }
+        init();
+    }
+})();
