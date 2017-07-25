@@ -15,7 +15,7 @@
         init();
 
         function findWebsiteById(websiteId) {
-            website = WebsiteService.findWebsiteById(websiteId);
+            model.website = WebsiteService.findWebsiteById(websiteId);
         }
     }
 })();
