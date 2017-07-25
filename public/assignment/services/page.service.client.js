@@ -25,7 +25,7 @@
             for(var p in pages) {
                 if(pages[p]._id === pageId) {
                     if (p > -1) {
-                        pages.splice(w, 1);
+                        pages.splice(p, 1);
                         return;
                     }
                 }

@@ -18,6 +18,7 @@
             <div class="navbar-header">
                 <a class="navbar-toggle collapsed nw-right-button"
                    ng-click="model.updateWebsite(model.website)"
+                   href="#!/user/{{model.userId}}/website"
                    role="button"
                    aria-expanded="false">
                     <span class="glyphicon glyphicon-ok"
@@ -40,6 +41,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav ">
                         <li><a ng-click="model.updateWebsite(model.website)"
+                               href="#!/user/{{model.userId}}/website"
                                role="button">
                             <span class="glyphicon glyphicon-ok"
                                   aria-hidden="true"></span>
@@ -117,11 +119,13 @@
             <label for="description">Website Description</label>
             <textarea name="description"
                       rows="5"
+                      ng-model="model.website.description"
                       class="form-control"
-                      id="description">{{model.website.description}}</textarea>
+                      id="description"></textarea>
 
             <a class="btn btn-default btn-block btn-warning"
                ng-click="model.deleteWebsite()"
+               href="#!/user/{{model.userId}}/website"
                role="button">Delete Website</a>
 
             <a class="btn btn-default btn-block btn-danger"
