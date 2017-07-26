@@ -80,31 +80,7 @@
 <div class="row">
     <div class="col-xs-3 visible-md visible-lg nw-split-view-left">
         <div class="container-fluid">
-            <ul class="list-group">
-                <li class="list-group-item active">
-                    <div class="row">
-                        <div class="col-xs-9">Name</div>
-                        <div class="col-xs-3">
-                            <a href="#!/user/{{model.userId}}/website/new">
-                                <span class="pull-right glyphicon glyphicon-plus nw-white"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-                <li ng-repeat="website in model.websites" class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-9">
-                            <a href="#!/user/{{model.userId}}/website/{{website._id}}/page"
-                               role="button">{{website.name}}</a></div>
-                        <div class="col-xs-3">
-                            <a href="#!/user/{{model.userId}}/website/edit">
-                                <span class="pull-right glyphicon glyphicon-cog"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div ng-include="'views/website/templates/website-list.component.client.html'"></div>
         </div>
     </div>
 
