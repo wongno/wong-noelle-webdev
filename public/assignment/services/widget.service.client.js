@@ -34,7 +34,9 @@ function WidgetService (){
         var listWidgets = [];
         for(var w in widgets){
             if(widgets[w].pageId === pageId){
-                listWidgets.push(widgets[w]);
+                if(widgets[w].widgetType != null){
+                    listWidgets.push(widgets[w]);
+                }
             }
         }
         return listWidgets;

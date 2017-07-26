@@ -36,6 +36,5 @@
             youtubeUrl += urlParts[urlParts.length-1];
             return $sce.trustAsResourceUrl(youtubeUrl);
         }
-
     }
 })();

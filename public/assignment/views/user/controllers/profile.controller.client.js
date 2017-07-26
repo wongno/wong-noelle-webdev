@@ -18,12 +18,10 @@
 
         function updateUser(user) {
             UserService.updateUser(user._id, user);
-            model.errorMessage = UserService.returnUsers();
         }
 
         function deleteUser(user) {
             UserService.deleteUser(user._id);
-            model.errorMessage = UserService.returnUsers();
         }
     }
 

@@ -1,4 +1,4 @@
-<div class="nw">
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -64,6 +64,7 @@
         <label for="email">Email</label>
         <input name="email"
                class="form-control"
+               ng-model="model.user.email"
                type="email"
                placeholder="jackiesmith@tmail.com"
                id="email">
@@ -87,6 +88,7 @@
         <label for="dob">Date of Birth</label>
         <input name="dob"
                class="form-control"
+               ng-model="model.user.dob"
                type="date"
                id="dob">
 
@@ -101,4 +103,4 @@
         <a class="btn btn-default btn-block btn-warning"
            href="#!/login">Logout</a>
     </div>
-</div>
+

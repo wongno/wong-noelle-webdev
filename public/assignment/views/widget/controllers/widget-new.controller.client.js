@@ -18,7 +18,6 @@
         }
         init();
 
-
         function setWidgetHeading(){
             model.widget.widgetType = "HEADING";
         }

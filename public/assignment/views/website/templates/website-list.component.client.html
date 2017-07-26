@@ -13,7 +13,9 @@
 
     <li ng-repeat="website in model.websites" class="list-group-item">
         <div class="row">
-            <div class="col-xs-9">{{website.name}}</div>
+            <div class="col-xs-9">
+                <a href="#!/user/{{model.userId}}/website/{{website._id}}/page"
+                   role="button">{{website.name}}</a></div>
             <div class="col-xs-3">
                 <a href="#!/user/{{model.userId}}/website/{{website._id}}">
                     <span class="pull-right glyphicon glyphicon-cog"></span>
