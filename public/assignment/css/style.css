@@ -86,8 +86,8 @@ textarea{
 }
 
 .nw-widget-buttons {
-    bottom:45px;
-    position: relative;
-    float: right;
-    z-index: 2;
+    right: 0;
+    position: absolute;
+    background:transparent;
+    z-index: 10;
 }

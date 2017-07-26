@@ -1,11 +1,11 @@
-<div class="nw">
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header pull-left">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left pull-left">
                         <li><a class="navbar-header"
-                               href="widget-list.view.client.html">
+                               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">
                             <span class="glyphicon glyphicon-chevron-left"
                                   aria-hidden="true"></span></a>
                         </li>
@@ -15,14 +15,28 @@
 
             <div class="navbar-header">
                 <a class="navbar-toggle collapsed nw-back-button"
-                   href="widget-list.view.client.html"
+                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
                    aria-expanded="false">
                     <span class="glyphicon glyphicon-chevron-left"
                           aria-hidden="true">
                     </span>
                 </a>
                 <a class="navbar-brand"
-                   href="widget-image.html">Edit Widget</a>
+                   href="widget-image.view.client.html">Edit Widget</a>
+            </div>
+            <div class="navbar-header pull-right">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <a ng-click="model.updateWidget(model.widget)"
+                               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
+                               role="button">
+                            <span class="glyphicon glyphicon-ok"
+                                  aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div><!-- /.container-fluid -->
     </nav>
@@ -32,7 +46,8 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-header nw-user-button-1"
-                           href="../../user/templates/profile.view.client.html">
+                           href="#!/profile/{{model.userId}}"
+                           role="button">
                         <span class="glyphicon glyphicon-user"
                               aria-hidden="true"></span>
                     </a></li>
@@ -40,20 +55,29 @@
             </div>
         </div>
         <div class="navbar-header">
-
+            <a class="navbar-toggle collapsed nw-right-button"
+               ng-click="model.updateWidget(model.widget)"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
+               aria-expanded="false">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true">
+                    </span>
+            </a>
             <a class="navbar-toggle collapsed nw-user-button-2"
-               href="../../user/templates/profile.view.client.html"
+               href="#!/profile/{{model.userId}}"
+               role="button"
                aria-expanded="false">
                 <span class="glyphicon glyphicon-user"
                       aria-hidden="true"></span>
             </a>
         </div>
     </nav>
-</div>
+
 <div class="container-fluid">
     <label for="name">Name</label>
     <input name="name"
            class="form-control"
+           ng-model="model.widget.name"
            placeholder="name"
            type="text"
            id="name">
@@ -61,6 +85,7 @@
     <label for="text">Text</label>
     <input name="text"
            class="form-control"
+           ng-model="model.widget.text"
            placeholder="text"
            type="text"
            id="text">
@@ -68,14 +93,15 @@
     <label for="url">URL</label>
     <input name="url"
            class="form-control"
+           ng-model="model.widget.url"
            placeholder="your url"
-           value="http://www.petdoctorsupplyco.com/wp-content/uploads/2017/04/corgi-puppy.jpg"
            type="url"
            id="url">
 
     <label for="width">Width</label>
     <input name="width"
            class="form-control"
+           ng-model="model.widget.width"
            value="3"
            placeholder="0"
            type="number"
@@ -89,10 +115,11 @@
            id="upload">
 
     <a class="btn btn-default btn-block btn-primary"
-       href="widget-list.view.client.html"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
        role="button">Upload Image</a>
 
     <a class="btn btn-default btn-block btn-danger"
-       href="widget-list.view.client.html"
+       ng-click="model.deleteWidget()"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
        role="button">Delete</a>
 </div>
