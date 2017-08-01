@@ -4,6 +4,7 @@
         .controller("HomeController", HomeController);
 
     function HomeController() {
+        var model = this;
 
         function init(){
 

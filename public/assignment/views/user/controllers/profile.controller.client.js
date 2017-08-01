@@ -2,7 +2,7 @@
 
     angular
         .module("WebAppMaker")
-        .controller("ProfileController", ProfileController)
+        .controller("ProfileController", ProfileController);
 
     function ProfileController($routeParams, UserService) {
         var model = this;
@@ -12,7 +12,11 @@
         model.deleteUser = deleteUser;
 
         function init() {
-            model.user = UserService.findUserById(userId);
+           UserService.findUserById(userId)
+               .then(function (response){
+                model.user = response.data;
+
+            });
         }
         init();
 
