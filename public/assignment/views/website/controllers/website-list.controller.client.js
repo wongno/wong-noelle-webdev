@@ -12,8 +12,8 @@
         function init() {
             WebsiteService
                 .findWebsitesByUser(model.userId)
-                .then(function(response){
-                    model.websites = response.data;
+                .then(function(websites){
+                    model.websites = websites;
                 });
         }
         init();

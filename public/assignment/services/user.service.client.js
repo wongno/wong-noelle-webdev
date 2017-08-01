@@ -13,23 +13,20 @@
         ];
         var api = {
             "findUserByUsername": findUserByUsername,
-            "findUserByUsernameAndPassword": findUserByUsernameAndPassword,
+            "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
-            "registerUser": registerUser,
+            "createUser": createUser,
             "updateUser": updateUser
         };
         return api;
 
         function updateUser(userId, user) {
-
             var url = "/api/user/" + userId;
-
             return $http.put(url, user);
         }
 
-        function registerUser(user) {
+        function createUser(user) {
             var url = "/api/user";
-
             return $http.post(url, user);
         }
 
@@ -38,16 +35,17 @@
             var url = "/api/user?username="+username;
             return $http.get(url);
         }
+
         function findUserById(userId) {
             console.log("findUserById");
             return $http.get("/api/user/"+userId);
         }
 
-        function findUserByUsernameAndPassword(username, password) {
+        function findUserByCredentials(username, password) {
             console.log("findUserByUsernameAndPassword");
-            var url = "/api/user?username="+username+"&password="+password;
+            //var url = "/api/user/";
+           var url = "/api/user?username="+username+"&password="+password;
             // /user?username=alice&password=alice
-
             return $http.get(url);
 
         }

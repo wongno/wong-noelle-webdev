@@ -8,10 +8,12 @@ var users = [
 ];
 // http handlers
 app.get("/api/users", getAllUsers);
-app.get("/api/user/:userId", getUserById);
-app.get("/api/user", findUser);
-app.post("/api/user", registerUser);
+app.get("/api/user/:userId", findUserById);
+app.get("/api/user", findUserByUsername);
+app.get("/api/user", findUserByCredentials);
+app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
+
 
 function updateUser(req, res) {
     var userId = req.params.userId;
@@ -24,22 +26,36 @@ function updateUser(req, res) {
             return;
         }
     }
-    res.sendStatus(404);
+res.sendStatus(404);
 }
 
-function registerUser(req, res) {
+function findUserByUsername(req,res) {
+    console.log(users);
+    var username = req.query.username;
+    console.log(username + "");
+        for(var u in users) {
+            if(users[u].username === username) {
+                console.log("ok");
+                res.send(users[u]);
+                return;
+            }
+    }
+    console.log("denied");
+    res.send("0");
+}
+
+function createUser(req, res) {
+    console.log("reach");
     var user = req.body;
     user._id = (new Date()).getTime() + "";
     users.push(user);
     res.send(user);
 }
 
-function findUser(req, res) {
+function findUserByCredentials(req, res) {
     var username = req.query.username;
     var password = req.query.password;
 
-
-    if(username && password) {
         for(var u in users) {
             var _user = users[u];
             if(_user.username === username && _user.password === password) {
@@ -47,22 +63,15 @@ function findUser(req, res) {
                 return;
             }
         }
-    } else if(username) {
-        for(var u in users) {
-            if(users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
-        }
-    }
     res.send("0");
+
 }
 
 function getAllUsers(req, response) {
     response.send(users);
 }
 
-function getUserById(req, response) {
+function findUserById(req, response) {
     for(var u in users) {
         if(users[u]._id === req.params.userId) {
             response.send(users[u]);

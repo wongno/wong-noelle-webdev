@@ -6,14 +6,22 @@
     function EditWebsiteController($routeParams, WebsiteService) {
         var model = this;
 
-        model.websiteId = $routeParams["websiteId"];
+        model.websiteId = $routeParams.websiteId;
         model.userId = $routeParams.userId;
         model.updateWebsite = updateWebsite;
         model.deleteWebsite = deleteWebsite;
 
         function init() {
-            model.websites = WebsiteService.findWebsitesByUser(model.userId);
-            model.website = WebsiteService.findWebsiteById(model.websiteId);
+            WebsiteService
+                .findWebsitesByUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
+             WebsiteService
+                .findWebsiteById(model.userId,model.websiteId)
+                .then(function (response) {
+                    model.website=response.data;
+                });
         }
         init();
 

@@ -25,45 +25,32 @@
         return api;
 
         function deleteWebsite(websiteId){
-            for(var w in websites) {
-                if(websites[w]._id === websiteId) {
-                    if (w > -1) {
-                        websites.splice(w, 1);
-                        return;
-                    }
-                }
-            }
-            return null;
+            var url = "/api/website" +websiteId;
+            return $http.delete(url);
         }
+
         function updateWebsite(websiteId, website) {
-            for (var w in websites){
-                if(websites[w]._id === websiteId){
-                    website[w] = website;
-                    return;
-                }
-            }
-            return null;
+            var url = "/api/website/"+ websiteId;
+            return $http.put(url,website);
         }
 
         function findWebsiteById(websiteId){
-            for (var w in websites){
-                if (websites[w]._id === websiteId){
-                    return websites[w];
-                }
-            }
-            return null;
+            var url = "/api/website"+websiteId;
+            return $http.get(url);
+
         }
 
         function createWebsite(userId, website){
-            website._id = (new Date()).getTime() + "";
-            website.developerId = userId;
-            websites.push(website);
-            return website;
+            var url ="/api/user/"+userId+"website";
+            return $http.post(url,website);
         }
 
         function findWebsitesByUser(userId) {
-            var url = "api/user/" + userId +"/website"
-            return $http(url);
+            var url = "/api/user/" + userId +"/website"
+            return $http(url)
+                .then(function(response){
+                return response.data;
+            });
         }
 
     }

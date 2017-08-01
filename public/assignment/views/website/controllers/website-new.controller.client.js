@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("NewWebsiteController", NewWebsiteController);
 
-    function NewWebsiteController($routeParams, WebsiteService) {
+    function NewWebsiteController($routeParams, WebsiteService, $location) {
         var model = this;
 
         model.userId = $routeParams.userId;
@@ -11,7 +11,10 @@
 
         function init() {
 
-            model.websites = WebsiteService.findWebsitesByUser(model.userId);
+            WebsiteService.findWebsitesByUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
         }
         init();
 
@@ -20,7 +23,10 @@
                 model.errorMessage = "Please fill in all fields"
                 return;
             }
-            WebsiteService.createWebsite(model.userId, website);
+            WebsiteService.createWebsite(model.userId, website)
+                .then(function () {
+                    $location("user/"+model.userId+"/website");
+                });
         }
     }
 
