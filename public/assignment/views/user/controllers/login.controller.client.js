@@ -15,16 +15,20 @@
         init();
 
         function login(user) {
+            console.log("login");
             if(!user) {
                 model.errorMessage = "User not found";
                 return;
             }
-            console.log("login");
-            var promise = UserService.findUserByCredentials(user.username, user.password);
+            var promise = UserService.findUserByUsernameAndPassword(user.username, user.password);
+            console.log("login1");
             promise
                 .then(function (response) {
+                    console.log("login2");
                     user = response.data;
+                    console.log("login3");
                     if(user === null) {
+                        console.log("login4");
                         model.errorMessage = "User not found";
                     } else {
                         $rootScope.currentUser = user;

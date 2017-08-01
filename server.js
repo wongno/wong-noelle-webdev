@@ -12,5 +12,5 @@ app.use(express.static(__dirname + '/public'));
 var port = process.env.PORT || 3000;
 
 app.listen(port);
-require("./assignment/app.js")(app);
-app.listen(port, ipaddress);
+require("./assignment/app.js");
+//app.listen(port, ipaddress);

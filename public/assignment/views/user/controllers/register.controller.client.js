@@ -6,19 +6,19 @@
     function RegisterController(UserService, $location) {
         var model = this;
 
-        model.createUser = createUser;
+        model.registerUser = registerUser;
 
         function init() {
 
         }
         init();
 
-        function createUser(user) {
+        function registerUser(user) {
             UserService.findUserByUsername(user.username)
                 .then(function (response) {
                     var _user = response.data;
                     if(_user === "0") {
-                        return UserService.createUser(user)
+                        return UserService.registerUser(user)
                     } else {
                         model.error = "User already exists";
                     }
@@ -28,6 +28,8 @@
                     $location.url("/profile/" + _user._id);
                 });
         }
+    }
+})();
             // if (!user) {
             //     model.errorMessage = "Please enter information"
             //     return;
@@ -49,5 +51,4 @@
             //     model.errorMessage = "Passwords don't match";
             // }
        // }
-    }
-})();
+
