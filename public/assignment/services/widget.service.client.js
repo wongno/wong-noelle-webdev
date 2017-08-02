@@ -47,15 +47,8 @@ function WidgetService ($http){
     }
 
     function deleteWidget(widgetId) {
-        for(var w in widgets){
-            if(widgets[w]._id === widgetId){
-                if (w > -1) {
-                    widgets.splice(w, 1);
-                    return;
-                }
-            }
-        }
-        return null;
+        var url = "/api/widget/"+widgetId;
+        return $http.delete(url);
     }
 
 }
