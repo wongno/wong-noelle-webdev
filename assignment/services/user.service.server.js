@@ -13,12 +13,27 @@ app.get("/api/user", findUserByUsername);
 app.get("/api/user", findUserByCredentials);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
+app.delete("/api/user/:userId", deleteUser);
 
+function deleteUser(req,res) {
+    console.log("fiddle");
+    for(var u in users) {
+        if(users[u]._id === req.params.userId) {
+            if (u > -1) {
+                console.log("splice");
+                users.splice(u, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+    }
+    res.sendStatus(404);
+}
 
 function updateUser(req, res) {
     var userId = req.params.userId;
     var user = req.body;
-
+console.log("updated");
     for(var u in users) {
         if(users[u]._id === userId) {
             users[u] = user;

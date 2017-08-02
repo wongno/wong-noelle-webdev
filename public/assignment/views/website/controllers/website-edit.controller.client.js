@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function EditWebsiteController($routeParams, WebsiteService) {
+    function EditWebsiteController($routeParams, WebsiteService,$location) {
         var model = this;
 
         model.websiteId = $routeParams.websiteId;
@@ -18,7 +18,7 @@
                     model.websites = websites;
                 });
              WebsiteService
-                .findWebsiteById(model.userId,model.websiteId)
+                .findWebsiteById(model.websiteId)
                 .then(function (response) {
                     model.website=response.data;
                 });
@@ -26,11 +26,18 @@
         init();
 
         function updateWebsite(website){
-            WebsiteService.updateWebsite(model.websiteId,website);
+            WebsiteService
+                .updateWebsite(model.websiteId,website)
+                .then(function () {
+                $location.url("user/"+model.userId+"/website");
+            });
         }
         
         function deleteWebsite() {
-            WebsiteService.deleteWebsite(model.websiteId);
+            WebsiteService.deleteWebsite(model.websiteId).
+            then(function () {
+                $location.url("user/"+model.userId+"/website");
+            });
         }
     }
 

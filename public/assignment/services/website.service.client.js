@@ -25,7 +25,7 @@
         return api;
 
         function deleteWebsite(websiteId){
-            var url = "/api/website" +websiteId;
+            var url = "/api/website/" +websiteId;
             return $http.delete(url);
         }
 
@@ -35,19 +35,19 @@
         }
 
         function findWebsiteById(websiteId){
-            var url = "/api/website"+websiteId;
+            var url = "/api/website/"+websiteId;
             return $http.get(url);
 
         }
 
         function createWebsite(userId, website){
-            var url ="/api/user/"+userId+"website";
+            var url ="/api/user/"+userId+"/website";
             return $http.post(url,website);
         }
 
         function findWebsitesByUser(userId) {
             var url = "/api/user/" + userId +"/website"
-            return $http(url)
+            return $http.get(url)
                 .then(function(response){
                 return response.data;
             });

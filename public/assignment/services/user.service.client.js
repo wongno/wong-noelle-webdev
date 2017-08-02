@@ -16,9 +16,16 @@
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
             "createUser": createUser,
-            "updateUser": updateUser
+            "updateUser": updateUser,
+            "deleteUser": deleteUser,
         };
         return api;
+
+        function deleteUser(userId) {
+            console.log("delete");
+            var url = "/api/user/"+userId;
+            return $http.delete(url);
+        }
 
         function updateUser(userId, user) {
             var url = "/api/user/" + userId;
