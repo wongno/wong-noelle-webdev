@@ -43,9 +43,8 @@ function updateWebsite(req,res) {
     res.sendStatus(404);
 }
 function findWebsiteById(req,res) {
-    var websiteId = req.params.websiteId;
     for (var w in websites){
-        if (websites[w]._id === websiteId){
+        if (websites[w]._id === req.params.websiteId){
             res.json(websites[w]);
             return;
         }

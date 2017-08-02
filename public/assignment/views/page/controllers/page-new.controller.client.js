@@ -18,7 +18,7 @@
 
         function createPage(page){
             if(!page){
-                model.errorMessage = "Please fill in all fields"
+                model.errorMessage = "Please fill in all fields";
                 return;
             }
             PageService.createPage(model.websiteId, page)

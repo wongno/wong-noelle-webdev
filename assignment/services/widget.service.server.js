@@ -46,19 +46,23 @@ function updateWidget(req,res){
 }
 
 function createWidget(req,res) {
+    console.log("woo!");
     var pageId = req.params.pageId;
     var widget = req.body;
     widget._id = (new Date()).getTime() + "";
     widget.pageId = pageId;
     widgets.push(widget);
-    res.send(widgets);
+    console.log(widget._id + "");
+    res.send(widget);
     return;
 }
 
 function findWidgetById(req,res) {
+    console.log(widgets);
     var widgetId = req.params.widgetId;
     for(var w in widgets){
         if(widgets[w]._id === widgetId){
+            console.log("found widget");
             res.json(widgets[w]);
             return;
         }
@@ -67,10 +71,10 @@ function findWidgetById(req,res) {
 }
 
 function findAllWidgetsForPage(req,res) {
-    var pageId = req.params.pageId;
+    console.log(widgets);
     var listWidgets = [];
     for(var w in widgets){
-        if(widgets[w].pageId === pageId){
+        if(widgets[w].pageId === req.params.pageId){
             if(widgets[w].widgetType != null){
                 listWidgets.push(widgets[w]);
             }

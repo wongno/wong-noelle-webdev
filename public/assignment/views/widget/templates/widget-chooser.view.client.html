@@ -54,10 +54,10 @@
             <div class="row">
                 <div class="col-xs-10 col-sm-4">
                     <a role="button"
-                       ng-click="model.setWidgetHeading()"
-                       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/">Header</a></div>
+                       ng-click="model.setWidgetHeading();">Header</a></div>
                 <div class="col-xs-2">
-                    <a role="button">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/"
+                            role="button">
                         <span class="pull-right glyphicon glyphicon-chevron-right"></span>
                     </a>
                 </div>
@@ -101,16 +101,26 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-10 col-sm-4">
-                    <a  ng-click="model.setWidgetImage()"
-                        href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/">Image</a></div>
+                    <a  ng-click="model.setWidgetImage();">Image</a></div>
+                <div class="col-xs-2">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/"
+                       role="button">
+                        <span class="pull-right glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
             </div>
         </li>
 
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-10 col-sm-4">
-                    <a ng-click="model.setWidgetYoutube()"
-                       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/">Youtube</a></div>
+                    <a ng-click="model.setWidgetYoutube();" >Youtube</a></div>
+                <div class="col-xs-2">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/"
+                       role="button">
+                        <span class="pull-right glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
             </div>
         </li>
 

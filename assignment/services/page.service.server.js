@@ -47,10 +47,9 @@ function updatePage(req,res) {
     res.sendStatus(404);
 }
 function findAllPagesForWebsite(req,res) {
-    var websiteId = req.params.websiteId;
     var listPages = [];
     for(var p in pages) {
-        if(pages[p].websiteId === websiteId) {
+        if(pages[p].websiteId === req.params.websiteId) {
             listPages.push(pages[p]);
         }
     }
