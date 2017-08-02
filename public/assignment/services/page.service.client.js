@@ -33,13 +33,9 @@
             return null;
         }
         function updatePage(pageId, page) {
-            for (var p in pages){
-                if(pages[p]._id === pageId){
-                    pages[p] = page;
-                    return;
-                }
-            }
-            return null;
+            var url = "/api/page/"+pageId;
+            return $http.put(url,page);
+
         }
 
         function findPageById(pageId){

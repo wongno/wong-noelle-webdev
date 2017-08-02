@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("EditPageController", EditPageController);
 
-    function EditPageController($routeParams, PageService) {
+    function EditPageController($routeParams, PageService, $location) {
         var model = this;
         model.websiteId = $routeParams.websiteId;
         model.userId = $routeParams.userId;
@@ -26,7 +26,10 @@
         init();
 
         function updatePage(page){
-            PageService.updateWebsite(model.pageId,page);
+            PageService.updatePage(model.pageId,page)
+                .then(function () {
+                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
+                });
         }
 
         function deletePage() {

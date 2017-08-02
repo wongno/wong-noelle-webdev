@@ -17,7 +17,8 @@
 
             <div class="navbar-header">
                 <a class="navbar-toggle collapsed nw-right-button"
-                   href="page-list.view.client.html"
+                   ng-click="model.updatePage(model.page)"
+                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
                    role="button"
                    aria-expanded="false">
                     <span class="glyphicon glyphicon-ok"
@@ -40,7 +41,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav ">
                         <li>
-                            <a ng-click="model.updatePage(page)"
+                            <a ng-click="model.updatePage(model.page)"
                                href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"
                                role="button">
                             <span class="glyphicon glyphicon-ok"

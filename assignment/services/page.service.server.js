@@ -8,7 +8,19 @@ var pages = [
 
 app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
 app.get("/api/page/:pageId", findPageById);
+app.put("/api/page/:pageId", updatePage);
 
+function updatePage(req,res) {
+    var page = req.body
+    for (var p in pages){
+        if(pages[p]._id === page._id){
+            pages[p] = page;
+            res.json(page);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
 function findAllPagesForWebsite(req,res) {
     var listPages = [];
     for(var p in pages) {
