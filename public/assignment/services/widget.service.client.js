@@ -2,7 +2,7 @@
 angular
     .module("WebAppMaker")
     .service("WidgetService", WidgetService);
-function WidgetService (){
+function WidgetService ($http){
     var widgets= [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
         { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -31,15 +31,11 @@ function WidgetService (){
     }
 
     function findWidgetsByPageId(pageId) {
-        var listWidgets = [];
-        for(var w in widgets){
-            if(widgets[w].pageId === pageId){
-                if(widgets[w].widgetType != null){
-                    listWidgets.push(widgets[w]);
-                }
-            }
-        }
-        return listWidgets;
+        var url = "/api/page/"+pageId+"/widget";
+        return $http.get(url)
+            .then(function (response) {
+                return response.data;
+            });
     }
 
     function findWidgetById(widgetId) {
