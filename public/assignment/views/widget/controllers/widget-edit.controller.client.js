@@ -13,8 +13,14 @@
         model.updateWidget = updateWidget;
         model.deleteWidget = deleteWidget;
         function init() {
-            model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
-            model.widget = WidgetService.findWidgetById(model.widgetId);
+            WidgetService.findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
+            WidgetService.findWidgetById(model.widgetId)
+                .then(function (response) {
+                    model.widget = response.data;
+                });
         }
 
         init();

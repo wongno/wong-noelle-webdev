@@ -39,12 +39,8 @@ function WidgetService ($http){
     }
 
     function findWidgetById(widgetId) {
-        for(var w in widgets){
-            if(widgets[w]._id === widgetId){
-                return widgets[w];
-            }
-        }
-        return null;
+        var url = "/api/widget/"+widgetId;
+        return $http.get(url);
     }
 
     function updateWidget(widgetId, widget){

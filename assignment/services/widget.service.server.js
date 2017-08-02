@@ -12,6 +12,18 @@ var widgets= [
 ];
 
 app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
+app.get("/api/widget/:widgetId", findWidgetById);
+
+function findWidgetById(req,res) {
+    var widgetId = req.params.widgetId;
+    for(var w in widgets){
+        if(widgets[w]._id === widgetId){
+            res.json(widgets[w]);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
 
 function findAllWidgetsForPage(req,res) {
     var pageId = req.params.pageId;
