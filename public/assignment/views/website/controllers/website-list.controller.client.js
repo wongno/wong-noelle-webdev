@@ -7,7 +7,6 @@
         var model = this;
 
         model.userId = $routeParams.userId;
-        model.findWebsiteById = findWebsiteById;
 
         function init() {
             WebsiteService
@@ -18,8 +17,5 @@
         }
         init();
 
-        function findWebsiteById(websiteId) {
-            model.website = WebsiteService.findWebsiteById(websiteId);
-        }
     }
 })();
