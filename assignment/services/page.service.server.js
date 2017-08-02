@@ -10,11 +10,27 @@ app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
 app.get("/api/page/:pageId", findPageById);
 app.put("/api/page/:pageId", updatePage);
 app.post("/api/website/:websiteId/page", createPage);
+app.delete("/api/page/:pageId", deletePage);
+
+function deletePage(req,res){
+    var pageId = req.params.pageId;
+    for(var p in pages) {
+        if(pages[p]._id === pageId) {
+            if (p > -1) {
+                pages.splice(p, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+    }
+   res.sendStatus(404);
+}
 
 function createPage(req,res) {
+    var websiteId = req.params.websiteId;
     var page = req.body;
     page._id = (new Date()).getTime() + "";
-    page.websiteId = req.params.websiteId;
+    page.websiteId = websiteId;
     pages.push(page);
     res.json(page);
     return;
@@ -31,9 +47,10 @@ function updatePage(req,res) {
     res.sendStatus(404);
 }
 function findAllPagesForWebsite(req,res) {
+    var websiteId = req.params.websiteId;
     var listPages = [];
     for(var p in pages) {
-        if(pages[p].websiteId === req.params.websiteId) {
+        if(pages[p].websiteId === websiteId) {
             listPages.push(pages[p]);
         }
     }
@@ -42,11 +59,12 @@ function findAllPagesForWebsite(req,res) {
 }
 
 function findPageById(req,res) {
+    var pageId = req.params.pageId;
     for (var p in pages){
-        if (pages[p]._id === req.params.pageId){
+        if (pages[p]._id === pageId){
             res.json(pages[p]);
             return;
         }
     }
-    res.send(404);
+    res.sendStatus(404);
 }

@@ -22,15 +22,9 @@
         return api;
 
         function deletePage(pageId){
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
-                    if (p > -1) {
-                        pages.splice(p, 1);
-                        return;
-                    }
-                }
-            }
-            return null;
+            var url = "/api/page/"+pageId;
+            return $http.delete(url);
+
         }
         function updatePage(pageId, page) {
             var url = "/api/page/"+pageId;
