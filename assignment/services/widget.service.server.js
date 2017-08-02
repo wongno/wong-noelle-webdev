@@ -13,6 +13,31 @@ var widgets= [
 
 app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
 app.get("/api/widget/:widgetId", findWidgetById);
+app.post("/api/page/:pageId/widget", createWidget);
+app.put("/api/widget/:widgetId", updateWidget);
+
+function updateWidget(req,res){
+    var widgetId = req.params.widgetId;
+    var widget = req.body;
+    for(var w in widgets){
+        if(widgets[w]._id === widgetId){
+            widgets[w] = widget;
+            res.json(widget);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
+
+function createWidget(req,res) {
+    var pageId = req.params.pageId;
+    var widget = req.body;
+    widget._id = (new Date()).getTime() + "";
+    widget.pageId = pageId;
+    widgets.push(widget);
+    res.send(widgets);
+    return;
+}
 
 function findWidgetById(req,res) {
     var widgetId = req.params.widgetId;

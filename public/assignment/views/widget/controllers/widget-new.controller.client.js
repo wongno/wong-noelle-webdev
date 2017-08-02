@@ -14,7 +14,10 @@
         model.setWidgetYoutube = setWidgetYoutube;
         model.widget = model.createWidget();
         function init () {
-            model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
+            WidgetService.findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
         }
         init();
 

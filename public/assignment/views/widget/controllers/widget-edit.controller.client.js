@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("EditWidgetController", EditWidgetController);
 
-    function EditWidgetController(WidgetService, $routeParams) {
+    function EditWidgetController(WidgetService, $routeParams, $location) {
         var model = this;
 
         model.widgetId = $routeParams["widgetId"];
@@ -26,7 +26,10 @@
         init();
 
         function updateWidget(widget){
-            WidgetService.updateWidget(model.widgetId,widget);
+            WidgetService.updateWidget(model.widgetId,widget)
+                .then(function () {
+                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget");
+                });
         }
 
         function deleteWidget() {

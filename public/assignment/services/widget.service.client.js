@@ -24,10 +24,8 @@ function WidgetService ($http){
     return api;
 
     function createWidget(pageId, widget) {
-        widget._id = (new Date()).getTime() + "";
-        widget.pageId = pageId;
-        widgets.push(widget);
-        return widget;
+        var url = "/api/page/"+pageId+"/widget";
+        return $http.post(url,widget);
     }
 
     function findWidgetsByPageId(pageId) {
@@ -44,13 +42,8 @@ function WidgetService ($http){
     }
 
     function updateWidget(widgetId, widget){
-        for(var w in widgets){
-            if(widgets[w]._id === widgetId){
-                widgets[w] = widget;
-                return;
-            }
-        }
-        return null;
+        var url = "/api/widget/"+widgetId;
+        return $http.put(url,widget);
     }
 
     function deleteWidget(widgetId) {
