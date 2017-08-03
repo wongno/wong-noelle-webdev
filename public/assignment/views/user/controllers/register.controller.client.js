@@ -43,42 +43,7 @@
                     responseuser = response.data;
                     $location.url("/profile/" + responseuser._id);
                 });
-                // .then(function (response) {
-                //     responseuser = response.data;
-                //     if (responseuser === "0") {
-                //         console.log(user.username+"register3");
-                //         return UserService.createUser(user)
-                //             .then(function(response){
-                //                 user = response.data;
-                //                 $location.url("/user/" + user._id);
-                //                 return; });
-                //     } else {
-                //         model.errorMessage = "username already exist";
-                //     }
-                //     return;
-                // });
         }
     }
 })();
-            // if (!user) {
-            //     model.errorMessage = "Please enter information"
-            //     return;
-            // }
-            // if (user.password === user.password2) {
-            //     var promise = UserService.findUserByUsername(user.username);
-            //     promise
-            //         .then(function(response){
-            //             var _user = response.data;
-            //             if (!_user) {
-            //             var user = UserService.createUser(user);
-            //             $location.url("/profile/" + user._id);
-            //             model.errorMessage = UserService.returnUsers();
-            //         } else {
-            //             model.errorMessage = "User already exists";
-            //             model.errorMessage = UserService.returnUsers();
-            //         }});
-            // } else {
-            //     model.errorMessage = "Passwords don't match";
-            // }
-       // }
 

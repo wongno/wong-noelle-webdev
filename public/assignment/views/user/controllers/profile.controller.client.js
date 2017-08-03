@@ -20,42 +20,12 @@
         init();
 
         function updateUser(user) {
-            UserService.updateUser(user._id, user)
-                .then(function () {
-                    $location();
-                });
+            UserService.updateUser(user._id, user);
         }
 
         function deleteUser() {
             UserService.deleteUser(userId);
-            // UserService.deleteUser(userId)
-            //     .then(function (response) {
-            //         model.user = response.data;
-            //     });
-
         }
     }
 
 })();
-//         model.updateUser = updateUser;
-//         model.deleteUser = deleteUser;
-//
-//         function init() {
-//            UserService.findUserById(userId)
-//                .then(function (response){
-//                 model.user = response.data;
-//
-//             });
-//         }
-//         init();
-//
-//         function updateUser(user) {
-//             UserService.updateUser(user._id, user);
-//         }
-//
-//         function deleteUser(user) {
-//             UserService.deleteUser(user._id);
-//         }
-//     }
-//
-// })();
