@@ -72,6 +72,10 @@ textarea{
     color:white;
 }
 
+.ngw ul{
+    list-style: none;
+}
+
 .nw .navbar-default{
     background-color: #337ab7;
     border-color: #337ab7;

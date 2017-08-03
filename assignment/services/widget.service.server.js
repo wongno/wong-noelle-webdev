@@ -1,6 +1,6 @@
 var app = require("../../express");
 var multer = require('multer'); // npm install multer --save
-var upload = multer({ dest: __dirname+'/../../public/uploads' });
+var upload = multer({ dest: './public/uploads' });
 var widgets= [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
     { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -19,6 +19,27 @@ app.post("/api/page/:pageId/widget", createWidget);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
+app.put("/api/page/:pageId/widget", sortWidget);
+
+function sortWidget(req,res) {
+
+
+
+   //$http.put("/page/:pageId/widget?index="+index1+"&final="+index2);
+    var initial = req.query.index1;
+    var num = parseInt(initial);
+    console.log(num);
+    var final = req.query.index2;
+    var widget = widgets[initial];
+    console.log(initial + 0);
+    widgets.splice(initial,1);
+    console.log(widgets);
+    console.log("in between");
+    widgets.splice(final,0,widget);
+    console.log(widgets);
+    res.json(widgets);
+    return;
+}
 
 function uploadImage(req, res) {
 console.log("uploadImage");

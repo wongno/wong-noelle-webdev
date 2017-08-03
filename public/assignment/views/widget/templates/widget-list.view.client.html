@@ -46,6 +46,9 @@
             </div>
         </div>
     </nav>
+
+<widget-list></widget-list>
+
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="navbar-header pull-right">
             <div class="collapse navbar-collapse">
@@ -69,20 +72,8 @@
                       aria-hidden="true"></span></a>
         </div>
     </nav>
-<ul >
-<li ng-repeat="widget in model.widgets">
-    <div class="nw-widget-buttons">
-        <a class="btn btn-default btn-block"
-           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/"
-           role="button"
-           aria-hidden="true">
-        <span class="glyphicon glyphicon-cog"
-              aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-align-justify"
-                  aria-hidden="true"></span>
-        </a>
-    </div>
-    <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
-</li>
-</ul>
+
+
+
+
 

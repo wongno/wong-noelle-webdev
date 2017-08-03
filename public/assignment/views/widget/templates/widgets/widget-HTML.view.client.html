@@ -1,1 +1,12 @@
+<div class="nw-widget-buttons container-fluid">
+    <a class="btn btn-default btn-block"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/"
+       role="button"
+       aria-hidden="true">
+        <span class="glyphicon glyphicon-cog"
+              aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-align-justify"
+              aria-hidden="true"></span>
+    </a>
+</div>
 <div ng-bind-html="model.trustHtmlContent(widget.text)"></div>
