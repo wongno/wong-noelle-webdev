@@ -69,8 +69,8 @@
                       aria-hidden="true"></span></a>
         </div>
     </nav>
-
-<div ng-repeat="widget in model.widgets">
+<ul >
+<li ng-repeat="widget in model.widgets">
     <div class="nw-widget-buttons">
         <a class="btn btn-default btn-block"
            href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/"
@@ -83,6 +83,6 @@
         </a>
     </div>
     <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
-</div>
-
+</li>
+</ul>
 

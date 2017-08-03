@@ -1,4 +1,6 @@
 var app = require("../../express");
+var multer = require('multer'); // npm install multer --save
+var upload = multer({ dest: __dirname+'/../../public/uploads' });
 var widgets= [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
     { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -16,6 +18,38 @@ app.get("/api/widget/:widgetId", findWidgetById);
 app.post("/api/page/:pageId/widget", createWidget);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
+app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+function uploadImage(req, res) {
+console.log("uploadImage");
+    var widgetId      = req.body.widgetId;
+    var width         = req.body.width;
+    var myFile        = req.file;
+
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+    console.log('/uploads/'+filename);
+    var widget = req.body;
+    widget.url = '/uploads/'+filename;
+    for(var w in widgets){
+        if(widgets[w]._id === widget._id){
+            widgets[w] = widget;
+            res.json(widget);
+            return;
+        }
+    }
+    var callbackUrl = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+
+    res.redirect(callbackUrl);
+}
 
 function deleteWidget(req,res) {
     var widgetId = req.params.widgetId;
@@ -71,7 +105,6 @@ function findWidgetById(req,res) {
 }
 
 function findAllWidgetsForPage(req,res) {
-    console.log(widgets);
     var listWidgets = [];
     for(var w in widgets){
         if(widgets[w].pageId === req.params.pageId){
