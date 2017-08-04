@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Pet Search</h1>
+
+        <form>
+        <label for="location">Location</label>
+        <input name="location"
+               class="form-control"
+               ng-model="model.anonymous.location"
+               type="text"
+               id="location"
+               placeholder="Ex Los Angeles, CA or 90012"/>
+
+        <div class="form-group">
+            <label for="animal">Animal Type</label>
+            <select class="form-control"
+                    id="animal"
+                    name="animal"
+                    ng-model="model.anonymous.animal">
+                //(barnyard, bird, cat, dog, horse, reptile, smallfurry, rabbit
+                <option value="barnyard">Barnyard Animals</option>
+                <option value="bird">Birds</option>
+                <option value="cat">Cats</option>
+                <option value="dog">Dogs</option>
+                <option value="horse">Horses</option>
+                <option value="rabbit">Rabbits</option>
+                <option value="smallfurry">Rodents</option>
+                <option value="reptile">Scaled Animals</option>
+            </select>
+        </div>
+
+            <label for="breed">Breed</label>
+            <input class="form-control"
+                   id="breed"
+                   name="breed"
+                   placeholder="Breed"
+                   ng-model="model.anonymous.breed"/>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <select class="form-control"
+                        id="age"
+                        name="age"
+                        ng-model="model.anonymous.age">
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">Extra Large</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex</label>
+                <select class="form-control"
+                        id="sex"
+                        name="sex"
+                        ng-model="model.anonymous.sex">
+                    <option value="FM">Any</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+            </div>
+        </form>
+</div>
+</body>
+</html>

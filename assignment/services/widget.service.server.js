@@ -51,7 +51,7 @@ console.log("uploadImage");
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    var originalname  = myFile.originalname; // file name on user's computer
+    var originalname  = myFile.originalname; // file name on anonymous's computer
     var filename      = myFile.filename;     // new file name in upload folder
     var path          = myFile.path;         // full path of uploaded file
     var destination   = myFile.destination;  // folder where file is saved to
@@ -67,7 +67,7 @@ console.log("uploadImage");
             return;
         }
     }
-    var callbackUrl = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+    var callbackUrl = "/assignment/#!/anonymous/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
 
     res.redirect(callbackUrl);
 }

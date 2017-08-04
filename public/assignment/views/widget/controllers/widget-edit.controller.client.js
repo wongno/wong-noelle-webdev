@@ -29,14 +29,14 @@
         function updateWidget(widget){
             WidgetService.updateWidget(model.widgetId,widget)
                 .then(function () {
-                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget");
+                    $location.url("/anonymous/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget");
                 });
         }
 
         function deleteWidget() {
             WidgetService.deleteWidget(model.widgetId)
                 .then(function () {
-                $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget");
+                $location.url("/anonymous/"+model.userId+"/website/"+model.websiteId+"/page/"+model.pageId+"/widget");
             });
         }
     }

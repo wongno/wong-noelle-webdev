@@ -8,12 +8,12 @@ var users = [
 ];
 // http handlers
 app.get("/api/users", getAllUsers);
-app.get("/api/user/:userId", findUserById);
-app.get("/api/user", findUserByUsername);
-app.get("/api/user", findUserByCredentials);
-app.post("/api/user", createUser);
-app.put("/api/user/:userId", updateUser);
-app.delete("/api/user/:userId", deleteUser);
+app.get("/api/anonymous/:userId", findUserById);
+app.get("/api/anonymous", findUserByUsername);
+app.get("/api/anonymous", findUserByCredentials);
+app.post("/api/anonymous", createUser);
+app.put("/api/anonymous/:userId", updateUser);
+app.delete("/api/anonymous/:userId", deleteUser);
 
 function deleteUser(req,res) {
     console.log("fiddle");
