@@ -29,47 +29,47 @@
                 controllerAs: "model"
             })
             // website routes
-            .when("/anonymous/:userId/website", {
+            .when("/user/:userId/website", {
                 templateUrl: "views/website/templates/website-list.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/new", {
+            .when("/user/:userId/website/new", {
                 templateUrl: "views/website/templates/website-new.view.client.html",
                 controller: "NewWebsiteController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId", {
+            .when("/user/:userId/website/:websiteId", {
                 templateUrl: "views/website/templates/website-edit.view.client.html",
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId/page", {
+            .when("/user/:userId/website/:websiteId/page", {
                 templateUrl: "views/page/templates/page-list.view.client.html",
                 controller: "PageListController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId/page/new", {
+            .when("/user/:userId/website/:websiteId/page/new", {
                 templateUrl: "views/page/templates/page-new.view.client.html",
                 controller: "NewPageController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId/page/:pageId", {
+            .when("/user/:userId/website/:websiteId/page/:pageId", {
                 templateUrl: "views/page/templates/page-edit.view.client.html",
                 controller: "EditPageController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId/page/:pageId/widget", {
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
                 templateUrl: "views/widget/templates/widget-list.view.client.html",
                 controller: "WidgetListController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId/page/:pageId/widget/new", {
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
                 templateUrl: "views/widget/templates/widget-chooser.view.client.html",
                 controller: "NewWidgetController",
                 controllerAs: "model"
             })
-            .when("/anonymous/:userId/website/:websiteId/page/:pageId/widget/:widgetId", {
+            .when("/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", {
                 templateUrl: "views/widget/templates/widget-edit.view.client.html",
                 controller: "EditWidgetController",
                 controllerAs: "model"

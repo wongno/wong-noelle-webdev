@@ -28,14 +28,14 @@
         function updatePage(page){
             PageService.updatePage(model.pageId,page)
                 .then(function () {
-                    $location.url("/anonymous/"+model.userId+"/website/"+model.websiteId+"/page");
+                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
                 });
         }
 
         function deletePage() {
             PageService.deletePage(model.pageId)
                 .then(function () {
-                    $location.url("/anonymous/"+model.userId+"/website/"+model.websiteId+"/page");
+                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
                 });
         }
     }

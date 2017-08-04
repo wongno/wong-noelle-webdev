@@ -23,95 +23,38 @@
 
         function deleteUser(userId) {
             console.log("delete");
-            var url = "/api/anonymous/"+userId;
+            var url = "/api/user/"+userId;
             return $http.delete(url);
         }
 
         function updateUser(userId, user) {
-            var url = "/api/anonymous/" + userId;
+            var url = "/api/user/" + userId;
             return $http.put(url, user);
         }
 
         function createUser(user) {
-            var url = "/api/anonymous";
+            var url = "/api/user";
             return $http.post(url, user);
         }
 
         function findUserByUsername(username) {
             console.log("findUserByUsername");
-            var url = "/api/anonymous?username="+username;
+            var url = "/api/user?username="+username;
             return $http.get(url);
         }
 
         function findUserById(userId) {
             console.log("findUserById");
-            return $http.get("/api/anonymous/"+userId);
+            return $http.get("/api/user/"+userId);
         }
 
         function findUserByCredentials(username, password) {
             console.log("findUserByUsernameAndPassword");
-            //var url = "/api/anonymous/";
-           var url = "/api/anonymous?username="+username+"&password="+password;
-            // /anonymous?username=alice&password=alice
+           var url = "/api/user?username="+username+"&password="+password;
+            // /user?username=alice&password=alice
             return $http.get(url);
 
         }
 
     }
 })();
-//         var api = {
-//             "findUserByUsername": findUserByUsername,
-//             "findUserByCredentials": findUserByCredentials,
-//             "findUserById": findUserById,
-//             "createUser": createUser,
-//             "updateUser": updateUser,
-//             "returnUsers": returnUsers,
-//             "deleteUser": deleteUser,
-//         };
-//         return api;
-//
-//         function deleteUser(userId) {
-//             for(var u in users) {
-//                 if(users[u]._id === userId) {
-//                     if (u > -1) {
-//                         users.splice(u, 1);
-//                         return;
-//                     }
-//                 }
-//             }
-//             return null;
-//         }
-//
-//         function updateUser(userId, anonymous) {
-//             var url = "/api/anonymous/" + userId;
-//             return $http.put(url,anonymous);
-//         }
-//
-//         function createUser(anonymous) {
-//             var url = "/api/anonymous";
-//             return $http.post(url, anonymous);
-//         }
-//
-//         function findUserByUsername(username) {
-//             var url = "/api/anonymous?username="+username;
-//             return $http.get(url);
-//         }
-//
-//         function findUserById(userId) {
-//             var url = "/api/anonymous/" + userId;
-//             return $http.get(url);
-//         }
-//
-//         function findUserByCredentials(username, password) {
-//             console.log("findUserByCredentials");
-//             var url = "/api/anonymous?"+"username="+username+"&password="+password;
-//             console.log(url);
-//             return $http.get(url);
-//         }
-//
-//         function returnUsers(){
-//             return users;
-//         }
-//
-//     }
-// })();

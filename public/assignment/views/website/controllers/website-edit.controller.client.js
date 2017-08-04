@@ -29,14 +29,14 @@
             WebsiteService
                 .updateWebsite(model.websiteId,website)
                 .then(function () {
-                $location.url("anonymous/"+model.userId+"/website");
+                $location.url("user/"+model.userId+"/website");
             });
         }
         
         function deleteWebsite() {
             WebsiteService.deleteWebsite(model.websiteId).
             then(function () {
-                $location.url("anonymous/"+model.userId+"/website");
+                $location.url("user/"+model.userId+"/website");
             });
         }
     }

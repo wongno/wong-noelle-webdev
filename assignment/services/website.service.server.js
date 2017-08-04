@@ -10,8 +10,8 @@ var websites = [
     { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
 ];
 
-app.post("/api/anonymous/:userId/website",createWebsite);
-app.get("/api/anonymous/:userId/website",findWebsitesByUser);
+app.post("/api/user/:userId/website",createWebsite);
+app.get("/api/user/:userId/website",findWebsitesByUser);
 app.get("/api/website/:websiteId", findWebsiteById);
 app.put("/api/website/:websiteId", updateWebsite);
 app.delete("/api/website/:websiteId", deleteWebsite);

@@ -7,22 +7,27 @@
 <body>
 <div class="container-fluid">
     <h1>Pet Search</h1>
-
         <form>
         <label for="location">Location</label>
-        <input name="location"
-               class="form-control"
-               ng-model="model.anonymous.location"
-               type="text"
-               id="location"
-               placeholder="Ex Los Angeles, CA or 90012"/>
-
+            <div class="input-group">
+                 <span class="input-group-btn">
+                     <button class="btn btn-default"
+                             ng-click="model.searchAnimalsByLocation();"
+                             type="button">Go!</button>
+                 </span>
+                <input name="location"
+                       class="form-control"
+                       ng-model="model.location"
+                       type="text"
+                       id="location"
+                       placeholder="'City, State' or 'ZIP Code'"/>
+            </div>
         <div class="form-group">
             <label for="animal">Animal Type</label>
             <select class="form-control"
                     id="animal"
                     name="animal"
-                    ng-model="model.anonymous.animal">
+                    ng-model="model.animal">
                 //(barnyard, bird, cat, dog, horse, reptile, smallfurry, rabbit
                 <option value="barnyard">Barnyard Animals</option>
                 <option value="bird">Birds</option>
@@ -40,14 +45,14 @@
                    id="breed"
                    name="breed"
                    placeholder="Breed"
-                   ng-model="model.anonymous.breed"/>
+                   ng-model="model.breed"/>
 
             <div class="form-group">
                 <label for="age">Age</label>
                 <select class="form-control"
                         id="age"
                         name="age"
-                        ng-model="model.anonymous.age">
+                        ng-model="model.age">
                     <option value="S">Small</option>
                     <option value="M">Medium</option>
                     <option value="L">Large</option>
@@ -59,13 +64,14 @@
                 <select class="form-control"
                         id="sex"
                         name="sex"
-                        ng-model="model.anonymous.sex">
+                        ng-model="model.sex">
                     <option value="FM">Any</option>
                     <option value="F">Female</option>
                     <option value="M">Male</option>
                 </select>
             </div>
         </form>
+    {{model.animals}}
 </div>
 </body>
 </html>

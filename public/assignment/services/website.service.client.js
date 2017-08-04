@@ -42,12 +42,12 @@
 
         function createWebsite(userId, website){
             console.log("here too!");
-            var url ="/api/anonymous/"+userId+"/website";
+            var url ="/api/user/"+userId+"/website";
             return $http.post(url,website);
         }
 
         function findWebsitesByUser(userId) {
-            var url = "/api/anonymous/" + userId +"/website"
+            var url = "/api/user/" + userId +"/website"
             return $http.get(url)
                 .then(function(response){
                 return response.data;
