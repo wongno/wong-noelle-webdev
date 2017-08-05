@@ -12,12 +12,12 @@
             <div class="input-group">
                  <span class="input-group-btn">
                      <button class="btn btn-default"
-                             ng-click="model.searchAnimalsByLocation();"
+                             ng-click="model.searchAnimalsByLocation(location);"
                              type="button">Go!</button>
                  </span>
                 <input name="location"
                        class="form-control"
-                       ng-model="model.location"
+                       ng-model="location"
                        type="text"
                        id="location"
                        placeholder="'City, State' or 'ZIP Code'"/>

@@ -10,11 +10,10 @@
         }
         init();
 
-        function searchAnimalsByLocation() {
-            AnimalSearchService.searchAnimalsByLocation(model.location)
-                .then(function (response) {
-                    model.animals = response.data;
-                });
+        function searchAnimalsByLocation(location) {
+            model.animals=AnimalSearchService
+                .searchAnimalsByLocation(location);
         }
+
     }
 })();
