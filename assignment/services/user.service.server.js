@@ -1,4 +1,5 @@
 var app = require("../../express");
+var userModel = require('../model/user/user.model.server');
 
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -62,9 +63,14 @@ function findUserByUsername(req,res) {
 function createUser(req, res) {
     console.log("reach");
     var user = req.body;
-    user._id = (new Date()).getTime() + "";
-    users.push(user);
-    res.send(user);
+    // user._id = (new Date()).getTime() + "";
+    // users.push(user);
+    // res.send(user);
+    userModel
+        .createUser(user)
+        .then(function (user) {
+            res.json(user);
+        })
 }
 
 function findUserByCredentials(req, res) {
