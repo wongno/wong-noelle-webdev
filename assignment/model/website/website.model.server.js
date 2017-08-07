@@ -5,12 +5,17 @@ var userModel = require('../user/user.model.server');
 
 websiteModel.createWebsite = createWebsite;
 websiteModel.findWebsitesByUser = findWebsiteByUser;
+websiteModel.findWebsiteById = findWebsiteById;
 module.exports = websiteModel;
 module.exports = userModel;
 
+function findWebsiteById(websiteId) {
+    return websiteModel.findById(websiteId);
+}
+
 function createWebsite(developerId, website){
     website.developer = developerId;
-    var websiteTmp = null''
+    var websiteTmp = null;
     return websiteModel
         .create(website)
         .then(function (websiteDoc) {
