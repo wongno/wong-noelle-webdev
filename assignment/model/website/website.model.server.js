@@ -9,3 +9,7 @@ function createWebsite(developerId, website){
     website.developer = developerId;
     return websiteModel.create(website);
 }
+
+function findWebsiteByUser(developerId) {
+    return websiteModel.find({developer:developerId});
+}

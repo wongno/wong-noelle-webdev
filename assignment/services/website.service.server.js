@@ -68,13 +68,17 @@ function createWebsite(req,res) {
 
 function findWebsitesByUser(req, res){
     var userId = req.params.userId;
-    var sites = [];
+   // var sites = [];
 
-    for(var w in websites) {
-        if(websites[w].developerId === userId) {
-            sites.push(websites[w]);
-        }
-    }
-    res.json(sites);
-    return;
+    websiteModel.findWebsitesByUser(userId)
+        .then(function (websites) {
+            res.json(websites);
+        })
+    // for(var w in websites) {
+    //     if(websites[w].developerId === userId) {
+    //         sites.push(websites[w]);
+    //     }
+    // }
+    // res.json(sites);
+    // return;
 }
