@@ -1,5 +1,5 @@
 var app = require("../../express");
-
+var websiteModel = require('../model/website/website.model.server');
 var websites = [
     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
     { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
@@ -54,10 +54,16 @@ function findWebsiteById(req,res) {
 function createWebsite(req,res) {
     var website = req.body;
     var userId = req.params.userId;
-    website._id = (new Date()).getTime() + "";
-    website.developerId = userId;
-    websites.push(website);
-    res.json(website);
+    websiteModel.createWebsite(userId, website)
+        .then(function (websiteDoc) {
+            res.json(websiteDoc);
+        }, function (err) {
+            res.statusCode(500).send(err);
+        });
+    // website._id = (new Date()).getTime() + "";
+    // website.developerId = userId;
+    // websites.push(website);
+    // res.json(website);
 }
 
 function findWebsitesByUser(req, res){
