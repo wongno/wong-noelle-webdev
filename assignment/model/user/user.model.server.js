@@ -9,3 +9,7 @@ userModel.createUser = createUser;
 function createUser(user) {
     return userModel.create(user);
 }
+
+function findUserById(userId) {
+    return userModel.findById(userId);
+}

@@ -93,9 +93,10 @@ function getAllUsers(req, response) {
 }
 
 function findUserById(req, response) {
-    for(var u in users) {
-        if(users[u]._id === req.params.userId) {
-            response.send(users[u]);
-        }
-    }
+    
+    // for(var u in users) {
+    //     if(users[u]._id === req.params.userId) {
+    //         response.send(users[u]);
+    //     }
+    // }
 }
