@@ -46,18 +46,23 @@ res.sendStatus(404);
 }
 
 function findUserByUsername(req,res) {
-    console.log(users);
-    var username = req.query.username;
-    console.log(username + "");
-        for(var u in users) {
-            if(users[u].username === username) {
-                console.log("ok");
-                res.send(users[u]);
-                return;
-            }
-    }
-    console.log("denied");
-    res.send("0");
+    userModel
+        .findUserByUsername(req.params.username)
+        .then(function (user) {
+            res.json(user);
+        });
+    // console.log(users);
+    // var username = req.query.username;
+    // console.log(username + "");
+    //     for(var u in users) {
+    //         if(users[u].username === username) {
+    //             console.log("ok");
+    //             res.send(users[u]);
+    //             return;
+    //         }
+    // }
+    // console.log("denied");
+    // res.send("0");
 }
 
 function createUser(req, res) {

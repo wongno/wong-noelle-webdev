@@ -4,17 +4,21 @@ var db = require('../models.server');
 var userModel = mongoose.model("UserModel", userSchema);
 module.exports = userModel;
 
-// createUser(user)
-// findUserById(userId)
+
 // findUserByUsername(username)
 // findUserByCreadentials(username, password)
 // updateUser(userId, user)
 // deleteUser(userId)
 
+userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
 userModel.createUser = createUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+
+function findUserByUsername(username) {
+    return userModel.findOne({username: username});
+}
 
 function removeWebsite(developerId,websiteId) {
     userModel
