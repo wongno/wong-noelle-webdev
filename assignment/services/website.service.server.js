@@ -17,18 +17,25 @@ app.put("/api/website/:websiteId", updateWebsite);
 app.delete("/api/website/:websiteId", deleteWebsite);
 
 function deleteWebsite(req,res) {
-    var websiteId = req.params.website;
-    for(var w in websites) {
-        if(websites[w]._id === websiteId) {
-            if (w > -1) {
-                websites.splice(w, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-    }
-    res.sendStatus(404);
-    return;
+    websiteModel
+        .deleteWebsite(req.params.websiteId)
+        .then(function (websiteDoc) {
+            return res.json(websiteDoc);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
+    // var websiteId = req.params.website;
+    // for(var w in websites) {
+    //     if(websites[w]._id === websiteId) {
+    //         if (w > -1) {
+    //             websites.splice(w, 1);
+    //             res.sendStatus(200);
+    //             return;
+    //         }
+    //     }
+    // }
+    // res.sendStatus(404);
+    // return;
 }
 
 function updateWebsite(req,res) {

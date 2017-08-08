@@ -6,8 +6,13 @@ var userModel = require('../user/user.model.server');
 websiteModel.createWebsite = createWebsite;
 websiteModel.findWebsitesByUser = findWebsiteByUser;
 websiteModel.findWebsiteById = findWebsiteById;
+websiteModel.deleteWebsite = deleteWebsite;
 module.exports = websiteModel;
 module.exports = userModel;
+
+function deleteWebsite(websiteId) {
+    return websiteModel.remove({_id: websiteId});
+}
 
 function findWebsiteById(websiteId) {
     return websiteModel.findById(websiteId);
