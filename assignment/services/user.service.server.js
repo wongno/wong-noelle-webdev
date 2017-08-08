@@ -34,15 +34,22 @@ function deleteUser(req,res) {
 function updateUser(req, res) {
     var userId = req.params.userId;
     var user = req.body;
-console.log("updated");
-    for(var u in users) {
-        if(users[u]._id === userId) {
-            users[u] = user;
-            res.send(user)
-            return;
-        }
-    }
-res.sendStatus(404);
+    userModel
+        .updateUser(userId, user)
+        .then(function (status) {
+            res.json(status);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
+// console.log("updated");
+//     for(var u in users) {
+//         if(users[u]._id === userId) {
+//             users[u] = user;
+//             res.send(user)
+//             return;
+//         }
+//     }
+// res.sendStatus(404);
 }
 
 function findUserByUsername(req,res) {

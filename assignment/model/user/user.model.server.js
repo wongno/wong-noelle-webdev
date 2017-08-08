@@ -6,16 +6,21 @@ module.exports = userModel;
 
 
 
-// findUserByCreadentials(username, password)
 // updateUser(userId, user)
 // deleteUser(userId)
 
+userModel.updateUser = updateUser;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
 userModel.createUser = createUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+
+function updateUser(userId, user) {
+    return userModeluserModel.update({_id: userId},
+        {$set: user});
+}
 
 function findUserByCredentials(username,password) {
     return userModel.findOne({username: username, password: password});
