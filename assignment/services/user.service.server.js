@@ -81,15 +81,20 @@ function createUser(req, res) {
 function findUserByCredentials(req, res) {
     var username = req.query.username;
     var password = req.query.password;
-
-        for(var u in users) {
-            var _user = users[u];
-            if(_user.username === username && _user.password === password) {
-                res.send(_user);
-                return;
-            }
-        }
-    res.send("0");
+    userModel
+        .findUserByCredentials(username, password)
+        .then(function (user) {
+            res.send(user);
+        });
+    //
+    //     for(var u in users) {
+    //         var _user = users[u];
+    //         if(_user.username === username && _user.password === password) {
+    //             res.send(_user);
+    //             return;
+    //         }
+    //     }
+    // res.send("0");
 
 }
 

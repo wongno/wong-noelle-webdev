@@ -5,16 +5,21 @@ var userModel = mongoose.model("UserModel", userSchema);
 module.exports = userModel;
 
 
-// findUserByUsername(username)
+
 // findUserByCreadentials(username, password)
 // updateUser(userId, user)
 // deleteUser(userId)
 
+userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
 userModel.createUser = createUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+
+function findUserByCredentials(username,password) {
+    return userModel.findOne({username: username, password: password});
+}
 
 function findUserByUsername(username) {
     return userModel.findOne({username: username});
