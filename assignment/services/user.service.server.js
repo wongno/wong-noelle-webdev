@@ -88,12 +88,16 @@ function findUserByCredentials(req, res) {
 
 }
 
-function getAllUsers(req, response) {
-    response.send(users);
+function getAllUsers(req, res) {
+    res.send(users);
 }
 
-function findUserById(req, response) {
-    
+function findUserById(req, res) {
+    userModel
+        .findUserById(req.params.userId)
+        .then(function (user) {
+            res.send(user);
+        });
     // for(var u in users) {
     //     if(users[u]._id === req.params.userId) {
     //         response.send(users[u]);
