@@ -18,11 +18,9 @@ app.delete("/api/website/:websiteId", deleteWebsite);
 
 function deleteWebsite(req,res) {
     websiteModel
-        .deleteWebsite(req.params.websiteId)
-        .then(function (websiteDoc) {
-            return res.json(websiteDoc);
-        }, function (err) {
-            res.sendStatus(404).send(err);
+        .deleteWebsite(req.params.userId, req.params.websiteId)
+        .then(function (status) {
+           res.send(status);
         });
     // var websiteId = req.params.website;
     // for(var w in websites) {

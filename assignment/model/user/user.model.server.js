@@ -6,6 +6,17 @@ module.exports = userModel;
 
 userModel.createUser = createUser;
 userModel.addWebsite = addWebsite;
+userModel.removeWebsite = removeWebsite;
+
+function removeWebsite(developerId,websiteId) {
+    userModel
+        .findById(developerId)
+        .then(function (user) {
+            var index = user.websites.indexOf(websiteId);
+            user.websites.splice(index, 1);
+            return user.save();
+        })
+}
 
 function addWebsite(developerId, websiteId) {
     userModel
