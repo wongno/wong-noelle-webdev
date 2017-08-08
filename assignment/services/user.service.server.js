@@ -17,18 +17,25 @@ app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 
 function deleteUser(req,res) {
-    console.log("fiddle");
-    for(var u in users) {
-        if(users[u]._id === req.params.userId) {
-            if (u > -1) {
-                console.log("splice");
-                users.splice(u, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-    }
-    res.sendStatus(404);
+    userModel
+        .deleteUser(req.params.userId)
+        .then(function (status) {
+            res.json(status);
+        },function (err) {
+            res.sendStatus(404).send(err);
+        })
+    // console.log("fiddle");
+    // for(var u in users) {
+    //     if(users[u]._id === req.params.userId) {
+    //         if (u > -1) {
+    //             console.log("splice");
+    //             users.splice(u, 1);
+    //             res.sendStatus(200);
+    //             return;
+    //         }
+    //     }
+    // }
+    // res.sendStatus(404);
 }
 
 function updateUser(req, res) {

@@ -6,9 +6,10 @@ module.exports = userModel;
 
 
 
-// updateUser(userId, user)
+
 // deleteUser(userId)
 
+userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserByUsername = findUserByUsername;
@@ -16,6 +17,10 @@ userModel.findUserById = findUserById;
 userModel.createUser = createUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+
+function deleteUser(userId) {
+    return userModel.remove({_id: userId});
+}
 
 function updateUser(userId, user) {
     return userModeluserModel.update({_id: userId},
