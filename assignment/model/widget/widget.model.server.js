@@ -52,5 +52,19 @@ function updateWidget(widgetId, widget){
     return widgetModel.update({_id:widgetId}
         ,{$set:widget});
 }
-function deleteWidget(widgetId){}
+
+// function deleteWebsite(developerId, websiteId) {
+//     return websiteModel
+//         .remove({_id: websiteId})
+//         .then(function (status) {
+//             return userModel.removeWebsite(developerId, websiteId)
+//         });
+// }
+function deleteWidget(widgetId){
+    return widgetModel
+        .remove({_id:widgetId})
+        .then(function (status) {
+            return pageModel.removeWidget(pageId, widgetId);
+        });
+}
 function reorderWidget(pageId, start, end){}

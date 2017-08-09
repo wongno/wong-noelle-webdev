@@ -8,7 +8,18 @@ pageModel.findPageById = findPageById;
 pageModel.updatePage = updatePage;
 pageModel.deletePage = deletePage;
 pageModel.addWidget = addWidget;
+pageModel.removeWidget = removeWidget;
 module.exports = pageModel;
+
+function removeWidget(pageId, widgetId) {
+    return pageModel
+        .findById({_id:pageId})
+        .then(function (page) {
+            var index = page.widgets.indexOf(widgetId);
+            page.widgets.splice(index,1);
+            return page.save();
+        });
+}
 
 function addWidget(pageId, widgetId) {
     return pageModel

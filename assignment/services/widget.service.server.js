@@ -75,17 +75,22 @@ console.log("uploadImage");
 
 function deleteWidget(req,res) {
     var widgetId = req.params.widgetId;
-    for(var w in widgets){
-        if(widgets[w]._id === widgetId){
-            if (w > -1) {
-                widgets.splice(w, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-    }
-    res.sendStatus(404);
-    return;
+    widgetModel
+        .deleteWidget(widgetId)
+        .then(function (status) {
+            res.json(status);
+        });
+    // for(var w in widgets){
+    //     if(widgets[w]._id === widgetId){
+    //         if (w > -1) {
+    //             widgets.splice(w, 1);
+    //             res.sendStatus(200);
+    //             return;
+    //         }
+    //     }
+    // }
+    // res.sendStatus(404);
+    // return;
 }
 
 function updateWidget(req,res){
@@ -98,18 +103,9 @@ function updateWidget(req,res){
         }, function (err) {
             res.sendStatus(404).send(err);
         })
-    // for(var w in widgets){
-    //     if(widgets[w]._id === widgetId){
-    //         widgets[w] = widget;
-    //         res.json(widget);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 function createWidget(req,res) {
-    // console.log("woo!");
     var pageId = req.params.pageId;
     var widget = req.body;
     widgetModel
