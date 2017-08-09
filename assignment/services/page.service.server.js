@@ -37,11 +37,6 @@ function createPage(req,res) {
         },function (err) {
             res.sendStatus(404).send(err);
         });
-    // page._id = (new Date()).getTime() + "";
-    // page.websiteId = websiteId;
-    // pages.push(page);
-    // res.json(page);
-    // return;
 }
 function updatePage(req,res) {
     var page = req.body
@@ -55,14 +50,12 @@ function updatePage(req,res) {
     res.sendStatus(404);
 }
 function findAllPagesForWebsite(req,res) {
-    var listPages = [];
-    for(var p in pages) {
-        if(pages[p].websiteId === req.params.websiteId) {
-            listPages.push(pages[p]);
-        }
-    }
-    res.json(listPages);
-    return;
+    var websiteId = req.params.websiteId;
+    pageModel
+        .findAllPagesForWebsite(websiteId)
+        .then(function (pages) {
+            res.json(pages);
+        });
 }
 
 function findPageById(req,res) {

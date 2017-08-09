@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var pageSchema = require("./page.schema.server");
-//var db = require('../models.server');
 var pageModel = mongoose.model("PageModel", pageSchema);
 var websiteModel = require("../website/website.model.server");
 pageModel.createPage = createPage;
@@ -22,7 +21,13 @@ function createPage(websiteId, page){
             return pageTmp;
         })
 }
-function findAllPagesForWebsite(websiteId) {}
+function findAllPagesForWebsite(websiteId) {
+    return pageModel
+        .find({_website:websiteId})
+        .populate("_website", "name")
+        .exec();
+}
+
 function findPageById(pageId) {}
 function updatePage(pageId, page) {}
 function deletePage(pageId) {}
