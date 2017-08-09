@@ -28,6 +28,8 @@ function findAllPagesForWebsite(websiteId) {
         .exec();
 }
 
-function findPageById(pageId) {}
+function findPageById(pageId) {
+    return pageModel.findById(pageId);
+}
 function updatePage(pageId, page) {}
 function deletePage(pageId) {}

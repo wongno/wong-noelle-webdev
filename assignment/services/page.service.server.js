@@ -60,11 +60,16 @@ function findAllPagesForWebsite(req,res) {
 
 function findPageById(req,res) {
     var pageId = req.params.pageId;
-    for (var p in pages){
-        if (pages[p]._id === pageId){
-            res.json(pages[p]);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    pageModel
+        .findPageById(pageId)
+        .then(function (page) {
+            res.json(page);
+        });
+    // for (var p in pages){
+    //     if (pages[p]._id === pageId){
+    //         res.json(pages[p]);
+    //         return;
+    //     }
+    // }
+    // res.sendStatus(404);
 }
