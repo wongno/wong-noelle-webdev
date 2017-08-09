@@ -35,4 +35,17 @@ function updatePage(pageId, page) {
     return pageModel.update({_id:pageId}
     ,{$set:page});
 }
-function deletePage(pageId) {}
+// function deleteWebsite(developerId, websiteId) {
+//     return websiteModel
+//         .remove({_id: websiteId})
+//         .then(function (status) {
+//             return userModel.removeWebsite(developerId, websiteId)
+//         });
+// }
+function deletePage(websiteId, pageId) {
+    return pageModel
+        .remove({_id:pageId})
+        .then(function (status) {
+            return websiteModel.removeWebsite(websiteId, pageId);
+        });
+}

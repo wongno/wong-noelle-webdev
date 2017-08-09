@@ -14,17 +14,13 @@ app.post("/api/website/:websiteId/page", createPage);
 app.delete("/api/page/:pageId", deletePage);
 
 function deletePage(req,res){
+    var websiteId = req.params.website;
     var pageId = req.params.pageId;
-    for(var p in pages) {
-        if(pages[p]._id === pageId) {
-            if (p > -1) {
-                pages.splice(p, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-    }
-   res.sendStatus(404);
+    pageModel
+        .deletePage(websiteId, pageId)
+        .then(function (status) {
+            res.json(status);
+        });
 }
 
 function createPage(req,res) {
