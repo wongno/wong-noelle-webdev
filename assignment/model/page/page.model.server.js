@@ -9,13 +9,13 @@ pageModel.updatePage = updatePage;
 pageModel.deletePage = deletePage;
 module.exports = pageModel;
 function createPage(websiteId, page){
-    pageModel._website = websiteId;
+    page._website = websiteId;
     var pageTmp = null;
     return pageModel
         .create(page)
         .then(function (pageDoc) {
             pageTmp = pageDoc;
-            return websiteModel.addPage(websiteId, pageDoc)
+            return websiteModel.addPage(websiteId, pageDoc);
         })
         .then(function (websiteDoc) {
             return pageTmp;
@@ -23,7 +23,7 @@ function createPage(websiteId, page){
 }
 function findAllPagesForWebsite(websiteId) {
     return pageModel
-        .find({_website:websiteId})
+        .find({_website: websiteId})
         .populate("_website", "name")
         .exec();
 }

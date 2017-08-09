@@ -17,7 +17,7 @@ function addPage(websiteId, pageId) {
         .then(function (website) {
             website.pages.push(pageId);
             return website.save();
-        })
+        });
 }
 
 function updateWebsite(websiteId, website) {
