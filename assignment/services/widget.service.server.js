@@ -1,4 +1,5 @@
 var app = require("../../express");
+var widgetModel = require("../model/widget/widget.model.server");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: './public/uploads' });
 var widgets= [
@@ -101,15 +102,22 @@ function updateWidget(req,res){
 }
 
 function createWidget(req,res) {
-    console.log("woo!");
+    // console.log("woo!");
     var pageId = req.params.pageId;
     var widget = req.body;
-    widget._id = (new Date()).getTime() + "";
-    widget.pageId = pageId;
-    widgets.push(widget);
-    console.log(widget._id + "");
-    res.send(widget);
-    return;
+    widgetModel
+        .createWidget(req.params.pageId, req.body)
+        .then(function (status) {
+            res.json(status);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        })
+    // widget._id = (new Date()).getTime() + "";
+    // widget.pageId = pageId;
+    // widgets.push(widget);
+    // console.log(widget._id + "");
+    // res.send(widget);
+    // return;
 }
 
 function findWidgetById(req,res) {
@@ -126,14 +134,19 @@ function findWidgetById(req,res) {
 }
 
 function findAllWidgetsForPage(req,res) {
-    var listWidgets = [];
-    for(var w in widgets){
-        if(widgets[w].pageId === req.params.pageId){
-            if(widgets[w].widgetType != null){
-                listWidgets.push(widgets[w]);
-            }
-        }
-    }
-    res.json(listWidgets);
-    return;
+    widgetModel
+        .findAllWidgetsForPage(req.params.pageId)
+        .then(function (widgets) {
+            res.json(widgets);
+        });
+    // var listWidgets = [];
+    // for(var w in widgets){
+    //     if(widgets[w].pageId === req.params.pageId){
+    //         if(widgets[w].widgetType != null){
+    //             listWidgets.push(widgets[w]);
+    //         }
+    //     }
+    // }
+    // res.json(listWidgets);
+    // return;
 }

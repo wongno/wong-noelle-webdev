@@ -17,4 +17,4 @@ var widgetSchema = mongoose.Schema({
     formatted: Boolean,
     dateCreated: {type: Date , default: Date.now}
 },{collection:"widget"});
-module.exports(widgetSchema);
+module.exports = widgetSchema;
