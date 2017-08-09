@@ -1,0 +1,81 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left pull-left">
+                    <li><a class="navbar-header"
+                           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">
+                            <span class="glyphicon glyphicon-chevron-left"
+                                  aria-hidden="true"></span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navbar-header">
+            <a class="navbar-toggle collapsed nw-right-button"
+               ng-click="model.updateWidget(model.widget)"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
+               aria-expanded="false">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true">
+                    </span>
+            </a>
+            <a class="navbar-toggle collapsed nw-back-button"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
+               aria-expanded="false">
+                    <span class="glyphicon glyphicon-chevron-left"
+                          aria-hidden="true">
+                    </span>
+            </a>
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}">Edit Widget</a>
+        </div>
+        <div class="navbar-header pull-right">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav ">
+                    <li>
+                        <a ng-click="model.updateWidget(model.widget)"
+                           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"
+                           role="button">
+                            <span class="glyphicon glyphicon-ok"
+                                  aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header pull-right">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-header nw-user-button-1"
+                       href="#!/profile/{{model.userId}}"
+                       role="button">
+                        <span class="glyphicon glyphicon-user"
+                              aria-hidden="true"></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="navbar-header">
+        <a class="navbar-toggle collapsed nw-user-button-2"
+           href="#!/profile/{{model.userId}}"
+           role="button"
+           aria-expanded="false">
+                <span class="glyphicon glyphicon-user"
+                      aria-hidden="true"></span>
+        </a>
+    </div>
+</nav>
+
+<div ng-model="model.widget.text"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+</div>
