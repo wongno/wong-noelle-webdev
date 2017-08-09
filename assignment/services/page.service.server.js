@@ -39,15 +39,15 @@ function createPage(req,res) {
         });
 }
 function updatePage(req,res) {
+    var pageId = req.params.pageId;
     var page = req.body
-    for (var p in pages){
-        if(pages[p]._id === page._id){
-            pages[p] = page;
-            res.json(page);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    pageModel
+        .updatePage(pageId,page)
+        .then(function (status) {
+            res.send(status);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
 }
 function findAllPagesForWebsite(req,res) {
     var websiteId = req.params.websiteId;
@@ -65,11 +65,4 @@ function findPageById(req,res) {
         .then(function (page) {
             res.json(page);
         });
-    // for (var p in pages){
-    //     if (pages[p]._id === pageId){
-    //         res.json(pages[p]);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }

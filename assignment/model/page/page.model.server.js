@@ -31,5 +31,8 @@ function findAllPagesForWebsite(websiteId) {
 function findPageById(pageId) {
     return pageModel.findById(pageId);
 }
-function updatePage(pageId, page) {}
+function updatePage(pageId, page) {
+    return pageModel.update({_id:pageId}
+    ,{$set:page});
+}
 function deletePage(pageId) {}
