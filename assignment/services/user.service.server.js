@@ -1,5 +1,6 @@
 var app = require("../../express");
-var userModel = require('../model/user/user.model.server');
+var userModel = require("../model/user/user.model.server");
+
 
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -10,8 +11,7 @@ var users = [
 // http handlers
 app.get("/api/users", getAllUsers);
 app.get("/api/user/:userId", findUserById);
-app.get("/api/user", findUserByUsername);
-app.get("/api/user", findUserByCredentials);
+app.get("/api/user", findUser);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
@@ -59,14 +59,16 @@ function updateUser(req, res) {
 // res.sendStatus(404);
 }
 
-function findUserByUsername(req,res) {
-    userModel
-        .findUserByUsername(req.params.username)
-        .then(function (user) {
-            res.json(user);
-        });
+// function findUserByUsername(req,res) {
+//     console.log("got to service find username");
+//      var username = req.query.username;
+//             userModel
+//                 .findUserByUsername(username)
+//                 .then(function (user) {
+//                     res.json(user);
+//                 });
     // console.log(users);
-    // var username = req.query.username;
+
     // console.log(username + "");
     //     for(var u in users) {
     //         if(users[u].username === username) {
@@ -77,7 +79,7 @@ function findUserByUsername(req,res) {
     // }
     // console.log("denied");
     // res.send("0");
-}
+//}
 
 function createUser(req, res) {
     console.log("reach");
@@ -92,14 +94,78 @@ function createUser(req, res) {
         })
 }
 
-function findUserByCredentials(req, res) {
-    var username = req.query.username;
-    var password = req.query.password;
-    userModel
-        .findUserByCredentials(username, password)
-        .then(function (user) {
-            res.send(user);
-        });
+    function findUser(req, res) {
+    console.log("findUser");
+        var username = req.query.username;
+        var password = req.query.password;
+        if(username && password) {
+            userModel
+                .findUserByCredentials(username, password)
+                .then(function (user) {
+                    res.json(user);
+                    return;
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                    return;
+                })
+            return;
+        } else if(username) {
+            for(var u in users) {
+                if(users[u].username === username) {
+                    userModel
+                        .findUserByUsername(username)
+                        .then(function (user) {
+                            res.json(user);
+                            return;
+                        }, function (err) {
+                            res.sendStatus(404).send(err);
+                            return;
+                        })
+                    return;
+                }
+            }
+        }
+        userModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                res.json(user);
+                return;})
+    }
+
+
+
+// function findUserByCredentials(req, res) {
+//     var username = req.query.username;
+//     var password = req.query.password;
+//     console.log("credentials service");
+
+//     if(username && password) {
+//         console.log("username and password");
+//         userModel
+//             .findUserByCredentials(username, password)
+//             .then(function (user) {
+//                 res.json(user);
+//                 return;
+//             }, function (err) {
+//                 res.sendStatus(404).send(err);
+//                 return;
+//             })
+//         return;
+//     } else if(username) {
+// console.log(username);
+//         for(var u in users) {
+//             if(users[u].username === username) {
+//                 res.send(users[u]);
+//                 return;
+//             }
+//         }
+//     }
+//     res.send("0");
+//     userModel
+//         .findUserByCredentials(username, password)
+//         .then(function (user) {
+//             res.send(user);
+//         });
     //
     //     for(var u in users) {
     //         var _user = users[u];
@@ -110,7 +176,7 @@ function findUserByCredentials(req, res) {
     //     }
     // res.send("0");
 
-}
+//}
 
 function getAllUsers(req, res) {
     res.send(users);

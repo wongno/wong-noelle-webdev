@@ -11,27 +11,41 @@
 
         }
         init();
-
         function login(user) {
-            console.log("login");
             if(!user) {
                 model.errorMessage = "User not found";
                 return;
             }
-             var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise
+            UserService.findUserByCredentials(user.username, user.password)
                 .then(function (response) {
-                    user = response.data;
-                    console.log(user.username + "username");
-                    if(user === null || user === "0") {
-                        console.log("login4");
+                    var responseUser = response.data;
+                    if(responseUser === null) {
                         model.errorMessage = "User not found";
                     } else {
-                        console.log(user.username + "username");
-                        $rootScope.currentUser = user;
-                        $location.url("profile/"+ user._id);
+                        $rootScope.currentUser = responseUser;
+                        $location.url("profile/"+responseUser._id);
                     }
                 });
         }
+        // function login(user) {
+        //     console.log("login");
+        //     if(!user) {
+        //         model.errorMessage = "User not found";
+        //         return;
+        //     }
+        //      var promise = UserService.findUserByCredentials(user.username, user.password);
+        //     promise
+        //         .then(function (response) {
+        //             user = response.data;
+        //             if(user === null || user === "0") {
+        //                 console.log("login4");
+        //                 model.errorMessage = "User not found";
+        //             } else {
+        //                 console.log(user.username + "username");
+        //                 $rootScope.currentUser = user;
+        //                 $location.url("profile/"+ user._id);
+        //             }
+        //         });
+        // }
     }
 })();

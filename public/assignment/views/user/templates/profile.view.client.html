@@ -69,6 +69,14 @@
                placeholder="jackiesmith@tmail.com"
                id="email">
 
+        <label for="phone">Phone</label>
+        <input name="phone"
+               class="form-control"
+               ng-model="model.user.phone"
+               type="text"
+               placeholder="###-###-####"
+               id="phone">
+
         <label for="firstName">First Name</label>
         <input name="firstName"
                class="form-control"
@@ -85,12 +93,12 @@
                type="text"
                id="lastName">
 
-        <label for="dob">Date of Birth</label>
-        <input name="dob"
+        <label for="dateCreated">Date of Birth</label>
+        <input name="dateCreated"
                class="form-control"
-               ng-model="model.user.dob"
-               type="date"
-               id="dob">
+               ng-model="model.user.dateCreated"
+               type="Date"
+               id="dateCreated">
 
         <a class="btn btn-default btn-block btn-primary"
            href="#!/user/{{model.user._id}}/website"
