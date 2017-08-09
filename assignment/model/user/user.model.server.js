@@ -33,17 +33,17 @@ function findUserByUsername(username) {
 }
 
 function removeWebsite(developerId,websiteId) {
-    userModel
+    return userModel
         .findById(developerId)
         .then(function (user) {
             var index = user.websites.indexOf(websiteId);
             user.websites.splice(index, 1);
             return user.save();
-        })
+        });
 }
 
 function addWebsite(developerId, websiteId) {
-    userModel
+    return userModel
         .findById(developerId)
         .then(function (user) {
             user.websites.push(websiteId);
