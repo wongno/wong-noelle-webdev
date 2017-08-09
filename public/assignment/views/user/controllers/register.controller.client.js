@@ -23,16 +23,17 @@
                     .then(function (response) {
                         var _user = response.data;
                         if(_user === null) {
-                            return UserService.createUser(user);
+                            return UserService
+                                .createUser(user)
+                                .then(function (response) {
+                                    var _user = response.data;
+                                    if(_user){
+                                        $location.url("/profile/" + _user._id);
+                                    }
+                                });
                         } else {
                             model.errorMessage = "User already exists";
                         }
-                    })
-                    .then(function (response) {
-                       var _user = response.data;
-                       if(_user){
-                           $location.url("/profile/" + _user._id);
-                       }
                     });
         }
     }

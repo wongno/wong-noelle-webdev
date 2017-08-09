@@ -14,19 +14,18 @@ app.post("/api/user/:userId/website",createWebsite);
 app.get("/api/user/:userId/website",findWebsitesByUser);
 app.get("/api/website/:websiteId", findWebsiteById);
 app.put("/api/website/:websiteId", updateWebsite);
-app.delete("/api/website/:websiteId", deleteWebsite);
+app.delete ("/api/user/:userId/website/:websiteId", deleteWebsite);
 
-function deleteWebsite(req,res) {
+function deleteWebsite(req, res) {
     var websiteId = req.params.websiteId;
     var developerId = req.params.userId;
     websiteModel
         .deleteWebsite(developerId, websiteId)
         .then(function (status) {
             res.json(status);
-        }, function (err) {
-            res.sendStatus(404).send(err);
         });
 }
+
 
 function updateWebsite(req,res) {
     var websiteId = req.params.websiteId;

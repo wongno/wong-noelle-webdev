@@ -32,12 +32,13 @@
                 $location.url("user/"+model.userId+"/website");
             });
         }
-        
+
         function deleteWebsite(website) {
-            WebsiteService.deleteWebsite(website._id).
-            then(function () {
-                $location.url("user/"+model.userId+"/website");
-            });
+            WebsiteService
+                .deleteWebsite(model.userId, website._id)
+                .then(function (status) {
+                    $location.url("/user/"+model.userId+"/website");
+                });
         }
     }
 

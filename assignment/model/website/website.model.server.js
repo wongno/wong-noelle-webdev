@@ -29,7 +29,7 @@ function deleteWebsite(developerId, websiteId) {
     return websiteModel
         .remove({_id: websiteId})
         .then(function (status) {
-            return userModel.removeWebsite(developerId, websiteId);
+            return userModel.removeWebsite(developerId, websiteId)
         });
 }
 
