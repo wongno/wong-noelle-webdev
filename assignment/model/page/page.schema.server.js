@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var userSchema = mongoose.Schema({
+var pageSchema = mongoose.Schema({
     username: String,
     password: String,
     firstName: String,
@@ -9,4 +9,4 @@ var userSchema = mongoose.Schema({
     websites: [{type: mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"}],
     dateCreated: {type: Date, default: Date.now},
 }, {collection:"user"});
-module.exports = userSchema;
+module.exports = pageSchema;

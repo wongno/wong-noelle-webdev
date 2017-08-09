@@ -23,7 +23,7 @@ function findWebsiteById(websiteId) {
 }
 
 function createWebsite(developerId, website){
-    website.developer = developerId;
+    website._user = developerId;
     var websiteTmp = null;
     return websiteModel
         .create(website)
@@ -38,7 +38,7 @@ function createWebsite(developerId, website){
 
 function findWebsiteByUser(developerId) {
     return websiteModel
-        .find({developer:developerId})
-        .populate('developer', 'username')
+        .find({_user:developerId})
+        .populate('_user', 'username')
         .exec();
 }
