@@ -1,6 +1,6 @@
 <ul>
     <li ng-repeat="widget in model.widgets" >
-        <div ng-switch="widget.widgetType">
+        <div ng-switch="widget.type[0]">
             <div class="container-fluid">
                 <div ng-switch-when="HEADING" >
                     <div ng-include="'views/widget/templates/widgets/widget-HEADING.view.client.html'"></div>
