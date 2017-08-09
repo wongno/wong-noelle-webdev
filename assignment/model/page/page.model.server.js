@@ -46,6 +46,6 @@ function deletePage(websiteId, pageId) {
     return pageModel
         .remove({_id:pageId})
         .then(function (status) {
-            return websiteModel.removeWebsite(websiteId, pageId);
+            return websiteModel.removeWebsite(websiteId, pageId)
         });
 }

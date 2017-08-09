@@ -24,7 +24,6 @@ function updateUser(userId, user) {
 }
 
 function findUserByCredentials(username,password) {
-    console.log(username + " you got to the model");
     return userModel.findOne({username: username, password: password});
 }
 
