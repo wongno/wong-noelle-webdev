@@ -23,23 +23,23 @@ app.post ("/api/upload", upload.single('myFile'), uploadImage);
 app.put("/api/page/:pageId/widget", sortWidget);
 
 function sortWidget(req,res) {
-
-
-
-   //$http.put("/page/:pageId/widget?index="+index1+"&final="+index2);
+    var pageId = req.params.pageId;
     var initial = req.query.index1;
-    var num = parseInt(initial);
-    console.log(num);
     var final = req.query.index2;
-    var widget = widgets[initial];
-    console.log(initial + 0);
-    widgets.splice(initial,1);
-    console.log(widgets);
-    console.log("in between");
-    widgets.splice(final,0,widget);
-    console.log(widgets);
-    res.json(widgets);
-    return;
+    widgetModel
+        .reorderWidget(pageId, initial, final)
+        .then(function (widgets) {
+            res.json(widgets);
+        });
+    // var widget = widgets[initial];
+    // console.log(initial + 0);
+    // widgets.splice(initial,1);
+    // console.log(widgets);
+    // console.log("in between");
+    // widgets.splice(final,0,widget);
+    // console.log(widgets);
+    // res.json(widgets);
+    // return;
 }
 
 function uploadImage(req, res) {

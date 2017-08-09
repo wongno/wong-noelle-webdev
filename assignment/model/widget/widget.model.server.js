@@ -53,13 +53,6 @@ function updateWidget(widgetId, widget){
         ,{$set:widget});
 }
 
-// function deleteWebsite(developerId, websiteId) {
-//     return websiteModel
-//         .remove({_id: websiteId})
-//         .then(function (status) {
-//             return userModel.removeWebsite(developerId, websiteId)
-//         });
-// }
 function deleteWidget(widgetId){
     return widgetModel
         .remove({_id:widgetId})
@@ -67,4 +60,15 @@ function deleteWidget(widgetId){
             return pageModel.removeWidget(pageId, widgetId);
         });
 }
-function reorderWidget(pageId, start, end){}
+function reorderWidget(pageId, start, end){
+    var widgetList = null;
+    return widgetModel
+        .find({_page:pageId})
+        .then(function (widgets) {
+            var widget = widgets[start];
+            widgets.splice(start,1);
+            widgets.splice(end,0,widget);
+            widgetList=widgets;
+            return pageModel.updateWidgets(pageId, widgetList);
+        });
+}

@@ -9,7 +9,17 @@ pageModel.updatePage = updatePage;
 pageModel.deletePage = deletePage;
 pageModel.addWidget = addWidget;
 pageModel.removeWidget = removeWidget;
+pageModel.updateWidgets = updateWidgets;
 module.exports = pageModel;
+
+function updateWidgets(pageId, widgets) {
+    return pageModel
+        .findById(pageId)
+        .then(function (page) {
+            page.widgets = widgets;
+            return page.save();
+        });
+}
 
 function removeWidget(pageId, widgetId) {
     return pageModel
