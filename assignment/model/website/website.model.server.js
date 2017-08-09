@@ -8,8 +8,17 @@ websiteModel.findWebsitesByUser = findWebsitesByUser;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.deleteWebsite = deleteWebsite;
 websiteModel.updateWebsite = updateWebsite;
+websiteModel.addPage = addPage;
 module.exports = websiteModel;
 
+function addPage(websiteId, pageId) {
+    return websiteModel
+        .findById(websiteId)
+        .then(function (website) {
+            website.pages.push(pageId);
+            return website.save();
+        })
+}
 
 function updateWebsite(websiteId, website) {
     return websiteModel.update({_id: websiteId},

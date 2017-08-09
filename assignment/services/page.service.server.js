@@ -1,4 +1,5 @@
 var app = require("../../express");
+var pageModel = require("../model/page/page.model.server");
 
 var pages = [
     { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -29,11 +30,18 @@ function deletePage(req,res){
 function createPage(req,res) {
     var websiteId = req.params.websiteId;
     var page = req.body;
-    page._id = (new Date()).getTime() + "";
-    page.websiteId = websiteId;
-    pages.push(page);
-    res.json(page);
-    return;
+    pageModel
+        .createPage(websiteId, page)
+        .then(function (status) {
+            res.json(status);
+        },function (err) {
+            res.sendStatus(404).send(err);
+        });
+    // page._id = (new Date()).getTime() + "";
+    // page.websiteId = websiteId;
+    // pages.push(page);
+    // res.json(page);
+    // return;
 }
 function updatePage(req,res) {
     var page = req.body
