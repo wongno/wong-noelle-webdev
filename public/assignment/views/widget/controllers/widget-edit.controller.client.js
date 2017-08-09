@@ -19,7 +19,6 @@
                 });
             WidgetService.findWidgetById(model.widgetId)
                 .then(function (response) {
-                    console.log("edit");
                     model.widget = response.data;
                 });
         }

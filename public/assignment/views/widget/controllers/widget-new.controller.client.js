@@ -9,6 +9,8 @@
         model.websiteId = $routeParams.websiteId;
         model.userId = $routeParams.userId;
         model.createWidget = createWidget;
+        model.createImageWidget = createImageWidget;
+        model.createYoutubeWidget = createYoutubeWidget;
         // model.setWidgetHeading = setWidgetHeading;
         // model.setWidgetImage = setWidgetImage;
         // model.setWidgetYoutube = setWidgetYoutube;
@@ -21,27 +23,6 @@
         }
         init();
 
-        // function setWidgetHeading(){
-        //     console.log("type is heading");
-        //   type = "HEADING";
-        //     model.widget = model.createWidget();
-        //     return model.widget;
-        // }
-        // function setWidgetImage(){
-        //     type = "IMAGE";
-        //     model.widget = model.createWidget();
-        //     return model.widget;
-        // }
-        // function setWidgetYoutube(){
-        //     type = "YOUTUBE";
-        //     model.widget = model.createWidget();
-        //     return model.widget;
-        // }
-        // function setW() {
-        //     console.log("setW");
-        //
-        // }
-
         function createHeadingWidget(){
             var widget = Object();
            widget.type = "HEADING";
@@ -49,10 +30,31 @@
                 .createWidget(model.pageId, widget)
                 .then(function (response) {
                     var responseWidget = response.data;
-                    responseWidget.type = "HEADING";
-                    WidgetService.updateWidget(responseWidget._id,responseWidget);
                     $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page/"
                     +model.pageId+"/widget/"+responseWidget._id);
+                });
+        }
+        function createImageWidget(){
+            var widget = Object();
+            widget.type = "IMAGE";
+            WidgetService
+                .createWidget(model.pageId, widget)
+                .then(function (response) {
+                    var responseWidget = response.data;
+                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page/"
+                        +model.pageId+"/widget/"+responseWidget._id);
+                });
+        }
+
+        function createYoutubeWidget(){
+            var widget = Object();
+            widget.type = "YOUTUBE";
+            WidgetService
+                .createWidget(model.pageId, widget)
+                .then(function (response) {
+                    var responseWidget = response.data;
+                    $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page/"
+                        +model.pageId+"/widget/"+responseWidget._id);
                 });
         }
 

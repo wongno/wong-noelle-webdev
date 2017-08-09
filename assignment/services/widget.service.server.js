@@ -121,16 +121,21 @@ function createWidget(req,res) {
 }
 
 function findWidgetById(req,res) {
-    console.log(widgets);
+    // console.log(widgets);
     var widgetId = req.params.widgetId;
-    for(var w in widgets){
-        if(widgets[w]._id === widgetId){
-            console.log("found widget");
-            res.json(widgets[w]);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget) {
+            res.json(widget);
+        });
+    // for(var w in widgets){
+    //     if(widgets[w]._id === widgetId){
+    //         console.log("found widget");
+    //         res.json(widgets[w]);
+    //         return;
+    //     }
+    // }
+    // res.sendStatus(404);
 }
 
 function findAllWidgetsForPage(req,res) {
