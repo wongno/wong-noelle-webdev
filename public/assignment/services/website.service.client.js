@@ -41,7 +41,6 @@
         }
 
         function createWebsite(userId, website){
-            console.log("here too!");
             var url ="/api/user/"+userId+"/website";
             return $http.post(url,website);
         }

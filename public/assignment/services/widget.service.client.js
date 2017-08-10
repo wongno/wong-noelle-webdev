@@ -24,7 +24,6 @@ function WidgetService ($http){
     return api;
 
     function createWidget(pageId, widget) {
-        console.log("createWidget");
         var url = "/api/page/"+pageId+"/widget";
         return $http.post(url,widget);
     }
@@ -38,7 +37,6 @@ function WidgetService ($http){
     }
 
     function findWidgetById(widgetId) {
-        console.log("edit");
         var url = "/api/widget/"+widgetId;
         return $http.get(url);
     }

@@ -38,18 +38,15 @@
         }
 
         function findUserByUsername(username) {
-            console.log("findUserByUsername");
             var url = "/api/user?username="+username;
             return $http.get(url);
         }
 
         function findUserById(userId) {
-            console.log("findUserById");
             return $http.get("/api/user/"+userId);
         }
 
         function findUserByCredentials(username, password) {
-            console.log("ByCredentials");
            var url = "/api/user?username="+username+"&password="+password;
             // /user?username=alice&password=alice
             return $http.get(url);
