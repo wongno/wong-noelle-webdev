@@ -106,15 +106,7 @@
            type="number"
            id="width">
 
-    <!--<label for="upload">Upload</label>-->
-    <!--<input name="upload"-->
-           <!--class="form-control"-->
-           <!--placeholder="No file Choosen"-->
-           <!--type="file"-->
-           <!--id="upload">-->
-
     <form action="/api/upload"   method="post" enctype="multipart/form-data">
-        console.log("/api/upload");
         <input  name="myFile"    ng-model="model.widget.file" type="file" class="form-control"/>
         <input  name="width"     ng-model="model.widget.width" value="{{model.widget.width}}" style="display: none"/>
         <input  name="userId"    ng-model="model.widget.userId" value="{{model.userId}}"   style="display: none"/>
@@ -123,11 +115,9 @@
         <input  name="widgetId"  ng-model="model.widget.widgetId" value="{{model.widget._id}}"   style="display: none"/>
         <button type="submit"    ng-click="model.updateWidget(model.widget)" class="btn btn-block btn-primary">Upload Image</button>
     </form>
-
-    <!--<a class="btn btn-default btn-block btn-primary"-->
-       <!--href=user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"-->
-       <!--role="button">Upload Image</a>-->
-
+    <a class="btn btn-default btn-block btn-primary"
+       href="../templates/widgets/widget-flickr-search.view.client.html"
+       role="button">Search</a>
     <a class="btn btn-default btn-block btn-danger"
        ng-click="model.deleteWidget()"
        href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"

@@ -8,7 +8,8 @@
         model.pageId = $routeParams.pageId;
         model.websiteId = $routeParams.websiteId;
         model.userId = $routeParams.userId;
-        model.createWidget = createWidget;
+        model.createHtmlWidget = createHtmlWidget;
+        model.createTextWidget = createTextWidget
         model.createImageWidget = createImageWidget;
         model.createYoutubeWidget = createYoutubeWidget;
         // model.setWidgetHeading = setWidgetHeading;
@@ -34,7 +35,8 @@
                         +model.pageId+"/widget/"+responseWidget._id);
                 });
         }
-        function createTextInputWidget(){
+
+        function createTextWidget(){
             var widget = Object();
             widget.type = "TEXT";
             WidgetService
@@ -45,6 +47,7 @@
                         +model.pageId+"/widget/"+responseWidget._id);
                 });
         }
+
         function createHeadingWidget(){
             var widget = Object();
            widget.type = "HEADING";
@@ -79,6 +82,5 @@
                         +model.pageId+"/widget/"+responseWidget._id);
                 });
         }
-        
     }
 })();

@@ -11,7 +11,7 @@ app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
 app.get("/api/page/:pageId", findPageById);
 app.put("/api/page/:pageId", updatePage);
 app.post("/api/website/:websiteId/page", createPage);
-app.delete("/api/page/:pageId", deletePage);
+app.delete("/api/website/:websiteId/page/:pageId", deletePage);
 
 function deletePage(req,res){
     var websiteId = req.params.website;

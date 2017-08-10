@@ -33,7 +33,7 @@
         }
 
         function deletePage() {
-            PageService.deletePage(model.pageId)
+            PageService.deletePage(model.websiteId,model.pageId)
                 .then(function () {
                     $location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
                 });

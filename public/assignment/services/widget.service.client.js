@@ -48,8 +48,8 @@ function WidgetService ($http){
         return $http.put(url,widget);
     }
 
-    function deleteWidget(widgetId) {
-        var url = "/api/widget/"+widgetId;
+    function deleteWidget(pageId,widgetId) {
+        var url = "/api/page/"+pageId+"/widget/"+widgetId;
         return $http.delete(url);
     }
 

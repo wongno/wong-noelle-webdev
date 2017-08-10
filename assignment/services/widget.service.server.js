@@ -1,7 +1,7 @@
 var app = require("../../express");
 var widgetModel = require("../model/widget/widget.model.server");
 var multer = require('multer'); // npm install multer --save
-var upload = multer({ dest: './public/uploads' });
+var upload = multer({ dest: __dirname+'../../public/uploads' });
 var widgets= [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
     { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -18,7 +18,7 @@ app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
 app.get("/api/widget/:widgetId", findWidgetById);
 app.post("/api/page/:pageId/widget", createWidget);
 app.put("/api/widget/:widgetId", updateWidget);
-app.delete("/api/widget/:widgetId", deleteWidget);
+app.delete("/api/page/:pageId/widget/:widgetId", deleteWidget);
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
 app.put("/api/page/:pageId/widget", sortWidget);
 
@@ -31,15 +31,6 @@ function sortWidget(req,res) {
         .then(function (widgets) {
             res.json(widgets);
         });
-    // var widget = widgets[initial];
-    // console.log(initial + 0);
-    // widgets.splice(initial,1);
-    // console.log(widgets);
-    // console.log("in between");
-    // widgets.splice(final,0,widget);
-    // console.log(widgets);
-    // res.json(widgets);
-    // return;
 }
 
 function uploadImage(req, res) {
@@ -51,6 +42,7 @@ console.log("uploadImage");
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
+    var widget = req.body;
 
     var originalname  = myFile.originalname; // file name on user's computer
     var filename      = myFile.filename;     // new file name in upload folder
@@ -58,9 +50,10 @@ console.log("uploadImage");
     var destination   = myFile.destination;  // folder where file is saved to
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
-    console.log('/uploads/'+filename);
-    var widget = req.body;
+
+    widget = getWidgetById(widgetId);
     widget.url = '/uploads/'+filename;
+
     for(var w in widgets){
         if(widgets[w]._id === widget._id){
             widgets[w] = widget;
@@ -80,17 +73,6 @@ function deleteWidget(req,res) {
         .then(function (status) {
             res.json(status);
         });
-    // for(var w in widgets){
-    //     if(widgets[w]._id === widgetId){
-    //         if (w > -1) {
-    //             widgets.splice(w, 1);
-    //             res.sendStatus(200);
-    //             return;
-    //         }
-    //     }
-    // }
-    // res.sendStatus(404);
-    // return;
 }
 
 function updateWidget(req,res){
