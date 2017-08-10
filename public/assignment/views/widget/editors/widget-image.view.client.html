@@ -92,9 +92,8 @@
     <label for="url">URL</label>
     <input name="url"
            class="form-control"
-           ng-model="model.widget.url"
            placeholder="your url"
-           type="url"
+           ng-model="model.widget.url"
            id="url">
 
     <label for="width">Width</label>
@@ -106,18 +105,44 @@
            type="number"
            id="width">
 
-    <form action="/api/upload"   method="post" enctype="multipart/form-data">
-        <input  name="myFile"    ng-model="model.widget.file" type="file" class="form-control"/>
-        <input  name="width"     ng-model="model.widget.width" value="{{model.widget.width}}" style="display: none"/>
-        <input  name="userId"    ng-model="model.widget.userId" value="{{model.userId}}"   style="display: none"/>
-        <input  name="websiteId" ng-model="model.widget.websiteId" value="{{model.websiteId}}"   style="display: none"/>
-        <input  name="pageId"    ng-model="model.widget.pageId" value="{{model.pageId}}"   style="display: none"/>
-        <input  name="widgetId"  ng-model="model.widget.widgetId" value="{{model.widget._id}}"   style="display: none"/>
-        <button type="submit"    ng-click="model.updateWidget(model.widget)" class="btn btn-block btn-primary">Upload Image</button>
+    <form action="/api/upload"
+          method="post"
+          enctype="multipart/form-data">
+        <input  name="myFile"
+                ng-model="model.widget.file"
+                type="file"
+                class="form-control"/>
+        <input  name="width"
+                ng-model="model.widget.width"
+                value="{{model.widget.width}}"
+                style="display: none"/>
+
+        <input
+                name="userId"
+                ng-model="model.widget.userId"
+                value="{{model.userId}}"
+                style="display: none"
+        />
+        <input  name="websiteId"
+                ng-model="model.widget.websiteId"
+                value="{{model.websiteId}}"
+                style="display: none"/>
+        <input  name="pageId"
+                ng-model="model.widget.pageId"
+                value="{{model.pageId}}"
+                style="display: none"/>
+        <input  name="widgetId"
+                ng-model="model.widget.widgetId"
+                value="{{model.widget._id}}"
+                style="display: none"/>
+        <button type="submit"
+                ng-click="model.updateWidget(model.widget)"
+                class="btn btn-default btn-block btn-primary">Upload Image</button>
     </form>
     <a class="btn btn-default btn-block btn-primary"
-       href="../templates/widgets/widget-flickr-search.view.client.html"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search"
        role="button">Search</a>
+
     <a class="btn btn-default btn-block btn-danger"
        ng-click="model.deleteWidget()"
        href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/"

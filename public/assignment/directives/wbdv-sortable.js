@@ -4,27 +4,23 @@
         .directive("widgetList", widgetListDirective);
 
     function widgetListDirective($http,$routeParams){
-        function linkFunction(scope,element) {
-            var ul = $(element.find("ul"));
-            var index1 = -1;
-            var index2 = -1;
+        function linkFunction(scope, element) {
+            var ul = $(element).find("ul");
+            var startIndex = -1;
+            var endIndex = -1;
             ul.sortable({
                 start: function (event, ui) {
-                    index1 = $(ui.item).index();
-                    console.log(index1);
-                    console.log(parseInt(index1));
+                    startIndex = $(ui.item).index();
                 },
                 stop: function (event, ui) {
-                    index2 = $(ui.item).index();
-                    console.log([index2]);
-                    console.log([index1, index2]);
-                    $http.put("/api/page/:pageId/widget?index="+index1+"&final="+index2);
+                    endIndex = $(ui.item).index();
+                    $http.put("/api/page/:pageId/widget?index="+startIndex+"&final="+endIndex);
                 }
             });
         }
         return {
             templateUrl: "views/widget/templates/widget-list.html",
             link: linkFunction
-        }
+        };
     }
 })();

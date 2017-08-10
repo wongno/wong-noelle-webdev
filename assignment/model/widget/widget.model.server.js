@@ -61,14 +61,13 @@ function deleteWidget(widgetId){
         });
 }
 function reorderWidget(pageId, start, end){
-    var widgetList = null;
-    return widgetModel
-        .find({_page:pageId})
-        .then(function (widgets) {
-            var widget = widgets[start];
-            widgets.splice(start,1);
-            widgets.splice(end,0,widget);
-            widgetList=widgets;
-            return pageModel.updateWidgets(pageId, widgetList);
+    return pageModel
+        .findPageById(pageId)
+        .then(function (page) {
+            var w = page.widgets[start];
+            page.widgets.splice(start, 1);
+            page.widgets.splice(end, 0, w);
+            return pageModel.update({_id: pageId},
+                {$set: page});
         });
 }

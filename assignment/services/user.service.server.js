@@ -46,7 +46,6 @@ function createUser(req, res) {
 }
 
 function findUser(req, res) {
-    console.log("findUser");
         var username = req.query.username;
         var password = req.query.password;
         if(username && password) {
