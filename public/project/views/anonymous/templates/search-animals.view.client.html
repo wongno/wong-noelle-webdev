@@ -79,12 +79,8 @@
 </div>
 <div class="container-fluid">
     <h1>Results</h1>
-    <div class="row">
-        <div class="col-xs-4" ng-repeat="int in model.animals">
-            <h1>{{int.media.photos.photo[0].$t}}</h1>
-            <img ng-src={{int.media.photos.photo[0].$t}}/>
-        </div>
-    </div>
+    <div ng-include="'views/anonymous/templates/general-animal-profile.view.client.html'"></div>
+
 </div>
 </body>
 </html>

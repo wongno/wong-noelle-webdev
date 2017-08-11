@@ -9,5 +9,10 @@
                 controller: "AnimalSearchController",
                 controllerAs: "model"
             })
+            .when("/search/:petId/profile", {
+                templateUrl: "views/anonymous/templates/detailed-animal-profile.view.client.html",
+                controller: "AnimalProfileController",
+                controllerAs: "model"
+            })
     }
 })();

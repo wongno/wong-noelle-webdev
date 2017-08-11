@@ -2,13 +2,12 @@
     angular
         .module("PetAppMaker")
         .controller("AnimalSearchController", AnimalSearchController);
-    function AnimalSearchController(AnimalSearchService, $routeParams, $sce) {
+    function AnimalSearchController(AnimalSearchService, $routeParams, $sce, $location) {
         var model = this;
         //model.searchPets = searchPets;
         model.searchAnimalsByLocation = searchAnimalsByLocation;
         model.trustUrlResource = trustUrlResource;
         model.renderPictures = renderPictures;
-        model.getPicture=getPicture;
         function init() {
 
         }
@@ -22,18 +21,11 @@
                 .searchAnimalsByLocation(location)
                 .then(function(response) {
                     model.animals = response.petfinder.pets.pet;
-                //   data = (response.data.petfinder.pets);
-             //   model.animals = JSON.parse(data);
-              //  model.pictures = model.animals[0].media.photos.photo[0].$t;
-                    //model.pets = model.animals.replace("jsonFlickrApi(","");
-
-                //     pets = JSON.stringify(data);
-                //     pets = pets.substring(1,data.length);
-                // //    pets = pets.substring(0,data.length - 1);
-                //     console.log(pets);
-                //     pets = JSON.parse(pets);
-                 // console.log(pets);
                 });
+        }
+
+        function selectPet(pet){
+
         }
 
         function renderPictures() {
@@ -60,14 +52,6 @@
 
             $("#searchResults").append(table);
             table.sortable();
-        }
-
-        function getPicture() {
-            for(var u in model.animals){
-                console.log(model.animals[0].media.photos.photo[0].$t);
-            }
-
-
         }
 
     }
