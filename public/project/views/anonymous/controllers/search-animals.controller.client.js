@@ -24,10 +24,6 @@
                 });
         }
 
-        function selectPet(pet){
-
-        }
-
         function renderPictures() {
             var table = $("<table>");
             table.addClass("table");
