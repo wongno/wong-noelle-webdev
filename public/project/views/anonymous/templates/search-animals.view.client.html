@@ -13,6 +13,7 @@
                  <span class="input-group-btn">
                      <button class="btn btn-default"
                              ng-click="model.searchAnimalsByLocation(location);"
+                             ng-click="model.getPicture();"
                              type="button">Go!</button>
                  </span>
                 <input name="location"
@@ -38,8 +39,12 @@
                 <option value="smallfurry">Rodents</option>
                 <option value="reptile">Scaled Animals</option>
             </select>
+            <span class="input-group-btn">
+        <!--<a ng-click="model.searchPets(model.animal)" class="btn btn-default" type="button">-->
+            <!--<span class="glyphicon glyphicon-search"></span>-->
+        <!--</a>-->
+    </span>
         </div>
-
             <label for="breed">Breed</label>
             <input class="form-control"
                    id="breed"
@@ -71,7 +76,15 @@
                 </select>
             </div>
         </form>
-    {{model.animals}}
+</div>
+<div class="container-fluid">
+    <h1>Results</h1>
+    <div class="row">
+        <div class="col-xs-4" ng-repeat="int in model.animals">
+            <h1>{{int.media.photos.photo[0].$t}}</h1>
+            <img ng-src={{int.media.photos.photo[0].$t}}/>
+        </div>
+    </div>
 </div>
 </body>
 </html>
