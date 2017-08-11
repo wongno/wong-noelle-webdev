@@ -11,19 +11,6 @@ widgetModel.deleteWidget = deleteWidget;
 widgetModel.reorderWidget = reorderWidget;
 module.exports = widgetModel;
 
-// function createPage(websiteId, page){
-//     page._website = websiteId;
-//     var pageTmp = null;
-//     return pageModel
-//         .create(page)
-//         .then(function (pageDoc) {
-//             pageTmp = pageDoc;
-//             return websiteModel.addPage(websiteId, pageDoc);
-//         })
-//         .then(function (websiteDoc) {
-//             return pageTmp;
-//         })
-// }
 function createWidget(pageId, widget){
     widget._page = pageId;
     var widgetTmp = null;

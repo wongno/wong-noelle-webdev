@@ -114,15 +114,13 @@
                 class="form-control"/>
         <input  name="width"
                 ng-model="model.widget.width"
-                value="{{model.widget.width}}"
+                value="100%"
                 style="display: none"/>
 
-        <input
-                name="userId"
+        <input name="userId"
                 ng-model="model.widget.userId"
                 value="{{model.userId}}"
-                style="display: none"
-        />
+                style="display: none"/>
         <input  name="websiteId"
                 ng-model="model.widget.websiteId"
                 value="{{model.websiteId}}"
@@ -132,8 +130,8 @@
                 value="{{model.pageId}}"
                 style="display: none"/>
         <input  name="widgetId"
-                ng-model="model.widget.widgetId"
-                value="{{model.widget._id}}"
+                ng-model="model.widget._id"
+                value="{{model.widgetId}}"
                 style="display: none"/>
         <button type="submit"
                 ng-click="model.updateWidget(model.widget)"
