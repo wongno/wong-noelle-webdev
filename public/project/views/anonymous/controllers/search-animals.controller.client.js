@@ -20,11 +20,11 @@
         }
 
         function selectPet(pet) {
-            $location.url("/search/pet/"+pet+"/profile");
+            $location.url("/pet/"+pet+"/profile");
         }
 
         function selectShelter(shelter) {
-            $location.url("/search/shelter/"+shelter+"/profile");
+            $location.url("/shelter/"+shelter+"/profile");
         }
 
         function searchShelterByLocation(location) {
