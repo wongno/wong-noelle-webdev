@@ -1,3 +1,20 @@
 <div class="container-fluid">
-<h1>{{model.petId}}</h1>
+<h1>Hi my name is {{model.findPetById(model.petId).name.$t}}</h1>
+    <h2>Information about me</h2>
+    <ul>
+        <li>id: {{model.animal.id.$t}}</li>
+        <li>age: {{model.animal.age.$t}}</li>
+        <li>size: {{model.animal.size.$t}}</li>
+        <li>sex: {{model.animal.sex.$t}}</li>
+    </ul>
+
+    <a class="btn btn-default btn-primary btn-block"
+       ng-click="model.login(model.user)"
+       role="button">Follow</a>
+    <a class="btn btn-default btn-primary btn-block"
+       ng-click="model.login(model.user)"
+       role="button">Unfollow</a>
+    <a class="btn btn-default btn-success btn-block"
+       href="#!/register"
+       role="button">Check out more animals at this Shelter</a>
 </div>

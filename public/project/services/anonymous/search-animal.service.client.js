@@ -6,10 +6,49 @@
 
         this.searchPets = searchPets;
         this.searchAnimalsByLocation = searchAnimalsByLocation;
+        this.findPetById = findPetById;
+        this.findPetsForShelter = findPetsForShelter;
+        this.searchShelterByLocation = searchShelterByLocation;
 
         var key = "c24a4370afabf3d116da27ad2ac7e483";
         var secret = "5ad6a3f9a39a1658";
         var urlBase = "http://api.petfinder.com/my.method?key=12345&arg1=foo&arg2=foo2&format=json&output=basic";
+        var urlBase2 = "http://api.petfinder.com/my.method?key=12345&arg1=foo&format=json&output=basic";
+
+
+        function findPetById(petId) {
+            var url = urlBase2
+                .replace("my.method", "pet.get")
+                .replace("12345", key)
+                .replace("arg1", "id")
+                .replace("foo", petId);
+            return $.getJSON($sce.trustAsResourceUrl(url+"&callback=?"),function (data) {
+                return data;
+            });
+        }
+
+        function findShelterById(shelterId) {
+            var url = urlBase2
+                .replace("my.method", "shelter.get")
+                .replace("12345", key)
+                .replace("arg1", "id")
+                .replace("foo", shelterId);
+            return $.getJSON($sce.trustAsResourceUrl(url+"&callback=?"),function (data) {
+                return data;
+            });
+        }
+
+        function findPetsForShelter(shelterId) {
+            var url = urlBase2
+                .replace("my.method", "shelter.getPets")
+                .replace("12345", key)
+                .replace("arg1", "id")
+                .replace("foo", shelterId);
+            return $.getJSON($sce.trustAsResourceUrl(url+"&callback=?"),function (data) {
+                console.log(data);
+                return data;
+            });
+        }
 
         function searchAnimalsByLocation(location) {
             var url = urlBase
@@ -19,19 +58,20 @@
                 .replace("foo", "dog")
                 .replace("arg2", "location")
                 .replace("foo2", location);
-            var result = null;
             return $.getJSON($sce.trustAsResourceUrl(url+"&callback=?"),function (data) {
                 return data;
             });
-                // .then(function (response) {
-                //     return response.data;
-                //
-                // });
-            //return $http.jsonp($sce.trustAsResourceUrl(url));
-            // return $.getJSON($sce.trustAsResourceUrl(url))
-            //     .done(function (response) {
-            //         return response;
-            //     });
+        }
+
+        function searchShelterByLocation(location) {
+            var url = urlBase
+                .replace("my.method", "shelter.find")
+                .replace("12345", key)
+                .replace("arg1", "location")
+                .replace("foo", location);
+            return $.getJSON($sce.trustAsResourceUrl(url+"&callback=?"),function (data) {
+                return data;
+            });
         }
 
         function searchPets() {
@@ -46,23 +86,7 @@
             return $http.get(url);
         }
 
-        //
-        // var api = {
-        //     "searchAnimalsByLocation":searchAnimalsByLocation
-        //
-        // };
-        // return api;
-        //
-        // function searchAnimalsByLocation(location) {
-        //     var url = "http://api.petfinder.com/pet.find?key=c24a4370afabf3d116da27ad2ac7e483&format=json&location="+location+"&callback=JSON_CALLBACK";
-        //    $http.jsonp(url)
-        //        .success(function(data){
-        //            callback(null,data);
-        //        })
-        //        .error(function(data){
-        //            callback(null,data);
-        //        });
-        // }
+
     }
 
 

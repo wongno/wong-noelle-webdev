@@ -9,7 +9,7 @@
         model.websiteId = $routeParams.websiteId;
         model.userId = $routeParams.userId;
         model.createHtmlWidget = createHtmlWidget;
-        model.createTextWidget = createTextWidget
+        model.createTextWidget = createTextWidget;
         model.createImageWidget = createImageWidget;
         model.createYoutubeWidget = createYoutubeWidget;
         // model.setWidgetHeading = setWidgetHeading;
