@@ -14,6 +14,11 @@
                 controller: "LoginController",
                 controllerAs: "model"
             })
+            .when("/register", {
+                templateUrl: "views/user/anonymous/templates/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
             .when("/pet/:petId/profile", {
                 templateUrl: "views/user/anonymous/templates/detailed-animal-profile.view.client.html",
                 controller: "AnimalSearchController",
