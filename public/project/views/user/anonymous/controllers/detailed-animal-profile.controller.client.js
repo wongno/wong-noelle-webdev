@@ -6,6 +6,7 @@
         var model = this;
         model.petId = $routeParams.petId;
         model.findPetById = findPetById;
+        model.animalShelterName = animalShelterName;
 
 
         function init() {
@@ -20,6 +21,7 @@
         }
         init();
         console.log(model.findPetById(model.petId));
+
         function findPetById(petId) {
             AnimalSearchService
                 .findPetById(petId)
@@ -28,6 +30,22 @@
                     return model.animal;
                 });
 
+        }
+
+        function animalShelterName(shelterId){
+
+        }
+
+        function animalBreeds(petId) {
+            var breeds = "";
+            for(breed in model.animal.breeds){
+                if(breeds === ""){
+                    breeds + breed;
+                } else {
+                    breeds +", " + breed;
+                }
+            }
+            return breeds;
         }
 
 

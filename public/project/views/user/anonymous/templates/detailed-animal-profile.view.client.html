@@ -15,14 +15,6 @@
             </div>
 
             <div class="navbar-header">
-                <a class="navbar-toggle collapsed nw-right-button"
-                   ng-click=""
-                   href="#"
-                   aria-expanded="false">
-                    <span class="glyphicon glyphicon-ok"
-                          aria-hidden="true">
-                    </span>
-                </a>
                 <a class="navbar-toggle collapsed nw-back-button"
                    href="#"
                    role="button"
@@ -32,34 +24,36 @@
                     </span>
                 </a>
                 <a class="navbar-brand"
-                   href="#">Profile</a>
-            </div>
-
-            <div class="navbar-header pull-right">
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav ">
-                        <li><a ng-click=""
-                               href="#">
-                            <span class="glyphicon glyphicon-ok"
-                                  aria-hidden="true"></span>
-                        </a></li>
-                    </ul>
-                </div>
+                   href="#">{{model.shelter.name.$t}}</a>
             </div>
         </div>
     </nav>
 
 
-
-
-
-
-
-
-
-
-
-
+    <div class="container-fluid">
+<h1>{{model.animal.name.$t}}</h1>
+    <h2>Id: {{model.animal.id.$t}}</h2>
+   <img ng-src={{model.animal.media.photos.photo[0].$t}}/>
+    <h2>Information about me</h2>
+    <ul class="list-inline">
+        <li>animal: {{model.animal.animal.$t}}</li>
+        <li>breed: {{model.animalBreeds(model.animal)}}</li>
+        <li>age: {{model.animal.age.$t}}</li>
+        <li>size: {{model.animal.size.$t}}</li>
+        <li>sex: {{model.animal.sex.$t}}</li>
+    </ul>
+    <p>{{model.animal.description.$t}}</p>
+    <h2>My Shelter</h2>
+    <a class="btn btn-default btn-primary btn-block"
+       ng-click="model.login(model.user)"
+       role="button">{{model.animalShelterName(model.animal.shelterId.$t)}}</a>
+    <a class="btn btn-default btn-success btn-block"
+       ng-click="model.login(model.user)"
+       role="button">Follow</a>
+    <a class="btn btn-default btn-danger btn-block"
+       ng-click="model.login(model.user)"
+       role="button">Unfollow</a>
+</div>
 
 
 

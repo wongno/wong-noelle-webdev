@@ -10,6 +10,9 @@
         model.trustUrlResource = trustUrlResource;
         model.selectPet = selectPet;
         model.selectShelter = selectShelter;
+        model.findPetById = findPetById;
+
+        model.petId = $routeParams.petId;
         function init() {
 
         }
@@ -19,8 +22,8 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        function selectPet(pet) {
-            $location.url("/pet/"+pet+"/profile");
+        function selectPet(petId) {
+            $location.url("/pet/"+petId+"/profile");
         }
 
         function selectShelter(shelter) {
@@ -34,6 +37,16 @@
                     model.shelters = response.petfinder.shelters.shelter;
                     console.log(model.shelters);
                 });
+        }
+
+        function findPetById(petId) {
+            AnimalSearchService
+                .findPetById(petId)
+                .then(function (response) {
+                    model.animal = response.petfinder.pet;
+                    return model.animal;
+                });
+
         }
 
         function searchAnimalsByLocation(location) {
