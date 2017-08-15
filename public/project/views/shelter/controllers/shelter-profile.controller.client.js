@@ -1,33 +1,31 @@
 (function () {
+
     angular
         .module("PetAppMaker")
         .controller("ShelterProfileController", ShelterProfileController);
-    function ShelterProfileController(AnimalSearchService, $routeParams, $sce, $location) {
-        var model = this;
-        model.shelterId = $routeParams["shelterId"];
-        function init() {
-            AnimalSearchService
-                .findPetsForShelter(model.shelterId)
-                .then(function(response) {
-                   model.shelters = response.petfinder.pets;
 
+    function ShelterProfileController($routeParams, UserService, $location) {
+        var model = this;
+        var userId = $routeParams["userId"];
+
+        model.updateUser = updateUser;
+        model.deleteUser = deleteUser;
+
+        function init() {
+            UserService.findUserById(userId)
+                .then(function (response) {
+                    model.user = response.data;
                 });
-            console.log(model.shelters);
         }
         init();
 
-        function trustUrlResource(url) {
-            return $sce.trustAsResourceUrl(url);
+        function updateUser(user) {
+            UserService.updateUser(user._id, user);
         }
 
-        function searchShelterByLocation(location) {
-            AnimalSearchService
-                .findPetsForShelter(location)
-                .then(function(response) {
-                    model.shelters = response.petfinder.pets.pet;
-                });
+        function deleteUser() {
+            UserService.deleteUser(userId);
         }
-
-
     }
+
 })();

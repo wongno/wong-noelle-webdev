@@ -1,21 +1,15 @@
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("PetAppMaker")
         .factory("UserService", UserService);
 
     function UserService($http) {
-
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
         var api = {
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
-            "createUser": createUser,
+            "createAdopter": createAdopter,
+            "createShelter": createShelter,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
         };
@@ -32,8 +26,13 @@
             return $http.put(url, user);
         }
 
-        function createUser(user) {
-            var url = "/api/user";
+        function createAdopter(user) {
+            var url = "/api/adopter";
+            return $http.post(url, user);
+        }
+
+        function createShelter(user) {
+            var url = "/api/shelter";
             return $http.post(url, user);
         }
 

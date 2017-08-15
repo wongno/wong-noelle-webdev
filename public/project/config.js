@@ -20,12 +20,12 @@
                 controllerAs: "model"
             })
             .when("/adopter/profile/:adopterId", {
-                templateUrl: "views/user/templates/adopter-profile.view.client.html",
+                templateUrl: "views/adopter/templates/adopter-profile.view.client.html",
                 controller: "AdopterProfileController",
                 controllerAs: "model"
             })
             .when("/shelter/profile/:shelterId", {
-                templateUrl: "views/user/templates/shelter-profile.view.client.html",
+                templateUrl: "views/shelter/templates/shelter-profile.view.client.html",
                 controller: "ShelterProfileController",
                 controllerAs: "model"
             })
