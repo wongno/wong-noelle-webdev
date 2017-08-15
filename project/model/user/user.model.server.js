@@ -8,7 +8,7 @@ userModel.updateUser = updateUser;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
-userModel.createUser = createUser;
+userModel.createAdopter = createAdopter;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
 
@@ -50,8 +50,10 @@ function addWebsite(developerId, websiteId) {
         });
 }
 
-function createUser(user) {
-    return userModel.create(user);
+function createAdopter(user) {
+    userModel.create(user);
+    return userModel.update({_id: userId},
+        {$set: user});
 }
 
 function findUserById(userId) {

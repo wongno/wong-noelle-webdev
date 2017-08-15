@@ -1,5 +1,5 @@
 var app = require("../../express");
-var adopterModel = require("../model/user/user.model.server");
+var userModel = require("../model/user/user.model.server");
 var shelterModel
 // http handlers
 app.get("/api/user/:userId", findUserById);
@@ -33,7 +33,7 @@ function updateUser(req, res) {
 
 function createAdopter(req, res) {
     var user = req.body;
-    adopterModel
+    userModel
         .createAdopter(user)
         .then(function (user) {
             res.json(user);
@@ -42,7 +42,7 @@ function createAdopter(req, res) {
 
 function createShelter(req, res) {
     var user = req.body;
-    shelterModel
+    userModel
         .createShelter(user)
         .then(function (user) {
             res.json(user);
@@ -61,7 +61,7 @@ function findUser(req, res) {
             }, function (err) {
                 res.sendStatus(404).send(err);
                 return;
-            })
+            });
         return;
     } else if(username) {
         for(var u in users) {
@@ -74,7 +74,7 @@ function findUser(req, res) {
                     }, function (err) {
                         res.sendStatus(404).send(err);
                         return;
-                    })
+                    });
                 return;
             }
         }

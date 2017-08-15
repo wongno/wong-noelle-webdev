@@ -1,13 +1,6 @@
 var mongoose = require("mongoose");
 var adopterSchema = mongoose.Schema({
-    username: String,
-    password: String,
-    role: String,
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: String,
+   _link: {type: mongoose.Schema.Types.ObjectId, ref:"UserModel"},
     shelters: [{type: mongoose.Schema.Types.ObjectId, ref:"ShelterModel"}],
-    dateCreated: {type: Date, default: Date.now},
-}, {collection:"user"});
+}, {collection:"adopter"});
 module.exports = adopterSchema;

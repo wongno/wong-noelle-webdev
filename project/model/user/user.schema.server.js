@@ -5,7 +5,6 @@ var userSchema = mongoose.Schema({
     location: String,
     email: String,
     phone: String,
-    role:  [{type: String, enum:["ADMIN", "ADOPTER", "SHELTER"]}],
-    dateCreated: {type: Date, default: Date.now},
+    role: [{type: String, enum:["ADOPTER","SHELTER"]}],
 }, {collection:"user"});
 module.exports = userSchema;

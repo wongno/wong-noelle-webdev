@@ -1,12 +1,6 @@
 var mongoose = require("mongoose");
 var shelterSchema = mongoose.Schema({
-    username: String,
-    password: String,
-    role: String,
-    shelterName: String,
-    email: String,
-    phone: String,
+    _link: {type: mongoose.Schema.Types.ObjectId, ref:"UserModel"},
     pets: [{type: mongoose.Schema.Types.ObjectId, ref:"PetModel"}],
-    dateCreated: {type: Date, default: Date.now},
-}, {collection:"user"});
+}, {collection:"shelter"});
 module.exports = shelterSchema;
