@@ -89,15 +89,27 @@
                    placeholder="Breed"
                    ng-model="breed"/>
             <div class="form-group">
+                <label for="size">Size</label>
+                <select class="form-control"
+                        id="size"
+                        name="size"
+                        ng-model="size">
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">Extra Large</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="age">Age</label>
                 <select class="form-control"
                         id="age"
                         name="age"
                         ng-model="age">
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">Extra Large</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Young">Young</option>
+                    <option value="Adult">Adult</option>
+                    <option value="Senior">Senior</option>
                 </select>
             </div>
             <div class="form-group">

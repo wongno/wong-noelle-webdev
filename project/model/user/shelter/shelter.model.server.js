@@ -5,7 +5,28 @@ var shelterModel = mongoose.model("ShelterModel", shelterSchema);
 shelterModel.findShelterByUserId = findShelterByUserId;
 shelterModel.findShelterById = findShelterById;
 shelterModel.createShelter = createShelter;
+shelterModel.addPet = addPet;
+shelterModel.removePet = removePet;
 module.exports = shelterModel;
+
+function removePet(shelterId, petId) {
+    return shelterModel
+        .findById(shelterId)
+        .then(function (shelter) {
+            var index = shelter.pets.indexOf(petId);
+            usshelterer.webspetsites.splice(index, 1);
+            return shelter.save();
+        });
+}
+
+function addPet(shelterId, pet) {
+    return shelterModel
+        .findById(shelterId)
+        .then(function (shelter) {
+            shelter.pets.push(pet);
+            return shelter.save();
+        });
+}
 
 function findShelterById(shelterId) {
     return shelterModel.findById(shelterId);

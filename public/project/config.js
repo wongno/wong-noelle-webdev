@@ -34,9 +34,19 @@
                 controller: "ShelterProfileController",
                 controllerAs: "model"
             })
-            .when("/shelter/:shelterId/pet", {
+            .when("/user/:userId/shelter/:shelterId/pet", {
                 templateUrl: "views/pet/templates/pet-list.view.client.html",
                 controller: "PetListController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/shelter/:shelterId/pet/new", {
+                templateUrl: "views/pet/templates/pet-new.view.client.html",
+                controller: "NewPetController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/shelter/:shelterId/pet/:petId", {
+                templateUrl: "views/pet/templates/pet-edit.view.client.html",
+                controller: "EditPetController",
                 controllerAs: "model"
             })
             .when("/pet/:petId/profile", {

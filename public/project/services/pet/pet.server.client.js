@@ -26,17 +26,20 @@
 
         function findPetById(petId){
             var url = "/api/pet/"+petId;
-            return $http.get(url);
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
 
         }
 
-        function createPet(userId, pet){
-            var url ="/api/user/"+userId+"/pet";
+        function createPet(shelterId, pet){
+            var url ="/api/shelter/"+shelterId+"/pet";
             return $http.post(url,pet);
         }
 
         function findPetsByShelterId(shelterId) {
-            var url = "/api/shelter/" + shelterId +"/pet";
+            var url ="/api/shelter/"+shelterId+"/pet";
             return $http.get(url)
                 .then(function(response){
                     return response.data;

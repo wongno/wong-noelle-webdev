@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var petSchema = require("./pet.schema.server");
 var petModel = mongoose.model("PetModel", petSchema);
-var userModel = require('../user/user.model.server');
+var shelterModel = require('../user/shelter/shelter.model.server');
 
 petModel.createPet = createPet;
 petModel.findPetsByShelter = findPetsByShelter;
@@ -20,7 +20,7 @@ function deletePet(shelterId, petId) {
     return petModel
         .remove({_id: petId})
         .then(function (status) {
-            return userModel.removeWebsite(shelterId, petId)
+            return shelterModel.removePet(shelterId, petId)
         });
 }
 
@@ -29,22 +29,20 @@ function findPetById(petId) {
 }
 
 function createPet(shelterId, pet){
-    pet.shelter = shelterId;
+    pet._shelter = shelterId;
     var petTmp = null;
     return petModel
         .create(pet)
+        .then(function (petDoc) {
+            petTmp = petDoc;
+            return shelterModel.addPet(shelterId, petDoc);
+        })
         .then(function (shelterDoc) {
-            petTmp = shelterDoc;
-            return userModel.addWebsite(shelterId, shelterDoc);
-        })
-        .then(function (userDoc) {
             return petTmp;
-        })
+        });
 }
 
 function findPetsByShelter(shelterId) {
     return petModel
         .find({_shelter: shelterId});
-        // .populate('shelter', 'name')
-        // .exec();
 }
