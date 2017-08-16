@@ -14,7 +14,7 @@ function removePet(shelterId, petId) {
         .findById(shelterId)
         .then(function (shelter) {
             var index = shelter.pets.indexOf(petId);
-            usshelterer.webspetsites.splice(index, 1);
+           shelter.splice(index, 1);
             return shelter.save();
         });
 }

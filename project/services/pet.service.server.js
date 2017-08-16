@@ -5,16 +5,18 @@ app.post("/api/shelter/:shelterId/pet",createPet);
 app.get("/api/shelter/:shelterId/pet",findPetsByShelter);
 app.get("/api/pet/:petId", findPetById);
 app.put("/api/pet/:petId", updatePet);
-app.delete ("/api/user/:userId/pet/:petId", deletePet);
+app.delete ("/api/shelter/:shelterId/pet/:petId", deletePet);
 
 function deletePet(req, res) {
     var petId = req.params.petId;
-    var developerId = req.params.userId;
+    var shelterId = req.params.shelter;
     petModel
-        .deletePet(developerId, petId)
+        .deletePet(shelterId, petId)
         .then(function (status) {
             res.json(status);
-        });
+        }, function (err) {
+        res.sendStatus(404).send(err);
+    });
 }
 
 

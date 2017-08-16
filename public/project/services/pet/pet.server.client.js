@@ -14,8 +14,8 @@
         };
         return api;
 
-        function deletePet(userId, petId) {
-            var url = "/api/user/" + userId + "/pet/" + petId;
+        function deletePet(shelterId, petId) {
+            var url = "/api/shelter/" + shelterId + "/pet/" + petId;
             return $http.delete(url);
         }
 

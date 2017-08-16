@@ -20,7 +20,7 @@ function deletePet(shelterId, petId) {
     return petModel
         .remove({_id: petId})
         .then(function (status) {
-            return shelterModel.removePet(shelterId, petId)
+            return shelterModel.removePet(shelterId, petId);
         });
 }
 

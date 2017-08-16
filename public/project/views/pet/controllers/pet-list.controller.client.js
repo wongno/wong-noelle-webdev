@@ -13,10 +13,8 @@
             PetService
                 .findPetsByShelterId(model.shelterId)
                 .then(function(pets){
-                    console.log(model.pets);
                     model.pets = pets;
                 });
-            console.log(model.pets);
         }
         init();
 

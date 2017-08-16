@@ -24,7 +24,7 @@
 
         function deletePet() {
             PetService
-                .deletePet(petId)
+                .deletePet(model.shelterId,model.pet._id)
                 .then(function () {
                     $location.url("/user/"+model.userId+"/shelter/"+model.shelterId+"/pet");
                 })
