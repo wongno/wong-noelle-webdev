@@ -54,7 +54,7 @@ function createPet(req,res) {
 function findPetsByShelter(req, res){
     var shelterId = req.params.shelterId;
     petModel
-        .findPetsByShelter()
+        .findPetsByShelter(req.params.shelterId)
         .then(function (pets) {
             res.json(pets);
         });

@@ -28,7 +28,7 @@
                                 .then(function (response) {
                                     var shelter = response.data;
                                     $rootScope.currentUser = shelter;
-                                    $location.url("shelter/"+responseUser._id+"/profile/"+shelter._id);
+                                    $location.url("profile/"+responseUser._id+"/shelter/"+shelter._id);
                                 })
                         }
 

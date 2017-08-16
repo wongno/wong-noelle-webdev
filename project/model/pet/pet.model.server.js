@@ -44,7 +44,7 @@ function createPet(shelterId, pet){
 
 function findPetsByShelter(shelterId) {
     return petModel
-        .findO({shelter: shelterId})
-        .populate('shelter', 'name')
-        .exec();
+        .find({_shelter: shelterId});
+        // .populate('shelter', 'name')
+        // .exec();
 }

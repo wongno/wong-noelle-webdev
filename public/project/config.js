@@ -29,12 +29,12 @@
                 controller: "ShelterFormController",
                 controllerAs: "model"
             })
-            .when("/shelter/:userId/profile/:shelterId", {
+            .when("/profile/:userId/shelter/:shelterId", {
                 templateUrl: "views/shelter/templates/shelter-profile.view.client.html",
                 controller: "ShelterProfileController",
                 controllerAs: "model"
             })
-            .when("/shelter/:userId/pet", {
+            .when("/shelter/:shelterId/pet", {
                 templateUrl: "views/pet/templates/pet-list.view.client.html",
                 controller: "PetListController",
                 controllerAs: "model"

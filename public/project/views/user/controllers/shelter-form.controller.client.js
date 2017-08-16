@@ -36,7 +36,7 @@
                     .createShelter(user)
                     .then(function (response) {
                         var _user = response.data;
-                        $location.url("shelter/"+userId+"/profile/" + _user._id);
+                        $location.url("profile/"+userId+"/shelter/" + _user._id);
                     });
             }
         }
