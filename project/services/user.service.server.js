@@ -1,11 +1,11 @@
 var app = require("../../express");
-var userModel = require("../model/user/user.model.server");
-var shelterModel
+var userModel = require("../model/user/project-user.model.server");
 // http handlers
 app.get("/api/user/:userId", findUserById);
 app.get("/api/user", findUser);
+app.post("/api/user", createUser);
 app.post("/api/adopter", createAdopter);
-app.post("/api/shelter", createShelter);
+app.put("/api/shelter/:userId", createShelter);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 
@@ -18,6 +18,7 @@ function deleteUser(req,res) {
             res.sendStatus(404).send(err);
         })
 }
+
 
 function updateUser(req, res) {
     var userId = req.params.userId;
@@ -40,13 +41,26 @@ function createAdopter(req, res) {
         })
 }
 
-function createShelter(req, res) {
+function createUser(req,res) {
     var user = req.body;
     userModel
-        .createShelter(user)
+        .createUser(user)
         .then(function (user) {
             res.json(user);
         })
+
+}
+
+
+function createShelter(req, res) {
+    console.log('here');
+    var user = req.body;
+    var userId = req.params.userId;
+    userModel
+        .createShelter(userId,user)
+        .then(function (user) {
+            res.json(user);
+        });
 }
 
 function findUser(req, res) {
@@ -63,22 +77,23 @@ function findUser(req, res) {
                 return;
             });
         return;
-    } else if(username) {
-        for(var u in users) {
-            if(users[u].username === username) {
-                userModel
-                    .findUserByUsername(username)
-                    .then(function (user) {
-                        res.json(user);
-                        return;
-                    }, function (err) {
-                        res.sendStatus(404).send(err);
-                        return;
-                    });
-                return;
-            }
-        }
     }
+    // else if(username) {
+    //     for(var u in users) {
+    //         if(users[u].username === username) {
+    //             userModel
+    //                 .findUserByUsername(username)
+    //                 .then(function (user) {
+    //                     res.json(user);
+    //                     return;
+    //                 }, function (err) {
+    //                     res.sendStatus(404).send(err);
+    //                     return;
+    //                 });
+    //             return;
+    //         }
+    //     }
+    // }
     userModel
         .findUserByUsername(username)
         .then(function (user) {

@@ -16,6 +16,7 @@
 
 
         function registerAdopter(user) {
+            user.role = "adopter";
             if (!user) {
                 model.errorMessage = "Please enter information";
                 return;
@@ -38,6 +39,7 @@
                 });
         }
         function registerShelter(user) {
+            user.role = "shelter";
             if (!user) {
                 model.errorMessage = "Please enter information";
                 return;
@@ -47,13 +49,16 @@
                     var _user = response.data;
                     if(_user === null) {
                         return UserService
-                            .createShelter(user)
+                            .createUser(user)
                             .then(function (response) {
                                 var _user = response.data;
-                                if(_user){
-                                    $location.url("shelter/profile/" + _user._id);
-                                }
+                                UserService.createShelter(_user._id,user)
+                                    .then(function (response) {
+                                        var shelter = response.data;
+                                    $location.url("shelter/profile/" + shelter._id);
+                                })
                             });
+
                     } else {
                         model.errorMessage = "User already exists";
                     }

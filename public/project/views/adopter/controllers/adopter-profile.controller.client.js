@@ -24,7 +24,7 @@
         }
 
         function deleteUser() {
-            UserService.deleteUser(userId);
+            UserService.deleteUser(adopterId);
         }
     }
 

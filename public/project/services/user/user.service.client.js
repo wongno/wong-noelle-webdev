@@ -13,6 +13,7 @@
             "createShelter": createShelter,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
+            "createUser":createUser,
         };
         return api;
 
@@ -32,8 +33,13 @@
             return $http.post(url, user);
         }
 
-        function createShelter(user) {
-            var url = "/api/shelter";
+        function createUser(user) {
+            var url = "/api/user";
+            return $http.post(url, user);
+        }
+
+        function createShelter(userId, user) {
+            var url = "/api/shelter/"+userId;
             return $http.post(url, user);
         }
 
