@@ -9,6 +9,7 @@
         model.shelterId = $routeParams.shelterId;
 
         function init() {
+            console.log(model.shelterId);
             PetService
                 .findPetsByShelterId(model.shelterId)
                 .then(function(pets){
