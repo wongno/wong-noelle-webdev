@@ -35,8 +35,8 @@
             return $http.post(url,pet);
         }
 
-        function findPetsByShelterId(userId) {
-            var url = "/api/user/" + userId +"/pet";
+        function findPetsByShelterId(shelterId) {
+            var url = "/api/shelter/" + shelterId +"/pet";
             return $http.get(url)
                 .then(function(response){
                     return response.data;

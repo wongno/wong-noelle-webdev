@@ -6,11 +6,11 @@
     function PetListController($routeParams, PetService) {
         var model = this;
 
-        model.userId = $routeParams.userId;
+        model.shelterId = $routeParams.shelterId;
 
         function init() {
             PetService
-                .findPetsByShelterId(model.userId)
+                .findPetsByShelterId(model.shelterId)
                 .then(function(pets){
                     model.pets = pets;
                 });

@@ -14,9 +14,13 @@
             "updateUser": updateUser,
             "deleteUser": deleteUser,
             "createUser":createUser,
+            "findDetail": findDetail,
         };
         return api;
 
+        function findDetail(userId) {
+            var url = "/api/user"
+        }
         function deleteUser(userId) {
             console.log("delete");
             var url = "/api/user/"+userId;
@@ -38,9 +42,9 @@
             return $http.post(url, user);
         }
 
-        function createShelter(userId, user) {
-            var url = "/api/shelter/"+userId;
-            return $http.post(url, user);
+        function createShelter(shelter) {
+            var url = "/api/shelter";
+            return $http.post(url, shelter);
         }
 
         function findUserByUsername(username) {

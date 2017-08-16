@@ -52,11 +52,7 @@
                             .createUser(user)
                             .then(function (response) {
                                 var _user = response.data;
-                                UserService.createShelter(_user._id,user)
-                                    .then(function (response) {
-                                        var shelter = response.data;
-                                    $location.url("shelter/profile/" + shelter._id);
-                                })
+                                    $location.url("shelter-form/" + _user._id);
                             });
 
                     } else {

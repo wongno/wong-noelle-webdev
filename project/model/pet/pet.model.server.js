@@ -4,7 +4,7 @@ var petModel = mongoose.model("PetModel", petSchema);
 var userModel = require('../user/user.model.server');
 
 petModel.createPet = createPet;
-petModel.findPetsByUser = findPetsByUser;
+petModel.findPetsByShelter = findPetsByShelter;
 petModel.findPetById = findPetById;
 petModel.deletePet = deletePet;
 petModel.updatePet = updatePet;
@@ -42,9 +42,9 @@ function createPet(shelterId, pet){
         })
 }
 
-function findPetsByUser(shelterId) {
+function findPetsByShelter(shelterId) {
     return petModel
-        .find({shelter: shelterId})
-        .populate('shelter', 'username')
+        .findO({shelter: shelterId})
+        .populate('shelter', 'name')
         .exec();
 }

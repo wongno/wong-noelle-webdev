@@ -1,0 +1,57 @@
+<div class="nw-navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                               <a class="navbar-brand"
+                   href="#">Shelter Form</a>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+       </nav>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-md-9 nw-split-view-right">
+        <div class="container-fluid">
+            <div ng-show="model.errorMessage" class="alert alert-danger">
+                {{model.errorMessage}}
+            </div>
+            <label for="name">Shelter Name</label>
+            <input name="name"
+                   class="form-control"
+                   ng-model="shelter.name"
+                   type="text"
+                   placeholder="Find My Dog"
+                   id="name">
+            <label for="description" >Description</label>
+            <textarea name="description"
+                      rows="5"
+                      ng-model="shelter.description"
+                      class="form-control"
+                      placeholder="Need help locating your dog?"
+                      id="description"></textarea>
+            <label for="location">Address</label>
+            <input name="location"
+                   class="form-control"
+                   ng-model="shelter.location"
+                   type="text"
+                   id="location">
+            <label for="email">Email</label>
+            <input name="email"
+                   class="form-control"
+                   ng-model="shelter.email"
+                   type="email"
+                   id="email">
+            <a class="btn btn-default btn-block btn-primary"
+               ng-click="model.registerShelter(shelter)"
+               role="button">Submit Form</a>
+
+            <a class="btn btn-default btn-block btn-danger"
+               ng-click="model.deleteUser()"
+               role="button">Cancel</a>
+        </div>
+    </div>
+</div>

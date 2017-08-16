@@ -7,6 +7,6 @@ var petSchema = mongoose.Schema({
     sex: String,
     age: String,
     size: String,
-    shelter: {type: mongoose.Schema.Types.ObjectId, ref: "ShelterModel"},
+    _shelter: {type: mongoose.Schema.Types.ObjectId, ref: "ShelterModel"},
 }, {collection:"pet"});
 module.exports = petSchema;

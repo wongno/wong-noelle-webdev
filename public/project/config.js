@@ -24,7 +24,12 @@
                 controller: "AdopterProfileController",
                 controllerAs: "model"
             })
-            .when("/shelter/profile/:userId", {
+            .when("/shelter-form/:userId", {
+                templateUrl: "views/user/templates/shelter-form.view.client.html",
+                controller: "ShelterFormController",
+                controllerAs: "model"
+            })
+            .when("/shelter/:userId/profile/:shelterId", {
                 templateUrl: "views/shelter/templates/shelter-profile.view.client.html",
                 controller: "ShelterProfileController",
                 controllerAs: "model"

@@ -5,7 +5,7 @@ app.get("/api/user/:userId", findUserById);
 app.get("/api/user", findUser);
 app.post("/api/user", createUser);
 app.post("/api/adopter", createAdopter);
-app.put("/api/shelter/:userId", createShelter);
+
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 
@@ -52,16 +52,7 @@ function createUser(req,res) {
 }
 
 
-function createShelter(req, res) {
-    console.log('here');
-    var user = req.body;
-    var userId = req.params.userId;
-    userModel
-        .createShelter(userId,user)
-        .then(function (user) {
-            res.json(user);
-        });
-}
+
 
 function findUser(req, res) {
     var username = req.query.username;

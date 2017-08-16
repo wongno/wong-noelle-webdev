@@ -12,10 +12,19 @@ projectUserModel.findUserById = findUserById;
 projectUserModel.createUser = createUser;
 projectUserModel.createAdopter = createAdopter;
 projectUserModel.createShelter = createShelter;
-projectUserModel.addWebsite = addWebsite;
+projectUserModel.saveShelter = saveShelter;
 projectUserModel.removeWebsite = removeWebsite;
 
 module.exports = projectUserModel;
+
+function saveShelter(userId, shelter) {
+    return projectUserModel
+        .findById(userId)
+        .then(function (user) {
+            user.details = shelter._id;
+            return user.save();
+        });
+}
 
 function deleteUser(userId) {
     return projectUserModel.remove({_id: userId});
@@ -62,14 +71,8 @@ function createAdopter(user) {
 }
 
 
-function createShelter(userId,user) {
-    var shelter = Object;
-    shelter._link = userId;
-   shelterModel.createShelter(shelter)
-       .then(function (response) {
-           console.log(response.data);
-           return user;
-       })
+function createShelter(shelter) {
+   return shelterModel.create(shelter);
 }
 
 function findUserById(userId) {

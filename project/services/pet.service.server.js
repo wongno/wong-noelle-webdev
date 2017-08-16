@@ -4,7 +4,7 @@ var projectUserModel = require("../model/user/project-user.model.server");
 var shelterModel = require("../model/user/shelter/shelter.model.server");
 
 app.post("/api/user/:userId/pet",createPet);
-app.get("/api/user/:userId/pet",findPetsByUser);
+app.get("/api/shelter/:shelterId/pet",findPetsByShelter);
 app.get("/api/pet/:petId", findPetById);
 app.put("/api/pet/:petId", updatePet);
 app.delete ("/api/user/:userId/pet/:petId", deletePet);
@@ -51,27 +51,12 @@ function createPet(req,res) {
         });
 }
 
-function findPetsByUser(req, res){
-    var userId = req.params.userId;
-    var shelterId = null;
-    var user = projectUserModel.findById(userId);
-    shelterId = user.detail;
-    if(!shelterId){
-        petModel.findPetsByUser(shelterId)
+function findPetsByShelter(req, res){
+    var shelterId = req.params.shelterId;
+    petModel
+        .findPetsByShelter()
         .then(function (pets) {
             res.json(pets);
         });
-    }else {
-        var shelter = Object();
-        shelter._link = userId;
-        shelterModel.createShelter(shelter)
-            .then(function (result) {
-                user.detail = result._id;
-                petModel.findPetsByUser(shelterId)
-                    .then(function (pets) {
-                        res.json(pets);
-                    });
-            });
-    }
 
 }
