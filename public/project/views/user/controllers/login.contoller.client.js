@@ -16,28 +16,35 @@
                 model.errorMessage = "User not found";
                 return;
             }
-            UserService.findUserByCredentials(user.username, user.password)
-                .then(function (response) {
-                    console.log(response.data);
-                    var responseUser = response.data;
-                    if(responseUser === null) {
+            UserService
+                .login(user.username, user.password)
+                .then(
+                    function(response) {
+                        var user = response.data;
+
+
+            // UserService.findUserByCredentials(user.username, user.password)
+            //     .then(function (response) {
+            //         console.log(response.data);
+            //         var responseUser = response.data;
+                    if(user === null) {
                         model.errorMessage = "User not found";
                     } else {
-                        if(responseUser.role.value="shelter"){
+                        if(user.role.value="shelter"){
                             ShelterService
-                                .findShelterByUserId(responseUser._id)
+                                .findShelterByUserId(user._id)
                                 .then(function (response) {
                                     var shelter = response.data;
                                     $rootScope.currentUser = shelter;
-                                    $location.url("profile/"+responseUser._id+"/shelter/"+shelter._id);
+                                    $location.url("profile/"+user._id+"/shelter/"+shelter._id);
                                 })
-                        }else if(responseUser.role.value="adopter"){
+                        }else if(user.role.value="adopter"){
                             AdopterService
-                                .findAdopterByUserId(responseUser._id)
+                                .findAdopterByUserId(user._id)
                                 .then(function (response) {
                                     var adopter = response.data;
                                     $rootScope.currentUser = adopter;
-                                    $location.url("profile/"+responseUser._id+"/adopter/"+adopter._id);
+                                    $location.url("profile/"+user._id+"/adopter/"+adopter._id);
                                 })
                         }
 

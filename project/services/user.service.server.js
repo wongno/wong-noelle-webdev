@@ -67,11 +67,15 @@ function localStrategy(username, password, done) {
         .findUserByCredentials(username, password)
         .then(
             function(user) {
-                if(user.username === username && user.password === password) {
-                    return done(null, user);
-                } else {
-                    return done(null, false);
+                if(!user){
+                    return done(null,false);
                 }
+                return done(null,user);
+                // if(user.username === username && user.password === password) {
+                //     return done(null, user);
+                // } else {
+                //     return done(null, false);
+                // }
             },
             function(err) {
                 if (err) { return done(err); }

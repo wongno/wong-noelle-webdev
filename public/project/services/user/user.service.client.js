@@ -7,7 +7,7 @@
 
         var api = {
             "findUserByUsername": findUserByUsername,
-            "findUserByCredentials": findUserByCredentials,
+            "findUserByCredentials": login,
             "findUserById": findUserById,
             "createAdopter": createAdopter,
             "createShelter": createShelter,
@@ -15,8 +15,14 @@
             "deleteUser": deleteUser,
             "createUser":createUser,
             "findDetail": findDetail,
+            "login": login,
+            "logout": logout,
         };
         return api;
+
+        // function login(user) {
+        //     return $http.post("/api/login", user);
+        // }
 
         function findDetail(userId) {
             var url = "/api/user"
@@ -56,11 +62,15 @@
             return $http.get("/api/user/"+userId);
         }
 
-        function findUserByCredentials(username, password) {
-            var url = "/api/user?username="+username+"&password="+password;
+        function login(username, password) {
+            var url = "/api/login";
             // /user?username=alice&password=alice
-            return $http.get(url);
+            return $http.post(url,{username:username, password:password});
 
+        }
+
+        function logout(user) {
+            return $http.post("/api/logout");
         }
 
     }

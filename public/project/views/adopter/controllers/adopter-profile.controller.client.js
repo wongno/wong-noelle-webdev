@@ -10,6 +10,8 @@
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
+
 
         function init() {
             UserService.findUserById(userId)
@@ -30,6 +32,15 @@
 
         function deleteUser() {
             UserService.deleteUser(adopterId);
+        }
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    });
+
         }
     }
 
