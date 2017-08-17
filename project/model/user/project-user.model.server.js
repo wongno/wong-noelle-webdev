@@ -4,6 +4,14 @@ var shelterModel = require("./shelter/shelter.model.server");
 var adopterModel = require("./adopter/adopter.model.server");
 var projectUserModel = mongoose.model("ProjectUserModel", projectUserSchema);
 
+var api = {
+    findUserByFacebookId: findUserByFacebookId,
+};
+
+function findUserByFacebookId(facebookId) {
+    return projectUserModel.findOne({'facebook.id': facebookId});
+}
+
 projectUserModel.deleteUser = deleteUser;
 projectUserModel.updateUser = updateUser;
 projectUserModel.findUserByCredentials = findUserByCredentials;

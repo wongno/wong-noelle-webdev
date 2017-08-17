@@ -18,6 +18,17 @@ app.post  ('/api/login', passport.authenticate('local'), login);
 app.get   ('/api/loggedin',       loggedin);
 app.post  ('/api/logout',         logout);
 app.post  ('/api/register',       register);
+app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/!#/user',
+        failureRedirect: '/!#/login'
+    }));
+
+
+
+
+
 
 function register (req, res) {
     var user = req.body;
@@ -154,22 +165,7 @@ function findUser(req, res) {
             });
         return;
     }
-    // else if(username) {
-    //     for(var u in users) {
-    //         if(users[u].username === username) {
-    //             userModel
-    //                 .findUserByUsername(username)
-    //                 .then(function (user) {
-    //                     res.json(user);
-    //                     return;
-    //                 }, function (err) {
-    //                     res.sendStatus(404).send(err);
-    //                     return;
-    //                 });
-    //             return;
-    //         }
-    //     }
-    // }
+
     userModel
         .findUserByUsername(username)
         .then(function (user) {

@@ -1,7 +1,7 @@
 (function () {
     angular
         .module("PetAppMaker")
-        .service("ShelterProfileService", ShelterProfileService);
+        .factory("ShelterProfileService", ShelterProfileService);
     function ShelterProfileService($http,$routeParams,$sce) {
 
 

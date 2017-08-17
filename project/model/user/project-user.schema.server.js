@@ -5,3 +5,10 @@ var projectUserSchema = mongoose.Schema({
     role: [{type: String, enum:["adopter","shelter", "admin"]}],
 }, {collection:"user"});
 module.exports = projectUserSchema;
+
+var UserSchema = mongoose.Schema({
+    facebook: {
+        id:    String,
+        token: String
+    }
+});

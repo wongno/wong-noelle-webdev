@@ -104,7 +104,7 @@
     <div ng-include="'views/adopter/templates/notifications-component.view.client.html'"></div>
 
     <a class="btn btn-block btn-primary"
-       href="#!/user/{{model.user._id}}/website"
+       href="#!/user/{{model.user._id}}/adopter/{{model.adopter._id}}/search"
        role="button">Search Animals</a>
 
     <a class="btn btn-block btn-danger"
@@ -113,6 +113,6 @@
        role="button">Delete Profile</a>
 
     <a class="btn btn-block btn-warning"
-       href="#!/login">Logout</a>
+       ng-click="model.logout()">Logout</a>
 </div>
 

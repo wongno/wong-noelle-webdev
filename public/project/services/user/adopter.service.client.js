@@ -9,9 +9,15 @@
             "createAdopter": createAdopter,
             "findAdopterByUserId":findAdopterByUserId,
             "findAdopterById":findAdopterById,
+            "updateAdopter": updateAdopter,
         };
 
         return api;
+
+        function updateAdopter(adopterId, adopter) {
+            var url = "/api/adopter/"+adopterId;
+            return $http.post(url,adopter);
+        }
 
         function createAdopter(adopter) {
             var url = "/api/adopter";

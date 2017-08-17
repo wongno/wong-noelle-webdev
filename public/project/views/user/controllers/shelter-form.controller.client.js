@@ -32,6 +32,7 @@
                 ShelterService
                     .createShelter(user)
                     .then(function (response) {
+                        console.log("got to shelterservice");
                         var _user = response.data;
                         $location.url("profile/"+userId+"/shelter/" + _user._id);
                     });

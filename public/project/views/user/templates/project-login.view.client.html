@@ -22,12 +22,18 @@
            placeholder="Password"
            id="password"/>
 
-    <a class="btn btn-default btn-primary btn-block"
+    <a class="btn btn-primary btn-block"
        ng-click="model.login(model.user)"
        role="button">Login</a>
 
-    <a class="btn btn-default btn-success btn-block"
-       href="#!/register"
+    <a href="/auth/facebook"
+       class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+
+    <a class="btn btn-success btn-block"
+       href="#!/project/register"
        role="button">Register</a>
 </div>
 </div>

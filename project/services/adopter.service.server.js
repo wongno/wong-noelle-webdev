@@ -5,6 +5,19 @@ var projectUserModel = require("../model/user/project-user.model.server");
 app.post("/api/adopter", createAdopter);
 app.get("/api/adopter/:userId/user",findAdopterByUserId);
 app.get("/api/adopter/:adopterId",findAdopterById);
+app.post("/api/adopter/:adopterId", updateAdopter);
+
+function updateAdopter(req,res) {
+    var adopterId = req.params.adopterId;
+    var adopter = req.body;
+    adopterModel
+        .updateAdopter(adopterId, adopter)
+        .then(function (status) {
+            res.sendStatus(status);
+        },function (err) {
+            res.sendStatus(404).send(err);
+        });
+}
 
 function findAdopterByUserId(req,res) {
     var userId = req.params.userId;

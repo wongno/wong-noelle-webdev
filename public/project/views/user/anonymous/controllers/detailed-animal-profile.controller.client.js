@@ -2,35 +2,52 @@
     angular
         .module("PetAppMaker")
         .controller("AnimalProfileController",AnimalProfileController);
-    function AnimalProfileController($routeParams, $http,AnimalSearchService) {
+    function AnimalProfileController($routeParams, $http, AnimalSearchService, PetService) {
         var model = this;
-        model.petId = $routeParams.petId;
-        model.findPetById = findPetById;
+        model.userId = $routeParams.userId;
+        model.adopterId = $routeParams.adopterId;
+        model.petId = $routeParams["petId"];
+        var petId = $routeParams["petId"];
+       // model.findPetById = findPetById;
         model.animalShelterName = animalShelterName;
 
 
         function init() {
-            //model.animal = model.findPetById(model.petId);
-            AnimalSearchService
+            // AnimalSearchService
+            //     .findPetById(petId)
+            //     .then(function (response) {
+            //         model.animal = response.petfinder.pet;
+            //
+            //     });
+
+            console.log(model.petId);
+            PetService
                 .findPetById(model.petId)
-                .then(function (response) {
-                    model.animal = response.petfinder.pet;
-                    console.log(model.animal);
+                .then(function (pet) {
+                    model.animal = pet;
+                    console.log(pet);
                 });
+            // AnimalSearchService
+            //     .findPetById(model.petId)
+            //     .then(function (response) {
+            //         model.animal = response.petfinder.pet;
+            //         model.name = model.animal.name.$t;
+            //
+            //     });
 
         }
         init();
-        console.log(model.findPetById(model.petId));
 
-        function findPetById(petId) {
-            AnimalSearchService
-                .findPetById(petId)
-                .then(function (response) {
-                    model.animal = response.petfinder.pet;
-                    return model.animal;
-                });
-
-        }
+        // function findPetById(petId) {
+        //     AnimalSearchService
+        //         .findPetById(petId)
+        //         .then(function (response) {
+        //        //     model.animal = response.petfinder.pet.name.$t;
+        //             console.log(model.animal);
+        //       //      return model.animal;
+        //         });
+        //
+        // }
 
         function animalShelterName(shelterId){
 

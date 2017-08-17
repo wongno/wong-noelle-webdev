@@ -4,3 +4,4 @@ require("./services/anonymous.service.server");
 require("./services/shelter.service.server");
 require("./services/adopter.service.server");
 require("./services/pet.service.server");
+require("./services/search-animal.service.server");

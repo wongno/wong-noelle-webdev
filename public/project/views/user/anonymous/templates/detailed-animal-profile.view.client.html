@@ -24,35 +24,37 @@
                     </span>
                 </a>
                 <a class="navbar-brand"
-                   href="#">{{model.shelter.name.$t}}</a>
+                   href="#"></a>
             </div>
         </div>
     </nav>
 
 
     <div class="container-fluid">
-<h1>{{model.animal.name.$t}}</h1>
-    <h2>Id: {{model.animal.id.$t}}</h2>
-   <img ng-src={{model.animal.media.photos.photo[0].$t}}/>
-    <h2>Information about me</h2>
-    <ul class="list-inline">
-        <li>animal: {{model.animal.animal.$t}}</li>
-        <li>breed: {{model.animalBreeds(model.animal)}}</li>
-        <li>age: {{model.animal.age.$t}}</li>
-        <li>size: {{model.animal.size.$t}}</li>
-        <li>sex: {{model.animal.sex.$t}}</li>
-    </ul>
-    <p>{{model.animal.description.$t}}</p>
-    <h2>My Shelter</h2>
-    <a class="btn btn-default btn-primary btn-block"
-       ng-click="model.login(model.user)"
-       role="button">{{model.animalShelterName(model.animal.shelterId.$t)}}</a>
-    <a class="btn btn-default btn-success btn-block"
-       ng-click="model.login(model.user)"
-       role="button">Follow</a>
-    <a class="btn btn-default btn-danger btn-block"
-       ng-click="model.login(model.user)"
-       role="button">Unfollow</a>
+<h1>{{model.animal.name}}</h1>
+    <!--<h2>model.petId: {{model.petId}}</h2>-->
+        <!--<h2>petId: {{petId}}</h2>-->
+        <!--<h2>Id: </h2>-->
+   <!--<img ng-src={{model.animal.media.photos.photo[0].$t}}/>-->
+    <!--<h2>Information about me</h2>-->
+    <!--<ul class="list-inline">-->
+        <!--<li>animal: {{model.animal.animal.$t}}</li>-->
+        <!--<li>breed: {{model.animalBreeds(model.animal)}}</li>-->
+        <!--<li>age: {{model.animal.age.$t}}</li>-->
+        <!--<li>size: {{model.animal.size.$t}}</li>-->
+        <!--<li>sex: {{model.animal.sex.$t}}</li>-->
+    <!--</ul>-->
+    <!--<p>{{model.animal.description.$t}}</p>-->
+    <!--<h2>My Shelter</h2>-->
+    <!--<a class="btn btn-default btn-primary btn-block"-->
+       <!--ng-click="model.login(model.user)"-->
+       <!--role="button">{{model.animalShelterName(model.animal.shelterId.$t)}}</a>-->
+    <!--<a class="btn btn-default btn-success btn-block"-->
+       <!--ng-click="model.login(model.user)"-->
+       <!--role="button">Follow</a>-->
+    <!--<a class="btn btn-default btn-danger btn-block"-->
+       <!--ng-click="model.login(model.user)"-->
+       <!--role="button">Unfollow</a>-->
 </div>
 
 

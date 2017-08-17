@@ -5,17 +5,22 @@
     function configuration($routeProvider, $httpProvider) {
         $routeProvider
             .when("/", {
+                templateUrl: "views/home/templates/home.view.client.html",
+                controller: "AnimalSearchController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/adopter/:adopterId/search", {
                 templateUrl: "views/user/anonymous/templates/search-animals.view.client.html",
                 controller: "AnimalSearchController",
                 controllerAs: "model"
             })
-            .when("/login", {
-                templateUrl: "views/user/templates/login.view.client.html",
+            .when("/project/login", {
+                templateUrl: "views/user/templates/project-login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
-            .when("/register", {
-                templateUrl: "views/user/templates/register.view.client.html",
+            .when("/project/register", {
+                templateUrl: "views/user/templates/project-register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
@@ -28,7 +33,7 @@
                 templateUrl: "views/adopter/templates/adopter-profile.view.client.html",
                 controller: "AdopterProfileController",
                 controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
+               // resolve: { loggedin: checkLoggedin }
             })
             .when("/shelter-form/:userId", {
                 templateUrl: "views/user/templates/shelter-form.view.client.html",
@@ -39,7 +44,7 @@
                 templateUrl: "views/shelter/templates/shelter-profile.view.client.html",
                 controller: "ShelterProfileController",
                 controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
+                //resolve: { loggedin: checkLoggedin }
             })
             .when("/user/:userId/shelter/:shelterId/pet", {
                 templateUrl: "views/pet/templates/pet-list.view.client.html",
@@ -56,11 +61,11 @@
                 controller: "EditPetController",
                 controllerAs: "model"
             })
-            .when("/pet/:petId/profile", {
+            .when("/user/:userId/adopter/:adopterId/pet/:petId/profile", {
                 templateUrl: "views/user/anonymous/templates/detailed-animal-profile.view.client.html",
-                controller: "AnimalSearchController",
+                controller: "AnimalProfileController",
                 controllerAs: "model"
-            })
+            });
         var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();
             $http.get('/api/loggedin').success(function(user) {

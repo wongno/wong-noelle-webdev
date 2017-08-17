@@ -2,14 +2,22 @@ var mongoose = require("mongoose");
 var petSchema = require("./pet.schema.server");
 var petModel = mongoose.model("PetModel", petSchema);
 var shelterModel = require('../user/shelter/shelter.model.server');
-
+petModel.addPet = addPet;
 petModel.createPet = createPet;
 petModel.findPetsByShelter = findPetsByShelter;
+petModel.findPetByAdopter = findPetByAdopter;
 petModel.findPetById = findPetById;
 petModel.deletePet = deletePet;
 petModel.updatePet = updatePet;
 module.exports = petModel;
 
+function findPetByAdopter(adopterId,petId) {
+    return petModel.findOne({apiId:petId});
+}
+
+function addPet(adopterId, pet) {
+    return petModel.create(pet);
+}
 
 function updatePet(petId, pet) {
     return petModel.update({_id: petId},
