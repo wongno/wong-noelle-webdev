@@ -1,11 +1,85 @@
 var app = require("../../express");
 var userModel = require("../model/user/project-user.model.server");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var auth = authorized;
+
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+
 // http handlers
 app.get("/api/user/:userId", findUserById);
 app.get("/api/user", findUser);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
+app.post  ('/api/login', passport.authenticate('local'), login);
+app.get   ('/api/loggedin',       loggedin);
+app.post  ('/api/logout',         logout);
+//app.post  ('/api/register',       register);
+
+
+function authorized (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.send(401);
+    } else {
+        next();
+    }
+};
+
+function login(req, res) {
+    var user = req.user;
+    res.json(user);
+}
+
+function logout(req, res) {
+    req.logOut();
+    res.send(200);
+}
+
+function loggedin(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
+}
+
+
+
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if(user.username === username && user.password === password) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+}
+
+
 
 function deleteUser(req,res) {
     userModel
