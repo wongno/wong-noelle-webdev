@@ -27,7 +27,8 @@
             .when("/profile/:userId/adopter/:adopterId", {
                 templateUrl: "views/adopter/templates/adopter-profile.view.client.html",
                 controller: "AdopterProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
             })
             .when("/shelter-form/:userId", {
                 templateUrl: "views/user/templates/shelter-form.view.client.html",
@@ -37,7 +38,8 @@
             .when("/profile/:userId/shelter/:shelterId", {
                 templateUrl: "views/shelter/templates/shelter-profile.view.client.html",
                 controller: "ShelterProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
             })
             .when("/user/:userId/shelter/:shelterId/pet", {
                 templateUrl: "views/pet/templates/pet-list.view.client.html",
@@ -59,11 +61,20 @@
                 controller: "AnimalSearchController",
                 controllerAs: "model"
             })
-            // .when("/shelter/:shelterId/profile", {
-            //     templateUrl: "views/user/shelter/templates/shelter-profile.view.client.html",
-            //     controller: "ShelterProfileController",
-            //     controllerAs: "model"
-            // })
+        var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+            var deferred = $q.defer();
+            $http.get('/api/loggedin').success(function(user) {
+                $rootScope.errorMessage = null;
+                if (user !== '0') {
+                    deferred.resolve(user);
+                } else {
+                    deferred.reject();
+                    $location.url('/');
+                }
+            });
+            return deferred.promise;
+        };
+
 
     }
 })();

@@ -3,7 +3,7 @@
         .module("PetAppMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController(UserService, $location) {
+    function RegisterController(UserService, $location, $rootScope) {
         var model = this;
 
         model.registerAdopter = registerAdopter;
@@ -26,10 +26,11 @@
                     var _user = response.data;
                     if(_user === null) {
                         return UserService
-                            .createUser(user)
+                            .register(user)
                             .then(function (response) {
                                 var _user = response.data;
                                 if(_user){
+                                    $rootScope.currentUser = _user;
                                     $location.url("adopter-form/" + _user._id);
                                 }
                             });
@@ -49,10 +50,11 @@
                     var _user = response.data;
                     if(_user === null) {
                         return UserService
-                            .createUser(user)
+                            .register(user)
                             .then(function (response) {
                                 var _user = response.data;
-                                    $location.url("shelter-form/" + _user._id);
+                                $rootScope.currentUser = _user;
+                                $location.url("shelter-form/" + _user._id);
                             });
 
                     } else {
