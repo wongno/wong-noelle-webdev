@@ -4,8 +4,6 @@ var userModel = require("../model/user/project-user.model.server");
 app.get("/api/user/:userId", findUserById);
 app.get("/api/user", findUser);
 app.post("/api/user", createUser);
-app.post("/api/adopter", createAdopter);
-
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 
@@ -30,15 +28,6 @@ function updateUser(req, res) {
         }, function (err) {
             res.sendStatus(404).send(err);
         });
-}
-
-function createAdopter(req, res) {
-    var user = req.body;
-    userModel
-        .createAdopter(user)
-        .then(function (user) {
-            res.json(user);
-        })
 }
 
 function createUser(req,res) {

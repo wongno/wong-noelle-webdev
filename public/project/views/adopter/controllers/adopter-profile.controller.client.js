@@ -1,12 +1,12 @@
 (function () {
-
     angular
         .module("PetAppMaker")
         .controller("AdopterProfileController", AdopterProfileController);
 
-    function AdopterProfileController($routeParams, UserService, $location) {
+    function AdopterProfileController(AdopterService,$routeParams, UserService, $location) {
         var model = this;
         var userId = $routeParams["userId"];
+        var adopterId = $routeParams["adopterId"];
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
@@ -15,6 +15,11 @@
             UserService.findUserById(userId)
                 .then(function (response) {
                     model.user = response.data;
+                });
+            AdopterService
+                .findAdopterById(adopterId)
+                .then(function (response) {
+                    model.adopter = response.data;
                 });
         }
         init();

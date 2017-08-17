@@ -24,7 +24,6 @@ function findAdopterById(req, res) {
         });
 }
 function createAdopter(req, res) {
-    console.log('here');
     var adopter = req.body;
     var userId = req.params.userId;
     projectUserModel

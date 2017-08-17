@@ -26,7 +26,7 @@
                     var _user = response.data;
                     if(_user === null) {
                         return UserService
-                            .createAdopter(user)
+                            .createUser(user)
                             .then(function (response) {
                                 var _user = response.data;
                                 if(_user){

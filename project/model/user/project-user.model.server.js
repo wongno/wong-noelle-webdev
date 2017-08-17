@@ -10,8 +10,6 @@ projectUserModel.findUserByCredentials = findUserByCredentials;
 projectUserModel.findUserByUsername = findUserByUsername;
 projectUserModel.findUserById = findUserById;
 projectUserModel.createUser = createUser;
-projectUserModel.createAdopter = createAdopter;
-projectUserModel.createShelter = createShelter;
 projectUserModel.saveShelter = saveShelter;
 projectUserModel.removeWebsite = removeWebsite;
 
@@ -64,15 +62,6 @@ function addWebsite(developerId, websiteId) {
 
 function createUser(user) {
     return projectUserModel.create(user);
-}
-
-function createAdopter(user) {
-   return projectUserModel.create(user);
-}
-
-
-function createShelter(shelter) {
-   return shelterModel.create(shelter);
 }
 
 function findUserById(userId) {
