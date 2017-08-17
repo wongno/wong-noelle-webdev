@@ -51,7 +51,7 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid nw-editPetPadding">
     <label for="username">Username</label>
     <input name="username"
            readonly
@@ -60,27 +60,10 @@
            type="text"
            placeholder="jsmith"
            id="username">
-
-    <label for="email">Email</label>
-    <input name="email"
-           class="form-control"
-           ng-model="model.user.email"
-           type="email"
-           placeholder="jackiesmith@tmail.com"
-           id="email">
-
-    <label for="phone">Phone</label>
-    <input name="phone"
-           class="form-control"
-           ng-model="model.user.phone"
-           type="text"
-           placeholder="###-###-####"
-           id="phone">
-
     <label for="firstName">First Name</label>
     <input name="firstName"
            class="form-control"
-           ng-model="model.user.firstName"
+           ng-model="model.adopter.firstName"
            placeholder="Jackie"
            type="text"
            id="firstName">
@@ -88,30 +71,48 @@
     <label for="lastName">Last Name</label>
     <input name="lastName"
            class="form-control"
-           ng-model="model.user.lastName"
+           ng-model="model.adopter.lastName"
            placeholder="Smith"
            type="text"
            id="lastName">
-
-    <label for="dob">Date of Birth</label>
-    <input name="dob"
+    <label for="description" >About You</label>
+    <textarea name="description"
+              rows="5"
+              ng-model="model.adopter.description"
+              class="form-control"
+              placeholder="Need help locating your dog?"
+              id="description"></textarea>
+    <label for="location">Address</label>
+    <input name="location"
            class="form-control"
-           ng-model="model.user.dob"
-           type="Date"
-           id="dob">
-
-    <a class="btn btn-default btn-block btn-primary"
-       href="#!/user/{{model.user._id}}/website"
-       role="button">Search Animals</a>
+           ng-model="model.adopter.location"
+           type="text"
+           id="location">
+    <label for="phone">Phone</label>
+    <input name="phone"
+           class="form-control"
+           ng-model="model.adopter.phone"
+           type="text"
+           id="phone">
+    <label for="email">Email</label>
+    <input name="email"
+           class="form-control"
+           ng-model="model.adopter.email"
+           type="email"
+           id="email">
 
     <div ng-include="'views/adopter/templates/notifications-component.view.client.html'"></div>
 
-    <a class="btn btn-default btn-block btn-danger"
+    <a class="btn btn-block btn-primary"
+       href="#!/user/{{model.user._id}}/website"
+       role="button">Search Animals</a>
+
+    <a class="btn btn-block btn-danger"
        ng-click="model.deleteUser(model.user)"
        href="#!/login"
        role="button">Delete Profile</a>
 
-    <a class="btn btn-default btn-block btn-warning"
+    <a class="btn btn-block btn-warning"
        href="#!/login">Logout</a>
 </div>
 

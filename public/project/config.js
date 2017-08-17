@@ -19,7 +19,12 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/adopter/profile/:userId", {
+            .when("/adopter-form/:userId", {
+                templateUrl: "views/user/templates/adopter-form.view.client.html",
+                controller: "AdopterFormController",
+                controllerAs: "model"
+            })
+            .when("/profile/:userId/adopter/:adopterId", {
                 templateUrl: "views/adopter/templates/adopter-profile.view.client.html",
                 controller: "AdopterProfileController",
                 controllerAs: "model"

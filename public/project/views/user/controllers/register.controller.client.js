@@ -30,7 +30,7 @@
                             .then(function (response) {
                                 var _user = response.data;
                                 if(_user){
-                                    $location.url("adopter/profile/" + _user._id);
+                                    $location.url("adopter-form/" + _user._id);
                                 }
                             });
                     } else {
