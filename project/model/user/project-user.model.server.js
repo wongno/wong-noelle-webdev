@@ -4,9 +4,6 @@ var shelterModel = require("./shelter/shelter.model.server");
 var adopterModel = require("./adopter/adopter.model.server");
 var projectUserModel = mongoose.model("ProjectUserModel", projectUserSchema);
 
-var api = {
-    findUserByFacebookId: findUserByFacebookId,
-};
 
 function findUserByFacebookId(facebookId) {
     return projectUserModel.findOne({'facebook.id': facebookId});
@@ -20,8 +17,14 @@ projectUserModel.findUserById = findUserById;
 projectUserModel.createUser = createUser;
 projectUserModel.saveShelter = saveShelter;
 projectUserModel.removeWebsite = removeWebsite;
+projectUserModel.findUserByGoogleId = findUserByGoogleId;
 
 module.exports = projectUserModel;
+
+function findUserByGoogleId(googleId) {
+    return projectUserModel
+        .findOne({'google.id':goodId});
+}
 
 function saveShelter(userId, shelter) {
     return projectUserModel

@@ -2,6 +2,10 @@ var mongoose = require("mongoose");
 var projectUserSchema = mongoose.Schema({
     username: String,
     password: String,
+    google:{
+        id: String,
+        token: String
+    },
     role: [{type: String, enum:["adopter","shelter", "admin"]}],
 }, {collection:"user"});
 module.exports = projectUserSchema;

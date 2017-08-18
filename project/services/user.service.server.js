@@ -1,79 +1,20 @@
 var app = require("../../express");
-var userModel = require("../model/user/project-user.model.server");
 var passport = require('passport');
-var passport       = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var auth = authorized;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID,
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
     callbackURL  : process.env.GOOGLE_CALLBACK_URL
 };
-function googleStrategy(token, refreshToken, profile, done) {
-    userModel
-        .findUserByGoogleId(profile.id)
-        .then(
-            function(user) {
-                if(user) {
-                    return done(null, user);
-                } else {
-                    var email = profile.emails[0].value;
-                    var emailParts = email.split("@");
-                    var newGoogleUser = {
-                        username:  emailParts[0],
-                        firstName: profile.name.givenName,
-                        lastName:  profile.name.familyName,
-                        email:     email,
-                        google: {
-                            id:    profile.id,
-                            token: token
-                        }
-                    };
-                    return userModel.createUser(newGoogleUser);
-                }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        )
-        .then(
-            function(user){
-                return done(null, user);
-            },
-            function(err){
-                if (err) { return done(err); }
-            }
-        );
-}
-
-function localStrategy(username, password, done) {
-    userModel
-        .findUserByCredentials(username, password)
-        .then(
-            function(user) {
-                if(!user){
-                    return done(null,false);
-                }
-                return done(null,user);
-                // if(user.username === username && user.password === password) {
-                //     return done(null, user);
-                // } else {
-                //     return done(null, false);
-                // }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        );
-}
-
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
-
+var userModel = require("../model/user/project-user.model.server");
 
 // http handlers
 app.get("/api/user/:userId", findUserById);
@@ -85,13 +26,27 @@ app.post  ('/api/login', passport.authenticate('local'), login);
 app.get   ('/api/loggedin',       loggedin);
 app.post  ('/api/logout',         logout);
 app.post  ('/api/register',       register);
-app.get ('/auth/facebook', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/!#/profile',
-        failureRedirect: '/!#/login'
+        successRedirect: '/#/user',
+        failureRedirect: '/#/login'
     }));
-
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if(!user){return done(null,false);
+                }
+                return done(null,user);
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+}
 
 
 
@@ -114,25 +69,14 @@ function register (req, res) {
     );
 }
 
-
-function authorized (req, res, next) {
-    if (!req.isAuthenticated()) {
-        res.send(401);
-    } else {
-        next();
-    }
-};
-
-function login(req, res) {
-    var user = req.user;
-    res.json(user);
-}
-
-function logout(req, res) {
-    req.logOut();
-    res.send(200);
-}
-
+//
+// function authorized (req, res, next) {
+//     if (!req.isAuthenticated()) {
+//         res.send(401);
+//     } else {
+//         next();
+//     }
+// };
 function loggedin(req, res) {
     res.send(req.isAuthenticated() ? req.user : '0');
 }
@@ -154,6 +98,17 @@ function deserializeUser(user, done) {
             }
         );
 }
+function login(req, res) {
+    var user = req.user;
+    res.json(user);
+}
+
+function logout(req, res) {
+    req.logOut();
+    res.send(200);
+}
+
+
 
 
 
@@ -225,4 +180,40 @@ function findUserById(req, res) {
         .then(function (user) {
             res.send(user);
         });
+}
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
 }
