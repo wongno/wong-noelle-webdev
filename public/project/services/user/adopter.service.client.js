@@ -16,7 +16,7 @@
 
         function updateAdopter(adopterId, adopter) {
             var url = "/api/adopter/"+adopterId;
-            return $http.post(url,adopter);
+            return $http.put(url,adopter);
         }
 
         function createAdopter(adopter) {

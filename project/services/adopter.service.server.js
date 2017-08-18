@@ -5,7 +5,7 @@ var projectUserModel = require("../model/user/project-user.model.server");
 app.post("/api/adopter", createAdopter);
 app.get("/api/adopter/:userId/user",findAdopterByUserId);
 app.get("/api/adopter/:adopterId",findAdopterById);
-app.post("/api/adopter/:adopterId", updateAdopter);
+app.put("/api/adopter/:adopterId", updateAdopter);
 
 function updateAdopter(req,res) {
     var adopterId = req.params.adopterId;

@@ -4,7 +4,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left pull-left">
                         <li><a class="navbar-header"
-                               href="#"
+                               href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
                                role="button">
                             <span class="glyphicon glyphicon-chevron-left"
                                   aria-hidden="true"></span>
@@ -14,16 +14,8 @@
             </div>
 
             <div class="navbar-header">
-                <a class="navbar-toggle collapsed nw-right-button"
-                   ng-click=""
-                   href="#"
-                   aria-expanded="false">
-                    <span class="glyphicon glyphicon-ok"
-                          aria-hidden="true">
-                    </span>
-                </a>
                 <a class="navbar-toggle collapsed nw-back-button"
-                   href="#"
+                   href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
                    role="button"
                    aria-expanded="false">
                     <span class="glyphicon glyphicon-chevron-left"
@@ -33,74 +25,51 @@
                 <a class="navbar-brand"
                    href="#">Petbook</a>
             </div>
-
-            <div class="navbar-header pull-right">
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav ">
-                        <li><a ng-click=""
-                               href="#">
-                            <span class="glyphicon glyphicon-ok"
-                                  aria-hidden="true"></span>
-                        </a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </nav>
 
     <div class="container-fluid">
         <h1>Find Pets Near You</h1>
-        <form>
-            <label for="location">Location</label>
-            <div class="input-group">
-                 <span class="input-group-btn">
-                     <button class="btn btn-default"
-                             ng-click="model.searchAnimalsByLocation();"
-                             type="button">Go!</button>
-                 </span>
-                <input name="location"
-                       class="form-control"
-                       type="text"
-                       ng-model="model.location"
-                       id="location"
-                       placeholder="'City, State' or 'ZIP Code'"/>
-            </div>
-            <div class="form-group">
-                <label for="animal">Animal Type</label>
-                <select class="form-control"
-                        id="animal"
-                        name="animal"
-                        ng-model="animal">
-                    //(barnyard, bird, cat, dog, horse, reptile, smallfurry, rabbit
-                    <option value="barnyard">Barnyard Animals</option>
-                    <option value="bird">Birds</option>
-                    <option value="cat">Cats</option>
-                    <option value="dog">Dogs</option>
-                    <option value="horse">Horses</option>
-                    <option value="rabbit">Rabbits</option>
-                    <option value="smallfurry">Rodents</option>
-                    <option value="reptile">Scaled Animals</option>
-                </select>
-            </div>
-            <label for="breed">Breed</label>
-            <input class="form-control"
-                   id="breed"
-                   name="breed"
-                   placeholder="Breed"
-                   ng-model="breed"/>
-            <div class="form-group">
-                <label for="size">Size</label>
-                <select class="form-control"
-                        id="size"
-                        name="size"
-                        ng-model="size">
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">Extra Large</option>
-                </select>
-            </div>
-            <div class="form-group">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-xs-6">
+                        <label for="animal">Animal Type</label><select class="form-control"
+                                id="animal"
+                                name="animal"
+                                ng-model="animal">
+                            //(barnyard, bird, cat, dog, horse, reptile, smallfurry, rabbit
+                            <option value="barnyard">Barnyard Animals</option>
+                            <option value="bird">Birds</option>
+                            <option value="cat">Cats</option>
+                            <option value="dog">Dogs</option>
+                            <option value="horse">Horses</option>
+                            <option value="rabbit">Rabbits</option>
+                            <option value="smallfurry">Rodents</option>
+                            <option value="reptile">Scaled Animals</option>
+                        </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="size">Size</label><select class="form-control"
+                            id="size"
+                            name="size"
+                            ng-model="size">
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">Extra Large</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="sex">Sex</label><select class="form-control"
+                            id="sex"
+                            name="sex"
+                            ng-model="sex">
+                        <option value="FM">Any</option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
                 <label for="age">Age</label>
                 <select class="form-control"
                         id="age"
@@ -111,20 +80,32 @@
                     <option value="Adult">Adult</option>
                     <option value="Senior">Senior</option>
                 </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="location">Location</label>
+                        <input name="location"
+                               class="form-control"
+                               type="text"
+                               ng-model="model.location"
+                               id="location"
+                               placeholder="'City, State' or 'ZIP'"/>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="breed">Breed</label>
+                    <input class="form-control"
+                           id="breed"
+                           name="breed"
+                           placeholder="Breed"
+                           ng-model="breed"/>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label for="sex">Sex</label>
-                <select class="form-control"
-                        id="sex"
-                        name="sex"
-                        ng-model="sex">
-                    <option value="FM">Any</option>
-                    <option value="F">Female</option>
-                    <option value="M">Male</option>
-                </select>
-            </div>
-        </form>
+            <button class="btn btn-default"
+                    ng-click="model.searchAnimalsByLocation();"
+                    type="button">Go!</button>
+        </div>
     </div>
+
     <div class="container-fluid">
         <h1>Find Shelters Near You</h1>
         <form>
@@ -144,18 +125,13 @@
             </div>
         </form>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid nw-editPetPadding">
         <h1>Results</h1>
         <div class="row">
-            <div class="col-xs-4" ng-repeat="int in model.animals">
-
-                    {{console.log(pet)}}
-                        <!--href="#!/user/{{model.userId}}/adopter/{{model.adopterId}}/pet/{{int.id.$t}}/profile">-->
-                        <!--ng-click="model.selectPet(int.id.$t)"-->
-                    <h1 name="apiId"  id="apiId" ng-model="pet.apiId">{{int.id.$t}}</h1>
-                    <img ng-src={{int.media.photos.photo[0].$t}}/>
+            <div class="col-xs-4 col-lg-2" ng-repeat="int in model.animals">
                 <a ng-click="model.selectPet(int.shelterid.$t,int)">
-                    See more
+                    <h3>{{int.name.$t}}</h3>
+                    <img ng-src={{int.media.photos.photo[1].$t}}/>
                 </a>
             </div>
             <div class="col-xs-6" ng-repeat="int in model.shelters">
@@ -171,7 +147,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-header nw-user-button-1"
-                           href="#"
+                           href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
                            role="button">
                         <span class="glyphicon glyphicon-user"
                               aria-hidden="true"></span>
@@ -182,7 +158,7 @@
         <div class="navbar-header">
 
             <a class="navbar-toggle collapsed nw-user-button-2"
-               href="#"
+               href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
                role="button"
                aria-expanded="false">
                 <span class="glyphicon glyphicon-user"

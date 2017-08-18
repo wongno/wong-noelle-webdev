@@ -2,69 +2,94 @@
     angular
         .module("PetAppMaker")
         .controller("AnimalProfileController",AnimalProfileController);
-    function AnimalProfileController($routeParams, $http, AnimalSearchService, PetService) {
+    function AnimalProfileController($routeParams, $http, AdopterService, PetService,$location) {
         var model = this;
         model.userId = $routeParams.userId;
         model.adopterId = $routeParams.adopterId;
         model.petId = $routeParams["petId"];
         var petId = $routeParams["petId"];
-       // model.findPetById = findPetById;
-        model.animalShelterName = animalShelterName;
+        model.followPet = followPet;
+        model.unfollowPet = unfollowPet;
 
 
         function init() {
-            // AnimalSearchService
-            //     .findPetById(petId)
-            //     .then(function (response) {
-            //         model.animal = response.petfinder.pet;
-            //
-            //     });
+            AdopterService
+                .findAdopterById(model.adopterId)
+                .then(function (adopter) {
+                    model.adopter = adopter;
+                });
 
-            console.log(model.petId);
+
             PetService
                 .findPetById(model.petId)
                 .then(function (pet) {
                     model.animal = pet;
                     console.log(pet);
-                });
-            // AnimalSearchService
-            //     .findPetById(model.petId)
-            //     .then(function (response) {
-            //         model.animal = response.petfinder.pet;
-            //         model.name = model.animal.name.$t;
-            //
-            //     });
+                    model.largePhotos = [];
+                    model.mediumPhotos = [];
+                    model.smallPhotos = [];
+                    for(i=0;i<model.animal.photos.length;i++){
+                        var pic = model.animal.photos[i];
+                        if(pic.includes("width=500")){
+                            model.largePhotos.push(pic);
+                        }
+                        if(pic.includes("width=95")){
+                            model.smallPhotos.push(pic);
+                        }
+                        if(pic.includes("width=300")){
+                            model.mediumPhotos.push(pic);
+                        }
+                    }
+                    $('#left-button').on({
+                        'click': function() {
+                            var size = model.largePhotos.length-1;
+                            var src = "";
+                            var int = 0;
+                                if($('img').attr('src') === model.largePhotos[0]){
+                                    int = size;
+                                    src = model.largePhotos[int];
+                                    $('img').attr('src', src);
+                                }else{
+                                    int = model.largePhotos.indexOf($('img').attr('src'));
+                                    src = model.largePhotos[int-1];
+                                    $('img').attr('src', src);
+                                }
+                            }
+                    });
+                    $('#right-button').on({
+                        'click': function() {
+                            var size = model.largePhotos.length-1;
+                            var src = "";
+                            var int = 0;
+                            if($('img').attr('src') === model.largePhotos[size]){
+                                int = 0;
+                                src = model.largePhotos[int];
+                                $('img').attr('src', src);
+                            }else{
+                                int = model.largePhotos.indexOf($('img').attr('src'));
+                                src = model.largePhotos[int+1];
+                                $('img').attr('src', src);
+                            }
+                        }
+                    });
+                })
+
 
         }
         init();
 
-        // function findPetById(petId) {
-        //     AnimalSearchService
-        //         .findPetById(petId)
-        //         .then(function (response) {
-        //        //     model.animal = response.petfinder.pet.name.$t;
-        //             console.log(model.animal);
-        //       //      return model.animal;
-        //         });
-        //
-        // }
-
-        function animalShelterName(shelterId){
-
+        function followPet() {
+            model.animal._liked.push(model.adopter._id);
+           PetService
+               .updatePet(model.animal._id, model.animal)
+           .then(function () {
+                $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+            });
         }
 
-        function animalBreeds(petId) {
-            var breeds = "";
-            for(breed in model.animal.breeds){
-                if(breeds === ""){
-                    breeds + breed;
-                } else {
-                    breeds +", " + breed;
-                }
-            }
-            return breeds;
-        }
+        function unfollowPet(pet) {
 
+        }
 
     }
 })();
