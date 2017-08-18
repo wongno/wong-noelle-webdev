@@ -5,6 +5,9 @@ var shelterSchema = mongoose.Schema({
     location: String,
     phone: String,
     email: String,
+    apiId: String,
+    _followedBy:[String],
+    _adopters:[{type: mongoose.Schema.Types.ObjectId, ref:"AdopterModel"}],
     _link: {type: mongoose.Schema.Types.ObjectId, ref:"ProjectUserModel"},
     pets: [{type: mongoose.Schema.Types.ObjectId, ref:"PetModel"}],
 }, {collection:"shelter"});

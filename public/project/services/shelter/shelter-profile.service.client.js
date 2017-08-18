@@ -19,7 +19,7 @@
                 return data;
             });
         }
-
+        shelter.getPets
         function searchAnimalsByLocation(location) {
             var url = urlBase
                 .replace("my.method", "pet.find")

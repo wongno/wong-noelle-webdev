@@ -1,18 +1,30 @@
 (function () {
     angular
         .module("PetAppMaker")
-        .controller("ShelterProfileController", ShelterProfileController);
-    function ShelterProfileController(AnimalSearchService, $routeParams, $sce, $location) {
+        .controller("ShelterSearchProfileController", ShelterSearchProfileController);
+    function ShelterSearchProfileController(AnimalSearchService, $routeParams, $sce, $location,AdopterService
+        , ShelterService,PetService) {
         var model = this;
-        model.shelterId = $routeParams["shelterId"];
-        function init() {
-            AnimalSearchService
-                .findPetsForShelter(model.shelterId)
-                .then(function(response) {
-                   model.shelters = response.petfinder.pets;
 
+        // model.followShelter = followShelter;
+        // model.unfollowShelter = unfollowShelter;
+        model.userId = $routeParams.userId;
+        model.adopterId = $routeParams.adopterId;
+        var shelterId = $routeParams["shelterId"];
+        model.showPets = showPets;
+        model.selectShelterPet = selectShelterPet;
+        function init() {
+            AdopterService
+                .findAdopterById(model.adopterId)
+                .then(function (adopter) {
+                    model.adopter = adopter.data;
                 });
-            console.log(model.shelters);
+            ShelterService
+                .findShelterById(shelterId)
+                .then(function (shelter) {
+                    console.log(shelter);
+                    model.shelter = shelter;
+                });
         }
         init();
 
@@ -25,6 +37,70 @@
                 .findPetsForShelter(location)
                 .then(function(response) {
                     model.shelters = response.petfinder.pets.pet;
+                });
+        }
+
+        function selectShelterPet(pet) {
+            var petTmp = Object();
+            petTmp.apiId = pet.id.$t.toString();
+            petTmp.name = pet.name.$t.toString();
+            petTmp.breed = pet.breeds.breed.$t;
+            var photoTmp = [];
+            for(i = 0; i < pet.media.photos.photo.length;i ++){
+                photoTmp.push(pet.media.photos.photo[i].$t);
+            }
+            petTmp.photos =photoTmp;
+            petTmp.description = pet.description.$t.toString();
+            petTmp.animal = pet.animal.$t.toString();
+            petTmp.shelterId = pet.shelterId.$t.toString();
+            petTmp.sex = pet.sex.$t.toString();
+            petTmp.size = pet.size.$t.toString();
+            petTmp.age = pet.age.$t.toString();
+            PetService.addPet(model.adopterId,petTmp)
+                .then(function (pet) {
+                    console.log(pet.data);
+                    var resPet = pet.data;
+                    $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/pet/"+resPet._id+"/profile");
+                });
+        }
+        // function followShelter(shelter) {
+        //     model.adopter.following.push(shelterId);
+        //     console.log(model.adopter);
+        //     AdopterService
+        //         .updateAdopter(model.adopterId, model.adopter)
+        //         .then(function () {
+        //             console.log(model.adopter);
+        //         });
+        //     // console.log(shelter);
+        //     // shelter._followedBy.push(model.adopter._id.toString());
+        //     // console.log(shelter);
+        //     // ShelterService
+        //     //     .updateShelter(shelter._id, shelter)
+        //     //     .then(function () {
+        //     //         console.log(model.shelter);
+        //     //         //   $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+        //     //     });
+        // }
+
+        // function unfollowShelter(shelter) {
+        //     var index = shelter._followedBy.indexOf(model.adopterId.toString());
+        //     shelter._followedBy.splice(index, 1);
+        //     ShelterService
+        //         .updateShelter(shelter._id, shelter)
+        //         .then(function () {
+        //             console.log(model.shelter);
+        //             //  $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+        //         });
+        //
+        // }
+
+        function showPets() {
+            console.log(model.shelter.apiId);
+            AnimalSearchService
+                .findPetsForShelter(model.shelter.apiId)
+                .then(function (response) {
+                    model.shelterPets = response.petfinder.pets.pet;
+                    console.log(model.shelterPets);
                 });
         }
 

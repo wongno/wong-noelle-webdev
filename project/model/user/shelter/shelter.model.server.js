@@ -7,7 +7,18 @@ shelterModel.findShelterById = findShelterById;
 shelterModel.createShelter = createShelter;
 shelterModel.addPet = addPet;
 shelterModel.removePet = removePet;
+shelterModel.addShelter = addShelter;
+shelterModel.updateShelter = updateShelter;
 module.exports = shelterModel;
+
+function updateShelter(shelterId,shelter) {
+    return shelterModel.update({_id: shelterId},
+        {$set: shelter});
+}
+
+function addShelter(adopterId, shelter) {
+    return shelterModel.create(shelter);
+}
 
 function removePet(shelterId, petId) {
     return shelterModel

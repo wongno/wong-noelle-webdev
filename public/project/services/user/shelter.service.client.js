@@ -6,12 +6,25 @@
     function ShelterService($http) {
 
         var api = {
+            "addShelter": addShelter,
            "createShelter": createShelter,
             "findShelterByUserId":findShelterByUserId,
             "findShelterById":findShelterById,
+            "updateShelter": updateShelter,
         };
 
         return api;
+
+        function updateShelter(shelterId, shelter) {
+            var url="/api/shelter/"+shelterId;
+            return $http.put(url,shelter);
+        }
+
+        //need to add to model
+        function addShelter(adopterId,shelter) {
+            var url ="/api/shelter/"+adopterId;
+            return $http.post(url,shelter);
+        }
 
         function createShelter(shelter) {
             var url = "/api/shelter";
@@ -23,7 +36,10 @@
         }
         function findShelterById(shelterId) {
             var url = "/api/shelter/"+shelterId;
-            return $http.get(url);
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
 
         }
     }

@@ -13,7 +13,7 @@
         var key = "c24a4370afabf3d116da27ad2ac7e483";
         var secret = "5ad6a3f9a39a1658";
         var urlBase = "http://api.petfinder.com/my.method?key=12345&arg1=foo&format=json&output=basic&count=6";
-        var urlBase2 = "http://api.petfinder.com/my.method?key=12345&arg1=foo&format=json&output=basic";
+        var urlBase2 = "http://api.petfinder.com/my.method?key=12345&arg1=foo&format=json&output=basic&count=6";
 
 
         function findPetById(petId) {

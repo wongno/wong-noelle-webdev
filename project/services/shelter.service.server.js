@@ -1,10 +1,45 @@
 var app = require("../../express");
 var shelterModel = require("../model/user/shelter/shelter.model.server");
 var projectUserModel = require("../model/user/project-user.model.server");
+var adopterModel = require('../model/user/adopter/adopter.model.server');
 
+
+app.post("/api/shelter/:adopterId", addShelter);
 app.post("/api/shelter", createShelter);
 app.get("/api/shelter/:userId/user",findShelterByUserId);
 app.get("/api/shelter/:shelterId",findShelterById);
+app.put("/api/shelter/:shelterId",updateShelter);
+
+function updateShelter(req,res) {
+    var shelterId = req.params.shelterId;
+    var shelter = req.body;
+    shelterModel
+        .updateShelter(shelterId, shelter)
+        .then(function (status) {
+            res.sendStatus(status);
+        },function (err) {
+            res.sendStatus(404).send(err);
+        });
+}
+
+function addShelter(req,res) {
+    var adopterId = req.params.adopterId;
+    var shelter = req.body;
+    var shelterToAdd = [];
+    adopterModel
+        .findById(adopterId)
+        .then(function (adopter) {
+            shelterToAdd.push(adopter._id);
+            shelter._adopters = shelterToAdd;
+            shelterModel
+                .addShelter(adopterId,shelter)
+                .then(function (petDoc) {
+                    res.json(petDoc);
+                }, function (err) {
+                    res.statusCode(500).send(err);
+                });
+        });
+}
 
 function findShelterByUserId(req,res) {
     var userId = req.params.userId;

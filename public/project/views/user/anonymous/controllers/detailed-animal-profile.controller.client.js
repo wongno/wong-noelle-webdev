@@ -9,8 +9,6 @@
         var petId = $routeParams["petId"];
         model.followPet = followPet;
         model.unfollowPet = unfollowPet;
-
-
         function init() {
             AdopterService
                 .findAdopterById(model.adopterId)
@@ -76,7 +74,9 @@
         init();
 
         function followPet(pet) {
+            console.log(pet);
             pet._liked.push(model.adopterId.toString());
+            console.log(pet);
            PetService
                .updatePet(pet._id, pet)
            .then(function () {

@@ -65,6 +65,11 @@
                 templateUrl: "views/user/anonymous/templates/detailed-animal-profile.view.client.html",
                 controller: "AnimalProfileController",
                 controllerAs: "model"
+            })
+            .when("/user/:userId/adopter/:adopterId/shelter/:shelterId/profile", {
+                templateUrl: "views/user/anonymous/templates/shelter-profile.view.client.html",
+                controller: "ShelterSearchProfileController",
+                controllerAs: "model"
             });
         var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();

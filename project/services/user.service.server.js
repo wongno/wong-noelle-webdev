@@ -1,12 +1,79 @@
 var app = require("../../express");
 var userModel = require("../model/user/project-user.model.server");
 var passport = require('passport');
+var passport       = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var auth = authorized;
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if(!user){
+                    return done(null,false);
+                }
+                return done(null,user);
+                // if(user.username === username && user.password === password) {
+                //     return done(null, user);
+                // } else {
+                //     return done(null, false);
+                // }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+}
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
+
 
 // http handlers
 app.get("/api/user/:userId", findUserById);
@@ -18,13 +85,12 @@ app.post  ('/api/login', passport.authenticate('local'), login);
 app.get   ('/api/loggedin',       loggedin);
 app.post  ('/api/logout',         logout);
 app.post  ('/api/register',       register);
-app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/!#/user',
+app.get ('/auth/facebook', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/!#/profile',
         failureRedirect: '/!#/login'
     }));
-
 
 
 
@@ -91,26 +157,6 @@ function deserializeUser(user, done) {
 
 
 
-function localStrategy(username, password, done) {
-    userModel
-        .findUserByCredentials(username, password)
-        .then(
-            function(user) {
-                if(!user){
-                    return done(null,false);
-                }
-                return done(null,user);
-                // if(user.username === username && user.password === password) {
-                //     return done(null, user);
-                // } else {
-                //     return done(null, false);
-                // }
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        );
-}
 
 
 

@@ -2,7 +2,8 @@
     angular
         .module("PetAppMaker")
         .controller("AnimalSearchController", AnimalSearchController);
-    function AnimalSearchController(AnimalSearchService, $routeParams, $sce, $location, PetService, AdopterService) {
+    function AnimalSearchController(AnimalSearchService, $routeParams, $sce, ShelterService,
+                                    $location, PetService, AdopterService) {
         var model = this;
         //model.searchPets = searchPets;
         model.searchAnimalsByLocation = searchAnimalsByLocation;
@@ -48,7 +49,27 @@
         }
 
         function selectShelter(shelter) {
-            $location.url("/shelter/"+shelter+"/profile");
+            console.log(shelter);
+            var shelterTmp = Object();
+            if(shelter.email.$t!==undefined){
+                shelterTmp.email= shelter.email.$t.toString();
+            }
+
+            shelterTmp.apiId = shelter.id.$t.toString();
+            shelterTmp.name = shelter.name.$t.toString();
+
+            shelterTmp.location = shelter.address1.$t.toString()+" ";
+            shelterTmp.location += shelter.city.$t.toString()+" ";
+            shelterTmp.location += shelter.state.$t.toString()+", ";
+            shelterTmp.location += shelter.zip.$t.toString();
+
+            ShelterService.addShelter(model.adopterId,shelterTmp)
+                .then(function (shelter) {
+                    console.log(shelter.data);
+                    var resShelter = shelter.data;
+                    $location.url( "/user/"+model.userId+"/adopter/"+model.adopterId+"/shelter/"
+                        +resShelter._id+"/profile");
+                   });
         }
 
         function searchShelterByLocation(location) {
