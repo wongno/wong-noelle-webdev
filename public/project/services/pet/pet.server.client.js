@@ -12,7 +12,7 @@
             "findPetById": findPetById,
             "updatePet": updatePet,
             "deletePet": deletePet,
-          //  "findPetByAdopter":findPetByAdopter,
+            "findPetsByAdopter":findPetsByAdopter,
         };
         return api;
 
@@ -45,21 +45,14 @@
             return $http.post(url,pet);
         }
 
-        function findPetsByAdopterId(adopterId) {
-            var url = "/api/adopter/"+adopterId+"/pet";
+        function findPetsByAdopter(adopterId) {
+            var url = "/api/adopter/"+adopterId+"/pets";
             return $http.get(url)
                 .then(function (response) {
-                    return response.dat;
+                    return response.data;
                 })
         }
 
-        // function findPetByAdopter(petId) {
-        //     var url = "/api/pet/"+petId;
-        //     return $http.get(url)
-        //         .then(function (response) {
-        //             return response.data;
-        //         })
-        // }
 
         function findPetsByShelterId(shelterId) {
             var url ="/api/shelter/"+shelterId+"/pet";

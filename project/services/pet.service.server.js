@@ -4,11 +4,21 @@ var adopterModel = require('../model/user/adopter/adopter.model.server');
 
 app.post("/api/shelter/:shelterId/pet",createPet);
 app.post("/api/pet/:adopterId",addPet);
+app.get("/api/pet/:adopterId/pets",findPetsByAdopter);
 app.get("/api/shelter/:shelterId/pet",findPetsByShelter);
 app.get("/api/adopter/:adopter/pet/:petId",findPetByAdopterId);
 app.get("/api/pet/:petId", findPetById);
 app.put("/api/pet/:petId", updatePet);
 app.delete ("/api/shelter/:shelterId/pet/:petId", deletePet);
+
+function findPetsByAdopter(req,res) {
+    var adopterId = req.params.adopterId;
+    petModel
+        .findPetsByAdopter(adopterId)
+        .then(function (pets) {
+            res.json(pets);
+        });
+}
 
 function deletePet(req, res) {
     var petId = req.params.petId;

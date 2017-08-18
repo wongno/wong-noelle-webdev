@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-toggle collapsed nw-right-button"
+               ng-click="model.updateUser(model.user)"
+               data-toggle="collapse"
+               role="button">
+                <span class="glyphicon glyphicon-ok"
+                      aria-hidden="true"></span></a>
+            <a class="navbar-brand"
+               href="#">Edit Profile</a>
+        </div>
 
-</body>
-</html>
+        <div class="navbar-header pull-right">
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <li>
+                        <a ng-click="model.updateUser(model.user)"
+                           role="button">
+                            <span class="glyphicon glyphicon-ok"
+                                  aria-hidden="true">
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid nw-editPetPadding">
+    <label for="username">Username</label>
+    <input name="username"
+           readonly
+           class="form-control"
+           ng-model="model.user.username"
+           type="text"
+           placeholder="jsmith"
+           id="username">
+    <label for="firstName">First Name</label>
+    <input name="firstName"
+           class="form-control"
+           ng-model="model.adopter.firstName"
+           placeholder="Jackie"
+           type="text"
+           id="firstName">
+
+    <label for="lastName">Last Name</label>
+    <input name="lastName"
+           class="form-control"
+           ng-model="model.adopter.lastName"
+           placeholder="Smith"
+           type="text"
+           id="lastName">
+    <label for="description" >About You</label>
+    <textarea name="description"
+              rows="5"
+              ng-model="model.adopter.description"
+              class="form-control"
+              placeholder="Need help locating your dog?"
+              id="description"></textarea>
+    <label for="location">Address</label>
+    <input name="location"
+           class="form-control"
+           ng-model="model.adopter.location"
+           type="text"
+           id="location">
+    <label for="phone">Phone</label>
+    <input name="phone"
+           class="form-control"
+           ng-model="model.adopter.phone"
+           type="text"
+           id="phone">
+    <label for="email">Email</label>
+    <input name="email"
+           class="form-control"
+           ng-model="model.adopter.email"
+           type="email"
+           id="email">
+
+
+    <a class="btn btn-block btn-danger"
+       ng-click="model.deleteUser(model.user)"
+       href="#!/login"
+       role="button">Delete Profile</a>
+
+    <a class="btn btn-block btn-warning"
+       ng-click="model.logout()">Logout</a>
+</div>
+

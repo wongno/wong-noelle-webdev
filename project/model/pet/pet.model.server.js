@@ -6,10 +6,15 @@ petModel.addPet = addPet;
 petModel.createPet = createPet;
 petModel.findPetsByShelter = findPetsByShelter;
 petModel.findPetByAdopter = findPetByAdopter;
+petModel.findPetsByAdopter = findPetsByAdopter;
 petModel.findPetById = findPetById;
 petModel.deletePet = deletePet;
 petModel.updatePet = updatePet;
 module.exports = petModel;
+
+function findPetsByAdopter(adopterId) {
+    return petModel.find({_adopter:adopterId});
+}
 
 function findPetByAdopter(adopterId,petId) {
     return petModel.findOne({apiId:petId});

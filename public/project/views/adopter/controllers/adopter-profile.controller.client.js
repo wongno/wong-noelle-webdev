@@ -3,7 +3,7 @@
         .module("PetAppMaker")
         .controller("AdopterProfileController", AdopterProfileController);
 
-    function AdopterProfileController(AdopterService,$routeParams, UserService, $location) {
+    function AdopterProfileController(AdopterService,$routeParams, UserService, $location,PetService) {
         var model = this;
         var userId = $routeParams["userId"];
         var adopterId = $routeParams["adopterId"];
@@ -22,7 +22,13 @@
                 .findAdopterById(adopterId)
                 .then(function (response) {
                     model.adopter = response.data;
+                    PetService
+                        .findPetsByAdopter(model.adopter._id)
+                        .then(function (response) {
+                            model.pets = response;
+                        })
                 });
+
         }
         init();
 
