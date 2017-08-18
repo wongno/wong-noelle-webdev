@@ -28,6 +28,7 @@
 
         function findPetById(petId){
             var url = "/api/pet/"+petId;
+            console.log(petId);
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

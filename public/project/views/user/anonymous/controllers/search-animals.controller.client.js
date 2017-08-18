@@ -39,7 +39,6 @@
             petTmp.sex = pet.sex.$t.toString();
             petTmp.size = pet.size.$t.toString();
             petTmp.age = pet.age.$t.toString();
-
                     PetService.addPet(model.adopterId,petTmp)
                         .then(function (pet) {
                             console.log(pet.data);
@@ -60,6 +59,8 @@
                     console.log(model.shelters);
                 });
         }
+
+
 
         function findPetById(petId) {
             AnimalSearchService

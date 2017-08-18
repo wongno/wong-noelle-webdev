@@ -51,7 +51,7 @@
        ng-click="model.login(model.user)"
        role="button">{{model.animalShelterName(model.animal.shelterId)}}</a>
     <a class="btn btn-default btn-success btn-block"
-       ng-click="model.followPet()"
+       ng-click="model.followPet(model.animal)"
        role="button">Follow</a>
     <a class="btn btn-default btn-danger btn-block"
        ng-click="model.unfollowPet(model.animal)"
@@ -63,7 +63,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-header nw-user-button-1"
-                           href="#"
+                           href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
                            role="button">
                         <span class="glyphicon glyphicon-user"
                               aria-hidden="true"></span>
@@ -74,7 +74,7 @@
         <div class="navbar-header">
 
             <a class="navbar-toggle collapsed nw-user-button-2"
-               href="#"
+               href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
                role="button"
                aria-expanded="false">
                 <span class="glyphicon glyphicon-user"

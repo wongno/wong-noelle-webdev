@@ -10,6 +10,7 @@
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.isFollowing = isFollowing;
         model.logout = logout;
 
 
@@ -23,7 +24,7 @@
                 .then(function (response) {
                     model.adopter = response.data;
                     PetService
-                        .findPetsByAdopter(model.adopter._id)
+                        .findPetsByAdopter(model.adopter._id.toString())
                         .then(function (response) {
                             model.pets = response;
                         })
@@ -31,6 +32,15 @@
 
         }
         init();
+
+        function isFollowing(pet) {
+            console.log(pet);
+            if(pet._liked.indexOf(model.adopter._id.toString())=== -1){
+                return "No"
+            }else{
+                return "Yes"
+            }
+        }
 
         function updateUser(user) {
             UserService.updateUser(user._id, user);

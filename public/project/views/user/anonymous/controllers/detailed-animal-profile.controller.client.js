@@ -6,7 +6,6 @@
         var model = this;
         model.userId = $routeParams.userId;
         model.adopterId = $routeParams.adopterId;
-        model.petId = $routeParams["petId"];
         var petId = $routeParams["petId"];
         model.followPet = followPet;
         model.unfollowPet = unfollowPet;
@@ -18,10 +17,8 @@
                 .then(function (adopter) {
                     model.adopter = adopter;
                 });
-
-
             PetService
-                .findPetById(model.petId)
+                .findPetById(petId)
                 .then(function (pet) {
                     model.animal = pet;
                     console.log(pet);
@@ -78,16 +75,25 @@
         }
         init();
 
-        function followPet() {
-            model.animal._liked.push(model.adopter._id);
+        function followPet(pet) {
+            pet._liked.push(model.adopterId.toString());
            PetService
-               .updatePet(model.animal._id, model.animal)
+               .updatePet(pet._id, pet)
            .then(function () {
-                $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+               console.log(model.animal);
+             //   $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
             });
         }
 
         function unfollowPet(pet) {
+            var index = pet._liked.indexOf(model.adopterId.toString());
+            pet._liked.splice(index, 1);
+            PetService
+                .updatePet(pet._id, pet)
+            .then(function () {
+                console.log(model.animal);
+              //  $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+            });
 
         }
 

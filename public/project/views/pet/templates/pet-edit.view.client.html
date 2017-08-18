@@ -1,0 +1,162 @@
+<nav class="navbar navbar-default navbar-fixed-top nw-navbar-default" >
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left pull-left">
+                    <li><a class="navbar-header"
+                           href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet"
+                           role="button">
+                            <span class="glyphicon glyphicon-chevron-left"
+                                  aria-hidden="true"></span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navbar-header">
+            <a class="navbar-toggle collapsed nw-right-button"
+               ng-click="model.updatePet(model.pet)"
+               role="button"
+               aria-expanded="false">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true">
+                    </span>
+            </a>
+            <a class="navbar-toggle collapsed nw-back-button"
+               href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet"
+               aria-expanded="false"
+               role="button">
+                    <span class="glyphicon glyphicon-chevron-left"
+                          aria-hidden="true">
+                    </span>
+            </a>
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet">Edit Pet Form</a>
+        </div>
+
+        <div class="navbar-header pull-right">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav ">
+                    <li>
+                        <a class="navbar-toggle collapsed nw-right-button"
+                           ng-click="model.updatePet(model.pet)"
+                           role="button"
+                           aria-expanded="false">
+                    <span class="glyphicon glyphicon-ok"
+                          aria-hidden="true">
+                    </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header pull-right">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-header nw-user-button-1"
+                       href="#!/profile/{{model.userId}}/shelter/{{model.shelterId}}"
+                       role="button">
+                        <span class="glyphicon glyphicon-user"
+                              aria-hidden="true"></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-header">
+        <a class="navbar-toggle collapsed nw-user-button-2"
+           href="#!/profile/{{model.userId}}/shelter/{{model.shelterId}}"
+           aria-expanded="false"
+           role="button">
+                    <span class="glyphicon glyphicon-user"
+                          aria-hidden="true"></span>
+        </a>
+    </div>
+</nav>
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-9 nw-split-view-right nw-editPetPadding">
+        <div class="container-fluid">
+            <div ng-show="model.errorMessage" class="alert alert-danger">
+                {{model.errorMessage}}
+            </div>
+            <label for="name">Pet Name</label>
+            <input name="name"
+                   class="form-control"
+                   ng-model="model.pet.name"
+                   type="text"
+                   placeholder="Find My Dog"
+                   id="name">
+            <label for="description" >Description</label>
+            <textarea name="description"
+                      rows="5"
+                      ng-model="model.pet.description"
+                      class="form-control"
+                      placeholder="Need help locating your dog?"
+                      id="description"></textarea>
+            <div class="form-group">
+                <label for="animal">Animal Type</label>
+                <select class="form-control"
+                        id="animal"
+                        name="animal"
+                        ng-model="model.pet.animal">
+                    //(barnyard, bird, cat, dog, horse, reptile, smallfurry, rabbit
+                    <option value="barnyard">Barnyard Animals</option>
+                    <option value="bird">Birds</option>
+                    <option value="cat">Cats</option>
+                    <option value="dog">Dogs</option>
+                    <option value="horse">Horses</option>
+                    <option value="rabbit">Rabbits</option>
+                    <option value="smallfurry">Rodents</option>
+                    <option value="reptile">Scaled Animals</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="size">Size</label>
+                <select class="form-control"
+                        id="size"
+                        name="size"
+                        ng-model="model.pet.size">
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">Extra Large</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex</label>
+                <select class="form-control"
+                        id="sex"
+                        name="sex"
+                        ng-model="model.pet.sex">
+                    <option value="FM">Any</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <select class="form-control"
+                        id="age"
+                        name="age"
+                        ng-model="model.pet.age">
+                    <option value="Baby">Baby</option>
+                    <option value="Young">Young</option>
+                    <option value="Adult">Adult</option>
+                    <option value="Senior">Senior</option>
+                </select>
+            </div>
+            <a class="btn btn-default btn-block btn-primary"
+               ng-click="model.updatePet(model.pet)"
+               role="button">Update Form</a>
+
+            <a class="btn btn-default btn-block btn-danger"
+               ng-click="model.deletePet()"
+               role="button">Delete Pet</a>
+        </div>
+    </div>
+</div>

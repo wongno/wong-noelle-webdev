@@ -6,7 +6,7 @@ var petSchema = mongoose.Schema({
     breed: [String],
     photos:[String],
     shelterId:String,
-    _liked:[{type: mongoose.Schema.Types.ObjectId, ref: "AdopterModel"}],
+    _liked:[String],
     _adopter:[{type: mongoose.Schema.Types.ObjectId, ref: "AdopterModel"}],
     _shelter: {type: mongoose.Schema.Types.ObjectId, ref: "ShelterModel"},
     animal: String,

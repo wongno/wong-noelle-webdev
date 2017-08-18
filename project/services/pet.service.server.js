@@ -4,7 +4,7 @@ var adopterModel = require('../model/user/adopter/adopter.model.server');
 
 app.post("/api/shelter/:shelterId/pet",createPet);
 app.post("/api/pet/:adopterId",addPet);
-app.get("/api/pet/:adopterId/pets",findPetsByAdopter);
+app.get("/api/adopter/:adopterId/pets",findPetsByAdopter);
 app.get("/api/shelter/:shelterId/pet",findPetsByShelter);
 app.get("/api/adopter/:adopter/pet/:petId",findPetByAdopterId);
 app.get("/api/pet/:petId", findPetById);

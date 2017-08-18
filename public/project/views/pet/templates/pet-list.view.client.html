@@ -1,0 +1,111 @@
+<nav class="navbar navbar-default navbar-fixed-top nw-navbar-default" >
+    <div class="container-fluid">
+        <div class="navbar-header pull-left">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left pull-left">
+                    <li><a class="navbar-header"
+                           href="#!/profile/{{model.userId}}/shelter/{{model.shelterId}}"
+                           role="button">
+                            <span class="glyphicon glyphicon-chevron-left"
+                                  aria-hidden="true"></span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navbar-header">
+            <a class="navbar-toggle collapsed nw-right-button"
+               href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet/new"
+               role="button"
+               aria-expanded="false">
+                    <span class="glyphicon glyphicon-plus"
+                          aria-hidden="true">
+                    </span>
+            </a>
+            <a class="navbar-toggle collapsed nw-back-button"
+               href="#!/profile/{{model.userId}}/shelter/{{model.shelterId}}"
+               aria-expanded="false"
+               role="button">
+                    <span class="glyphicon glyphicon-chevron-left"
+                          aria-hidden="true">
+                    </span>
+            </a>
+            <a class="navbar-brand"
+               href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet">Pet List</a>
+        </div>
+
+        <div class="navbar-header pull-right">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav ">
+                    <li>
+                        <a href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet/new"
+                           role="button">
+                            <span class="glyphicon glyphicon-plus"
+                                  aria-hidden="true">
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header pull-right">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-header nw-user-button-1"
+                       href="#!/profile/{{model.userId}}/shelter/{{model.shelterId}}"
+                       role="button">
+                        <span class="glyphicon glyphicon-user"
+                              aria-hidden="true"></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-header">
+        <a class="navbar-toggle collapsed nw-user-button-2"
+           href="#!/profile/{{model.userId}}/shelter/{{model.shelterId}}"
+           aria-expanded="false"
+           role="button">
+                    <span class="glyphicon glyphicon-user"
+                          aria-hidden="true"></span>
+        </a>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-10 col-sm-4">Id</div>
+                <div class="hidden-xs col-sm-3">Animal</div>
+                <div class="col-sm-3 hidden-xs">Status</div>
+                <div class="col-xs-2">
+                    <a href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet/new">
+                        <span class="pull-right glyphicon glyphicon-plus nw-white"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <li ng-repeat="pet in model.pets"
+            class="list-group-item">
+            <div class="row">
+                <div class="col-xs-10 col-sm-4">
+                    <a href="#!/shelter/{{model.shelterId}}/pet/{{pet._id}}/page"
+                       role="button">{{pet.name}}</a></div>
+                <div class="hidden-xs col-sm-3">{{pet.dateCreated | date}}</div>
+                <div class="col-sm-3 hidden-xs">{{pet._shelter.username}}</div>
+                <div class="col-xs-2">
+                    <a href="#!/user/{{model.userId}}/shelter/{{model.shelterId}}/pet/{{pet._id}}"
+                       role="button">
+                        <span class="pull-right glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
