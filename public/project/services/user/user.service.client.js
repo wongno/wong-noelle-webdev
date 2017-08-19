@@ -19,12 +19,18 @@
             "logout": logout,
             "register":register,
             "checkLogin":checkLogin,
+            "getAllUsers":getAllUsers,
         };
         return api;
 
         // function login(user) {
         //     return $http.post("/api/login", user);
         // }
+
+        function getAllUsers() {
+            var url = "/api/users/all";
+            return $http.get(url);
+        }
 
         function register(user) {
             var url = "/api/register";

@@ -19,6 +19,7 @@ passport.deserializeUser(deserializeUser);
 var userModel = require("../model/user/project-user.model.server");
 
 // http handlers
+app.get('/api/user/all', getAllUsers);
 app.get("/api/user/:userId", findUserById);
 app.get("/api/user", findUser);
 app.post("/api/user", createUser);
@@ -35,6 +36,14 @@ app.get('/auth/google/callback',
         successRedirect: '/#/user',
         failureRedirect: '/#/login'
     }));
+
+function getAllUsers(req,res) {
+    userModel
+        .getAllUsers
+        .then(function (users) {
+            req.json(users);
+        })
+}
 
 function checkLogin(req, res) {
     res.send(req.isAuthenticated() ? req.user : '0');

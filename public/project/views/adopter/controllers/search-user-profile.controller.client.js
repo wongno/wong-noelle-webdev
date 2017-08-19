@@ -1,44 +1,32 @@
 (function () {
     angular
         .module("PetAppMaker")
-        .controller("AdopterProfileController", AdopterProfileController);
+        .controller("SearchUserController", SearchUserController);
 
-    function AdopterProfileController(ShelterService,AdopterService,$routeParams, AnimalSearchService,
+    function SearchUserController(ShelterService,AdopterService,$routeParams, AnimalSearchService,
                                       UserService, $location,PetService) {
         var model = this;
-        var userId = $routeParams["userId"];
-        var adopterId = $routeParams["adopterId"];
-
-        model.followUser = followUser;
-        model.selectShelter = selectShelter;
-        model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
-        model.isFollowing = isFollowing;
-        model.logout = logout;
+        model.userId = $routeParams.userId;
+        model.adopterId = $routeParams.adopterId;
+        var username = $routeParams["username"];
         model.searchUsersByUsername =searchUsersByUsername;
-
-
         function init() {
-            UserService.findUserById(userId)
+            UserService.findUserById(model.userId)
                 .then(function (response) {
                     console.log(response);
                     model.user = response.data;
                 });
             AdopterService
-                .findAdopterById(adopterId)
+                .findAdopterById(model.adopterId)
                 .then(function (response) {
                     model.adopter = response.data;
-                    PetService
-                        .findPetsByAdopter(model.adopter._id.toString())
-                        .then(function (response) {
-                            model.pets = response;
-                        });
-                    ShelterService
-                        .findSheltersByAdopter(model.adopter._id.toString())
-                        .then(function (response) {
-                            model.shelters = response;
-                        })
                 });
+            UserService
+                .findUserByUsername(username)
+                .then(function (response) {
+                    model.searchUser = response.data;
+                    return model.searchUser;
+                })
 
         }
         init();

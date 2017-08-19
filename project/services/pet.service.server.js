@@ -26,7 +26,7 @@ function deletePet(req, res) {
     petModel
         .deletePet(shelterId, petId)
         .then(function (status) {
-            res.json(status);
+            res.sendStatus(200);
         }, function (err) {
         res.sendStatus(404).send(err);
     });

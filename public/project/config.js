@@ -74,6 +74,11 @@
                 templateUrl: "views/user/anonymous/templates/shelter-profile.view.client.html",
                 controller: "ShelterSearchProfileController",
                 controllerAs: "model"
+            })
+            .when("/user/:userId/adopter/:adopterId/profile/:username", {
+                templateUrl: "views/user/anonymous/templates/shelter-profile.view.client.html",
+                controller: "SearchUserController",
+                controllerAs: "model"
             });
         // function checkLogin(UserService, $q, $location) {
         //     var deferred = $q.defer();

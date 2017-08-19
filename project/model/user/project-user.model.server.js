@@ -9,6 +9,7 @@ function findUserByFacebookId(facebookId) {
     return projectUserModel.findOne({'facebook.id': facebookId});
 }
 
+projectUserModel.getAllUsers = getAllUsers;
 projectUserModel.deleteUser = deleteUser;
 projectUserModel.updateUser = updateUser;
 projectUserModel.findUserByCredentials = findUserByCredentials;
@@ -20,6 +21,10 @@ projectUserModel.removeWebsite = removeWebsite;
 projectUserModel.findUserByGoogleId = findUserByGoogleId;
 
 module.exports = projectUserModel;
+
+function getAllUsers() {
+    return projectUserModel.find({collection:"user"});
+}
 
 function findUserByGoogleId(googleId) {
     return projectUserModel
