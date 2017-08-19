@@ -26,6 +26,34 @@
             </div>
         </li>
     </ul>
+<h3>Your Shelter Search History</h3>
+<ul class="list-group">
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-xs-4 col-sm-3">Name</div>
+            <div class="hidden-xs col-sm-3">Date Viewed</div>
+            <div class="col-sm-3 col-xs-6">Update</div>
+            <div class="col-xs-2 col-sm-3">Following</div>
+        </div>
+    </li>
+    <li ng-repeat="int in model.shelters"
+        class="list-group-item">
+        <div class="row">
+            <!--//name-->
+            <div class="col-xs-4 col-sm-3">
+                <a href="#!/user/{{model.user._id}}/adopter/{{model.adopter._id}}/shelter/{{int._id}}/profile"
+                   role="button">{{int.name}}</a></div>
+            <!--//date-->
+            <div class="hidden-xs col-sm-3">{{int.dateAdded | date}}</div>
+            <div class="col-sm-3 col-xs-6">
+                <!--shelter-->
+                <a ng-click="model.selectShelter(int.shelterId)"
+                   role="button">{{int.shelterId}}</a></div>
+            <!--//following-->
+            <div class="col-xs-2 col-sm-3">{{model.isFollowing(int)}}</div>
+        </div>
+    </li>
+</ul>
 <!--<h3>Your Shelter Search History</h3>-->
 <!--<ul class="list-group">-->
     <!--<li class="list-group-item active">-->

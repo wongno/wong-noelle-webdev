@@ -52,12 +52,12 @@
     <h3>Contact Us</h3>
         <p>Location: {{model.shelter.location}}</p>
         <p>Email: {{model.shelter.email}}</p>
-        <!--<a class="btn btn-default btn-success btn-block"-->
-           <!--ng-click="model.followShelter(model.shelter)"-->
-           <!--role="button">Follow</a>-->
-        <!--<a class="btn btn-default btn-danger btn-block"-->
-           <!--ng-click="model.unfollowShelter(model.shelter)"-->
-           <!--role="button">Unfollow</a>-->
+        <a class="btn btn-default btn-success btn-block"
+           ng-click="model.followShelter(model.shelter)"
+           role="button">Follow</a>
+        <a class="btn btn-default btn-danger btn-block"
+           ng-click="model.unfollowShelter(model.shelter)"
+           role="button">Unfollow</a>
         <h3>Our Pets</h3>
         <button class="btn btn-block btn-info"
                 ng-click="model.showPets()"

@@ -6,8 +6,8 @@
         , ShelterService,PetService) {
         var model = this;
 
-        // model.followShelter = followShelter;
-        // model.unfollowShelter = unfollowShelter;
+        model.followShelter = followShelter;
+        model.unfollowShelter = unfollowShelter;
         model.userId = $routeParams.userId;
         model.adopterId = $routeParams.adopterId;
         var shelterId = $routeParams["shelterId"];
@@ -64,36 +64,34 @@
                     $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/pet/"+resPet._id+"/profile");
                 });
         }
-        // function followShelter(shelter) {
-        //     model.adopter.following.push(shelterId);
-        //     console.log(model.adopter);
-        //     AdopterService
-        //         .updateAdopter(model.adopterId, model.adopter)
-        //         .then(function () {
-        //             console.log(model.adopter);
-        //         });
-        //     // console.log(shelter);
-        //     // shelter._followedBy.push(model.adopter._id.toString());
-        //     // console.log(shelter);
-        //     // ShelterService
-        //     //     .updateShelter(shelter._id, shelter)
-        //     //     .then(function () {
-        //     //         console.log(model.shelter);
-        //     //         //   $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
-        //     //     });
-        // }
+        function followShelter(shelter) {
+            // model.adopter.following.push(shelterId);
+            // console.log(model.adopter);
+            // AdopterService
+            //     .updateAdopter(model.adopterId, model.adopter)
+            //     .then(function () {
+            //         console.log(model.adopter);
+            //     });
+            // console.log(shelter);
+            shelter._followedBy.push(model.adopter._id.toString());
+            console.log(shelter);
+            ShelterService
+                .updateShelter(shelter._id, shelter)
+                .then(function () {
+                    $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+                });
+        }
 
-        // function unfollowShelter(shelter) {
-        //     var index = shelter._followedBy.indexOf(model.adopterId.toString());
-        //     shelter._followedBy.splice(index, 1);
-        //     ShelterService
-        //         .updateShelter(shelter._id, shelter)
-        //         .then(function () {
-        //             console.log(model.shelter);
-        //             //  $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
-        //         });
-        //
-        // }
+        function unfollowShelter(shelter) {
+            var index = shelter._followedBy.indexOf(model.adopterId.toString());
+            shelter._followedBy.splice(index, 1);
+            ShelterService
+                .updateShelter(shelter._id, shelter)
+                .then(function () {
+                 $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+                });
+
+        }
 
         function showPets() {
             console.log(model.shelter.apiId);

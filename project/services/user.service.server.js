@@ -126,7 +126,7 @@ function deleteUser(req,res) {
     userModel
         .deleteUser(req.params.userId)
         .then(function (status) {
-            res.json(status);
+            res.sendStatus(200);
         },function (err) {
             res.sendStatus(404).send(err);
         })
@@ -139,7 +139,7 @@ function updateUser(req, res) {
     userModel
         .updateUser(userId, user)
         .then(function (status) {
-            res.json(status);
+            res.sendStatus(200);
         }, function (err) {
             res.sendStatus(404).send(err);
         });

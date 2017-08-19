@@ -9,6 +9,16 @@ app.post("/api/shelter", createShelter);
 app.get("/api/shelter/:userId/user",findShelterByUserId);
 app.get("/api/shelter/:shelterId",findShelterById);
 app.put("/api/shelter/:shelterId",updateShelter);
+app.get("/api/adopter/:adopterId/shelters",findSheltersByAdopter);
+
+function findSheltersByAdopter(req,res) {
+    var adopterId = req.params.adopterId;
+    shelterModel
+        .findSheltersByAdopter(adopterId)
+        .then(function (shelters) {
+            res.json(shelters);
+        });
+}
 
 function updateShelter(req,res) {
     var shelterId = req.params.shelterId;
@@ -16,7 +26,7 @@ function updateShelter(req,res) {
     shelterModel
         .updateShelter(shelterId, shelter)
         .then(function (status) {
-            res.sendStatus(status);
+            res.sendStatus(200);
         },function (err) {
             res.sendStatus(404).send(err);
         });

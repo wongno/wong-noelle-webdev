@@ -11,6 +11,7 @@
             "findShelterByUserId":findShelterByUserId,
             "findShelterById":findShelterById,
             "updateShelter": updateShelter,
+            "findSheltersByAdopter":findSheltersByAdopter,
         };
 
         return api;
@@ -18,6 +19,13 @@
         function updateShelter(shelterId, shelter) {
             var url="/api/shelter/"+shelterId;
             return $http.put(url,shelter);
+        }
+        function findSheltersByAdopter(adopterId) {
+            var url = "/api/adopter/"+adopterId+"/shelters";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         //need to add to model

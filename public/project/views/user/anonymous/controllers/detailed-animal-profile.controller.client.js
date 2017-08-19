@@ -75,7 +75,7 @@
 
         function followPet(pet) {
             console.log(pet);
-            pet._liked.push(model.adopterId.toString());
+            pet._followedBy.push(model.adopterId.toString());
             console.log(pet);
            PetService
                .updatePet(pet._id, pet)
@@ -86,8 +86,8 @@
         }
 
         function unfollowPet(pet) {
-            var index = pet._liked.indexOf(model.adopterId.toString());
-            pet._liked.splice(index, 1);
+            var index = pet._followedBy.indexOf(model.adopterId.toString());
+            pet._followedBy.splice(index, 1);
             PetService
                 .updatePet(pet._id, pet)
             .then(function () {

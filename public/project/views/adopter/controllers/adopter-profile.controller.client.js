@@ -31,13 +31,18 @@
                         .then(function (response) {
                             model.pets = response;
                         })
+                    ShelterService
+                        .findSheltersByAdopter(model.adopter._id.toString())
+                        .then(function (response) {
+                            model.shelters = response;
+                        })
                 });
 
         }
         init();
 
         function isFollowing(pet) {
-            if(pet._liked.indexOf(model.adopter._id.toString())=== -1){
+            if(pet._followedBy.indexOf(model.adopter._id.toString())=== -1){
                 return "No"
             }else{
                 return "Yes"
@@ -77,7 +82,7 @@
         }
 
         function deleteUser() {
-            UserService.deleteUser(adopterId);
+            UserService.deleteUser(userId);
         }
         function logout() {
             UserService

@@ -9,9 +9,16 @@ shelterModel.addPet = addPet;
 shelterModel.removePet = removePet;
 shelterModel.addShelter = addShelter;
 shelterModel.updateShelter = updateShelter;
+shelterModel.findSheltersByAdopter =findSheltersByAdopter;
 module.exports = shelterModel;
 
+function findSheltersByAdopter(adopterId) {
+    return shelterModel
+        .find({_adopters:adopterId});
+}
+
 function updateShelter(shelterId,shelter) {
+    console.log("updateShelter2");
     return shelterModel.update({_id: shelterId},
         {$set: shelter});
 }
