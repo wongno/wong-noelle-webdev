@@ -18,6 +18,7 @@
             "login": login,
             "logout": logout,
             "register":register,
+            "checkLogin":checkLogin,
         };
         return api;
 
@@ -29,6 +30,13 @@
             var url = "/api/register";
             return $http.post(url,user);
 
+        }
+        function checkLogin() {
+            var url = "/api/checkLogin";
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
         }
 
         function findDetail(userId) {

@@ -33,7 +33,9 @@
                 templateUrl: "views/adopter/templates/adopter-profile.view.client.html",
                 controller: "AdopterProfileController",
                 controllerAs: "model",
-               // resolve: { loggedin: checkLoggedin }
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/shelter-form/:userId", {
                 templateUrl: "views/user/templates/shelter-form.view.client.html",
@@ -44,7 +46,9 @@
                 templateUrl: "views/shelter/templates/shelter-profile.view.client.html",
                 controller: "ShelterProfileController",
                 controllerAs: "model",
-                //resolve: { loggedin: checkLoggedin }
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/user/:userId/shelter/:shelterId/pet", {
                 templateUrl: "views/pet/templates/pet-list.view.client.html",
@@ -71,19 +75,19 @@
                 controller: "ShelterSearchProfileController",
                 controllerAs: "model"
             });
-        var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+        function checkLogin(UserService, $q, $location) {
             var deferred = $q.defer();
-            $http.get('/api/loggedin').success(function(user) {
-                $rootScope.errorMessage = null;
-                if (user !== '0') {
-                    deferred.resolve(user);
-                } else {
-                    deferred.reject();
-                    $location.url('/');
-                }
-            });
+            UserService
+                .checkLogin()
+                .then(function (user) {
+                    if(user === '0') {
+                        deferred.resolve(null);
+                    } else {
+                        deferred.resolve(user);
+                    }
+                });
             return deferred.promise;
-        };
+        }
 
 
     }

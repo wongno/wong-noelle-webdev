@@ -27,10 +27,12 @@
             //     .then(function (response) {
             //         console.log(response.data);
             //         var responseUser = response.data;
+
                     if(user === null) {
                         model.errorMessage = "User not found";
                     } else {
-                        if(user.role.value="shelter"){
+                        if(user.role[0]==="shelter"){
+                            console.log(user);
                             ShelterService
                                 .findShelterByUserId(user._id)
                                 .then(function (response) {
@@ -38,7 +40,7 @@
                                     $rootScope.currentUser = shelter;
                                     $location.url("profile/"+user._id+"/shelter/"+shelter._id);
                                 })
-                        }else if(user.role.value="adopter"){
+                        }else if(user.role[0]==="adopter"){
                             AdopterService
                                 .findAdopterByUserId(user._id)
                                 .then(function (response) {
