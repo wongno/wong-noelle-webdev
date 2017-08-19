@@ -2,14 +2,14 @@ var app = require("../../express");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 //var passport = require('passport')
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var googleConfig = {
-    clientID     : process.env.GOOGLE_CLIENT_ID,
-    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL
-};
+// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// var googleConfig = {
+//     clientID     : process.env.GOOGLE_CLIENT_ID,
+//     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+//     callbackURL  : process.env.GOOGLE_CALLBACK_URL
+// };
 
-passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+//passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
 passport.use(new LocalStrategy(localStrategy));

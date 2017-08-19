@@ -1,6 +1,6 @@
 var app = require('./express');
 var express = app.express;
-require('dotenv').config();
+//require('dotenv').config();
 var passport      = require('passport');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
