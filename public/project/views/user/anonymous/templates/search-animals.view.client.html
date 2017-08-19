@@ -64,7 +64,6 @@
                             id="sex"
                             name="sex"
                             ng-model="sex">
-                        <option value="FM">Any</option>
                         <option value="F">Female</option>
                         <option value="M">Male</option>
                     </select>
@@ -86,7 +85,7 @@
                         <input name="location"
                                class="form-control"
                                type="text"
-                               ng-model="model.location"
+                               ng-model="location"
                                id="location"
                                placeholder="'City, State' or 'ZIP'"/>
                 </div>
@@ -101,7 +100,7 @@
 
             </div>
             <button class="btn btn-default"
-                    ng-click="model.searchAnimalsByLocation();"
+                    ng-click="model.searchAnimals([animal,size,sex,age,location,breed]);"
                     type="button">Go!</button>
         </div>
     </div>

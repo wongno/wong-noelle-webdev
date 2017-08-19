@@ -5,13 +5,13 @@
     function AnimalSearchController(AnimalSearchService, $routeParams, $sce, ShelterService,
                                     $location, PetService, AdopterService) {
         var model = this;
-        //model.searchPets = searchPets;
         model.searchAnimalsByLocation = searchAnimalsByLocation;
         model.searchShelterByLocation = searchShelterByLocation;
         model.trustUrlResource = trustUrlResource;
         model.selectPet = selectPet;
         model.selectShelter = selectShelter;
         model.findPetById = findPetById;
+        model.searchAnimals = searchAnimals;
         model.userId = $routeParams.userId;
         model.adopterId = $routeParams.adopterId;
         model.pet = null;
@@ -82,6 +82,23 @@
         }
 
 
+        function searchAnimals(list){
+            var search="";
+            var searchLabels = ["animal=","size=", "sex=","age=","location=","breed="];
+            for (var type in list) {
+                console.log("&"+searchLabels[type]+list[type]);
+                if(list[type] === undefined){
+                    continue;
+                }
+                search+= "&"+searchLabels[type]+list[type];
+            }
+            AnimalSearchService
+                .searchPets(search)
+                .then(function(response) {
+                    console.log(response);
+                   model.animals = response.petfinder.pets.pet;
+                });
+        }
 
         function findPetById(petId) {
             AnimalSearchService

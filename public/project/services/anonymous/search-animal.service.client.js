@@ -9,9 +9,11 @@
         this.findPetById = findPetById;
         this.findPetsForShelter = findPetsForShelter;
         this.searchShelterByLocation = searchShelterByLocation;
+        this.findShelterById = findShelterById;
 
         var key = "c24a4370afabf3d116da27ad2ac7e483";
         var secret = "5ad6a3f9a39a1658";
+        var urlBase0 = "http://api.petfinder.com/my.method?key=12345";
         var urlBase = "http://api.petfinder.com/my.method?key=12345&arg1=foo&format=json&output=basic&count=6";
         var urlBase2 = "http://api.petfinder.com/my.method?key=12345&arg1=foo&format=json&output=basic&count=6";
 
@@ -74,16 +76,17 @@
             });
         }
 
-        function searchPets() {
+        function searchPets(string) {
             var url = urlBase
-                .replace("my.method", "pet.getRandom")
+                .replace("my.method", "pet.find")
                 .replace("12345", key)
-                .replace("arg1", "animal")
-                .replace("foo", model.animal)
-                .replace("arg2", "output")
-                .replace("foo2", "basic");
+                .replace("&arg1=foo","")
+                .concat(string)
+                .concat("&callback=?");
             console.log(url);
-            return $http.get(url);
+            return $.getJSON($sce.trustAsResourceUrl(url),function (data) {
+                return data;
+            });
         }
 
 

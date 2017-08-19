@@ -19,7 +19,7 @@
                 <div class="hidden-xs col-sm-3">{{int.dateAdded | date}}</div>
                 <div class="col-sm-3 col-xs-6">
                 <!--shelter-->
-                    <a href="#!/user/{{model.user._id}}/adopter/{{model.adopter._id}}/shelter/{{int._id}}/profile"
+                    <a ng-click="model.selectShelter(int.shelterId)"
                        role="button">{{int.shelterId}}</a></div>
                 <!--//following-->
                 <div class="col-xs-2 col-sm-3">{{model.isFollowing(int)}}</div>

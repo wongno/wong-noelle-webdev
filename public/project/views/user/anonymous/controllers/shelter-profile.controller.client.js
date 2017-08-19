@@ -41,6 +41,7 @@
         }
 
         function selectShelterPet(pet) {
+            console.log(pet);
             var petTmp = Object();
             petTmp.apiId = pet.id.$t.toString();
             petTmp.name = pet.name.$t.toString();
