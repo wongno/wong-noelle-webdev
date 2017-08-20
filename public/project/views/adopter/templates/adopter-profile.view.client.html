@@ -80,7 +80,6 @@
 
     <a class="btn btn-block btn-danger"
        ng-click="model.deleteUser(model.user)"
-       href="#!/project/login"
        role="button">Delete Profile</a>
 
     <a class="btn btn-block btn-warning"
@@ -91,5 +90,29 @@
 
     <div ng-include="'views/adopter/templates/notifications-component.view.client.html'"></div>
 </div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header pull-right">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-header nw-user-button-1"
+                       href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
+                       role="button">
+                        <span class="glyphicon glyphicon-user"
+                              aria-hidden="true"></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-header">
+
+        <a class="navbar-toggle collapsed nw-user-button-2"
+           href="#!/profile/{{model.user._id}}/adopter/{{model.adopter._id}}"
+           role="button"
+           aria-expanded="false">
+                <span class="glyphicon glyphicon-user"
+                      aria-hidden="true"></span>
+        </a>
+    </div>
+</nav>
 
 

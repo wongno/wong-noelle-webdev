@@ -22,6 +22,7 @@ app.get('/api/user/all', getAllUsers);
 app.get("/api/user/:userId", findUserById);
 app.get("/api/user", findUser);
 app.post("/api/user", createUser);
+app.get('/api/user', findUserByUsername);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/login", passport.authenticate('local'), login);
@@ -119,12 +120,12 @@ function logout(req, res) {
 
 function deleteUser(req,res) {
     userModel
-        .deleteUser(req.params.userId)
-        .then(function (status) {
-            res.sendStatus(200);
-        },function (err) {
-            res.sendStatus(404).send(err);
-        })
+        .deleteUser( req.params.userId)
+        .then(function(status) {
+            res.json(200);
+        }, function(err) {
+                res.status(404).send(err);
+        });
 }
 
 
@@ -152,6 +153,17 @@ function createUser(req, res) {
         });
 }
 
+function findUserByUsername(req,res) {
+    var usernmae = req.query.username;
+    userModel
+        .findUserByUsername(username)
+        .then(function (user) {
+            res.json(user);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
+}
+
 function findUser(req, res) {
     var username = req.query.username;
     var password = req.query.password;
@@ -163,16 +175,16 @@ function findUser(req, res) {
                 return;
             }, function (err) {
                 res.sendStatus(404).send(err);
-                return;
             });
         return;
     }
-
     userModel
         .findUserByUsername(username)
         .then(function (user) {
             res.json(user);
-            return;})
+           }, function (err) {
+            res.sendStatus(404).send(err);
+        });
 }
 
 function findUserById(req, res) {

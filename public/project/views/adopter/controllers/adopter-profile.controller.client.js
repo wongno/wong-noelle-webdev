@@ -137,9 +137,15 @@
             UserService.updateUser(user._id, user);
         }
 
-        function deleteUser() {
-            UserService.deleteUser(userId);
+        function deleteUser(user) {
+            console.log(user);
+            UserService
+                .deleteUser(user._id)
+                .then(function() {
+                    $location.url("/");
+                });
         }
+
         function logout() {
             UserService
                 .logout()

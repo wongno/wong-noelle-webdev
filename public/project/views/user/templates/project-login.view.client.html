@@ -1,6 +1,5 @@
 <div class="container-fluid">
     <div>
-
         <div ng-show="model.errorMessage" class="alert alert-danger">
             {{model.errorMessage}}
         </div>
@@ -9,7 +8,7 @@
     <label for="username">Username</label>
     <input name="username"
            class="form-control"
-           ng-model="model.user.username"
+           ng-model="user.username"
            type="text"
            placeholder="Username"
            id="username"/>
@@ -17,13 +16,13 @@
     <label for="password">Password</label>
     <input name="password"
            class="form-control"
-           ng-model="model.user.password"
+           ng-model="user.password"
            type="password"
            placeholder="Password"
            id="password"/>
 
     <a class="btn btn-primary btn-block"
-       ng-click="model.login(model.user)"
+       ng-click="model.login(user)"
        role="button">Login</a>
 
     <a href="/auth/google" class="btn btn-danger btn-block">
