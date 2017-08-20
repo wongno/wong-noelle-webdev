@@ -8,8 +8,20 @@ app.get("/api/adopter/:adopterId/pets",findPetsByAdopter);
 app.get("/api/shelter/:shelterId/pet",findPetsByShelter);
 app.get("/api/adopter/:adopter/pet/:petId",findPetByAdopterId);
 app.get("/api/pet/:petId", findPetById);
+app.post("/api/pet/select",selectPet);
 app.put("/api/pet/:petId", updatePet);
 app.delete ("/api/shelter/:shelterId/pet/:petId", deletePet);
+
+function selectPet(req,res) {
+    var pet = req.body;
+    console.log("selectPet");
+    petModel
+        .selectPet(pet)
+        .then(function (pet) {
+            console.log(pet);
+            res.json(pet);
+        })
+}
 
 function findPetsByAdopter(req,res) {
     var adopterId = req.params.adopterId;

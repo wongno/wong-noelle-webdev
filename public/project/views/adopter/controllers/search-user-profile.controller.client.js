@@ -8,7 +8,7 @@
         var model = this;
         model.userId = $routeParams.userId;
         model.adopterId = $routeParams.adopterId;
-        var username = $routeParams["username"];
+        model.username = $routeParams.username;
         model.searchUsersByUsername =searchUsersByUsername;
         function init() {
             UserService.findUserById(model.userId)
@@ -22,14 +22,61 @@
                     model.adopter = response.data;
                 });
             UserService
-                .findUserByUsername(username)
+                .findUserByUsername(model.username)
                 .then(function (response) {
                     model.searchUser = response.data;
-                    return model.searchUser;
-                })
+                    console.log(model.username);
+                    console.log(model.searchUser);
+                    if(model.searchUser.role[0] === "adopter"){
+                        console.log(model.searchUser._id);
+                        AdopterService
+                            .findAdopterByUserId(model.searchUser._id)
+                            .then(function (response) {
+                                console.log(response);
+                                model.searchAdopter = response.data;
+                            });
+                    }
+                    if(model.searchUser.following.length>0){
+                        for(int in model.searchUser.following){
+                            UserService
+                                .findUserById(model.searchUser.following[int])
+                                .then(function (response) {
+                                    var rUser = response.data;
+                                    var $newh4 = $( "<h4></h4>" );
+                                    var $newli = $('<li class="list-group-item"></li>')
+                                    var $header = $newh4.append( document.createTextNode( rUser.username.toString() ) );
+                                    var $list = $newli.append($header);
+                                    $('#followingList').append($list);
+                                })
+
+                        }
+
+                    }
+                    if(model.searchUser.followedBy.length>0){
+                        for(int in model.searchUser.followedBy){
+                            UserService
+                                .findUserById(model.searchUser.followedBy[int])
+                                .then(function (response) {
+                                    var rUser = response.data;
+                                    var $newh4 = $( "<h4></h4>" );
+                                    var $newli = $('<li class="list-group-item"></li>')
+                                    var $header = $newh4.append( document.createTextNode( rUser.username.toString() ) );
+                                    var $list = $newli.append($header);
+                                    $('#followedBy').append($list);
+                                })
+
+                        }
+
+                    }
+                });
 
         }
         init();
+
+        function searchUser() {
+
+
+        }
 
         function isFollowing(pet) {
             if(pet._followedBy.indexOf(model.adopter._id.toString())=== -1){
@@ -39,9 +86,9 @@
             }
         }
 
-        function searchUsersByUsername(username) {
+        function searchUsersByUsername() {
             UserService
-                .findUserByUsername(username)
+                .findUserByUsername(model.username)
                 .then(function (user) {
                     model.foundUser = user.data;
                     return model.foundUser;

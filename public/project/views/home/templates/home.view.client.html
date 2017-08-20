@@ -1,10 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Petbook</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a ng-show="!currentUser"
+                       href="#!/login">Login</a></li>
+                <li><a ng-show="!currentUser"
+                       href="#!/register">Register</a></li>
+                <li><a ng-show="currentUser"
+                       href="#!/profile/{{currentUser._id}}">Profile</a></li>
+                <li><a ng-show="currentUser"
+                       href="#!/logout">Logout</a></li>
+                <li><a ng-show="currentUser.isAdmin"
+                       href="#!/admin">Admin</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Welcome to Petbook!</h1>
+        <p>Interested in adopting a pet? Petbook allows you to search for animals in need of homes and helps you keep track of which animals you are interested in. Follow other users who are interested as well! Begin by entering your location information below.</p>
+    </div>
+
+    <div class="container-fluid">
+        <h1>Find Pets Near You</h1>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-xs-6">
+                    <label for="animal">Animal Type</label><select class="form-control"
+                                                                   id="animal"
+                                                                   name="animal"
+                                                                   ng-model="animal">
+                    //(barnyard, bird, cat, dog, horse, reptile, smallfurry, rabbit
+                    <option value="barnyard">Barnyard Animals</option>
+                    <option value="bird">Birds</option>
+                    <option value="cat">Cats</option>
+                    <option value="dog">Dogs</option>
+                    <option value="horse">Horses</option>
+                    <option value="rabbit">Rabbits</option>
+                    <option value="smallfurry">Rodents</option>
+                    <option value="reptile">Scaled Animals</option>
+                </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="size">Size</label><select class="form-control"
+                                                          id="size"
+                                                          name="size"
+                                                          ng-model="size">
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">Extra Large</option>
+                </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="sex">Sex</label><select class="form-control"
+                                                        id="sex"
+                                                        name="sex"
+                                                        ng-model="sex">
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="age">Age</label>
+                    <select class="form-control"
+                            id="age"
+                            name="age"
+                            ng-model="age">
+                        <option value="Baby">Baby</option>
+                        <option value="Young">Young</option>
+                        <option value="Adult">Adult</option>
+                        <option value="Senior">Senior</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="location">Location (required)</label>
+                    <input name="location"
+                           class="form-control"
+                           type="text"
+                           ng-model="location"
+                           id="location"
+                           placeholder="'City, State' or 'ZIP'"/>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <label for="breed">Breed</label>
+                    <input class="form-control"
+                           id="breed"
+                           name="breed"
+                           placeholder="Breed"
+                           ng-model="breed"/>
+                </div>
+
+            </div>
+            <button class="btn btn-default"
+                    ng-click="model.searchAnimals([animal,size,sex,age,location,breed]);"
+                    type="button">Go!</button>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h1>Find Shelters Near You</h1>
+        <form>
+            <label for="shelter">Location</label>
+            <div class="input-group">
+                 <span class="input-group-btn">
+                     <button class="btn btn-default"
+                             ng-click="model.searchShelterByLocation(shelter);"
+                             type="button">Go!</button>
+                 </span>
+                <input name="shelter"
+                       class="form-control"
+                       ng-model="shelter"
+                       type="text"
+                       id="shelter"
+                       placeholder="'City, State' or 'ZIP Code'"/>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid nw-editPetPadding">
+        <h1>Results</h1>
+        <div class="row">
+            <div class="col-xs-4 col-lg-2" ng-repeat="int in model.animals">
+                <a ng-click="model.selectPet(int)">
+                    <h3>{{int.name.$t}}</h3>
+                    <img ng-src={{int.media.photos.photo[1].$t}}/>
+                </a>
+            </div>
+            <div class="col-xs-6" ng-repeat="int in model.shelters">
+                <a ng-click="model.selectShelter(int)">
+                    <li>{{int.name.$t}}</li>
+                    <!--<img ng-src={{int.media.photos.photo[0].$t}}/>-->
+                </a>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->
+

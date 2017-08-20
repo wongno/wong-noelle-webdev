@@ -1,0 +1,76 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+               href="#">Welcome to {{model.searchUser.username}}'s Profile</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid nw-editPetPadding">
+    <div class='row'>
+        <div class="col-xs-4 col-md-4">
+    <h3>First Name</h3>
+    <h4>{{model.searchAdopter.firstName}}</h4>
+        </div>
+
+        <div class=" col-xs-4 col-md-4">
+    <h3>Last Name</h3>
+    <h4>{{model.searchAdopter.lastName}}</h4>
+        </div>
+        <div class="col-xs-4 col-md-4">
+    <h3>About You</h3>
+    <p>{{model.searchAdopter.description}}</p>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-xs-4 col-md-4">
+    <h3>Address</h3>
+    <h4>{{model.searchAdopter.location}}</h4>
+    </div>
+        <div class=" col-xs-4 col-md-4">
+            <h3>Phone</h3>
+            <h4>{{model.searchAdopter.phone}}</h4>
+        </div>
+        <div class="col-md-4">
+            <h3>Email</h3>
+            <h4>{{model.searchAdopter.email}}</h4>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6"><h3>Following</h3>
+            <ul id="followingList" class="list-group">
+                <li  class="active list-group-item">Username</li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-md-6"><h3>Followers</h3>
+            <ul id="followedBy" class="list-group">
+                <li  class="active list-group-item">Username</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-header pull-right">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-header nw-user-button-1"
+                       href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
+                       role="button">
+                        <span class="glyphicon glyphicon-user"
+                              aria-hidden="true"></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-header">
+        <a class="navbar-toggle collapsed nw-user-button-2"
+           href="#!/profile/{{model.userId}}/adopter/{{model.adopterId}}"
+           aria-expanded="false"
+           role="button">
+                    <span class="glyphicon glyphicon-user"
+                          aria-hidden="true"></span>
+        </a>
+    </div>
+</nav>
+
+

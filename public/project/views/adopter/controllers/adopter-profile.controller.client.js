@@ -21,8 +21,40 @@
         function init() {
             UserService.findUserById(userId)
                 .then(function (response) {
-                    console.log(response);
                     model.user = response.data;
+                    if(model.user.following.length>0){
+                        for(int in model.user.following){
+                            UserService
+                                .findUserById(model.user.following[int])
+                                .then(function (response) {
+                                    console.log(response);
+                                    var rUser = response.data;
+                                    var $newh4 = $( "<h4></h4>" );
+                                    var $newli = $('<li class="list-group-item"></li>');
+                                    var $header = $newh4.append( document.createTextNode( rUser.username.toString() ) );
+                                    var $list = $newli.append($header);
+                                    $('#followingList').append($list);
+                                })
+
+                        }
+
+                    }
+                    if(model.user.followedBy.length>0){
+                        for(int in model.user.followedBy){
+                            UserService
+                                .findUserById(model.user.following[int])
+                                .then(function (response) {
+                                    console.log(response);
+                                    var rUser = response.data;
+                                    var $newh4 = $( "<h4></h4>" );
+                                    var header = $newh4.append( document.createTextNode( rUser.username.toString() ) );
+                                    var $newli = $('<li class="list-group-item"></li>')
+                                    var list = $newli.append(header);
+                                    $('#followedBy').append('list');
+                                })
+                        }
+
+                    }
                 });
             AdopterService
                 .findAdopterById(adopterId)
@@ -61,12 +93,17 @@
         }
 
         function followUser() {
-            model.user.following.push(model.foundUser._id);
+            model.foundUser.followedBy.push(model.user._id);
             UserService
-                .updateUser(userId, model.user)
+                .updateUser(model.foundUser._id, model.foundUser)
                 .then(function () {
-                    $location.url("/user/" + userId + "/adopter/" + adopterId+"/profile/"+model.foundUser.username);
-                })
+                    model.user.following.push(model.foundUser._id);
+                    UserService
+                        .updateUser(userId, model.user)
+                        .then(function () {
+                            $location.url("/user/" + userId + "/adopter/" + adopterId + "/profile/" + model.foundUser.username);
+                        })
+                });
         }
         function selectShelter(shelterId) {
             AnimalSearchService

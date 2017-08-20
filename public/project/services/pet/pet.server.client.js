@@ -13,6 +13,7 @@
             "updatePet": updatePet,
             "deletePet": deletePet,
             "findPetsByAdopter":findPetsByAdopter,
+            "choosePet":choosePet,
         };
         return api;
 
@@ -34,6 +35,12 @@
                     return response.data;
                 });
 
+        }
+
+        function choosePet(pet) {
+            var url ="/api/pet/select";
+            console.log(pet);
+            return $http.post(url,pet);
         }
 
         function addPet(adopterId,pet) {

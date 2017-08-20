@@ -10,8 +10,13 @@ petModel.findPetsByAdopter = findPetsByAdopter;
 petModel.findPetById = findPetById;
 petModel.deletePet = deletePet;
 petModel.updatePet = updatePet;
+petModel.selectPet = selectPet;
 module.exports = petModel;
 
+function selectPet(pet) {
+    console.log(pet);
+    return petModel.create(pet);
+}
 function findPetsByAdopter(adopterId) {
     return petModel.find({_adopter:adopterId});
 }

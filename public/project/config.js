@@ -6,7 +6,17 @@
         $routeProvider
             .when("/", {
                 templateUrl: "views/home/templates/home.view.client.html",
-                controller: "AnimalSearchController",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
+            .when("/", {
+                templateUrl: "views/home/templates/home.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
+            .when("/pet/:petId/profile", {
+                templateUrl: "views/home/templates/detailed-animal-profile.view.client.html",
+                controller: "HomeController",
                 controllerAs: "model"
             })
             .when("/user/:userId/adopter/:adopterId/search", {
@@ -14,12 +24,12 @@
                 controller: "AnimalSearchController",
                 controllerAs: "model"
             })
-            .when("/project/login", {
+            .when("/login", {
                 templateUrl: "views/user/templates/project-login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
-            .when("/project/register", {
+            .when("/register", {
                 templateUrl: "views/user/templates/project-register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
@@ -76,7 +86,7 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/adopter/:adopterId/profile/:username", {
-                templateUrl: "views/user/anonymous/templates/shelter-profile.view.client.html",
+                templateUrl: "views/adopter/templates/searched-user-profile.view.client.html",
                 controller: "SearchUserController",
                 controllerAs: "model"
             });
