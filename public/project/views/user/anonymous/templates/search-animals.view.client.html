@@ -127,6 +127,12 @@
     <div class="container-fluid nw-editPetPadding">
         <h1>Results</h1>
         <div id="petResults" class="row">
+            <div class="col-xs-6" ng-repeat="int in model.animals">
+                <a ng-click="model.selectPet(int)">
+                    <h3>{{int.name.$t}}</h3>
+                    <img ng-src={{int.media.photos.photo[1].$t}}/>
+                </a>
+            </div>
         </div>
         <div id="shelterResults" class="row">
             <div class="col-xs-6" ng-repeat="int in model.shelters">

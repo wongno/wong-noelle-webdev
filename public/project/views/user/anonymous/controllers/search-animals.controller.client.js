@@ -16,7 +16,6 @@
         model.adopterId = $routeParams.adopterId;
         model.pet = null;
         function init() {
-
         }
         init();
 
@@ -24,7 +23,8 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        function selectPet(petShelterId,pet) {
+        function selectPet(pet) {
+            console.log('selectPet');
             var petTmp = Object();
             petTmp.apiId = pet.id.$t.toString();
             petTmp.name = pet.name.$t.toString();
@@ -96,19 +96,41 @@
                 .then(function(response) {
                     console.log(response);
                    model.animals = response.petfinder.pets.pet;
-                                        for(int in model.animals) {
-                        var $div2 = $('<div style="text-align: center" class="row"></div>');
-                        var $img = $('<img style="padding-bottom: 0px"/>');
-                        var $finalImg = ($img).attr({src: model.animals[int].media.photos.photo[1].$t});
-                        var $newh4 = $("<h4></h4>").append(document.createTextNode(model.animals[int].name.$t));
-                        var $newA = $('<a ng-click="model.selectPet(int)">').append($newh4).append($finalImg);
-                        var $newdiv = $('<div style="text-align: center" class="col-xs-4 col-lg-2">').append($newA);
-                        if ((int + 1) % 3 === 0) {
-                            $('#petResults').append($newdiv).append($div2);
-                        } else {
-                            $('#petResults').append($newdiv);
-                        }
-                    }
+                    // for(int in model.animals) {
+                    //
+                    //     var $img = $('<img style="padding-bottom: 0px"/>');
+                    //     var $finalImg = ($img).attr({src: model.animals[int].media.photos.photo[1].$t});
+                    //     var $newh4 = $("<h4></h4>").append(document.createTextNode(model.animals[int].name.$t));
+                    //     var $newA = $('<a name></a>');
+                    //         $newA.attr({name:int});
+                    //     $newA.append($newh4).append($finalImg);
+                    //     var $newdiv = $('<div id="thisClicked" name="int" style="text-align: center" class="col-xs-4 col-lg-2">').append($newA);
+                    //     $newdiv.attr({id:"thisClicked"+int});
+                    //     $newdiv.attr({name:int});
+                    //     if (int%3 === 0) {
+                    //         var $div2 = $('<div id="divider" style="text-align: center" class="row"></div>');
+                    //         $div2.append($newdiv);
+                    //         $('#petResults').append($div2);
+                    //     } else {
+                    //         $('#divider').append($newdiv);
+                    //     }
+                    // }
+                    // for(int in model.animals) {
+                    //     var $div2 = $('<div style="text-align: center" class="row"></div>');
+                    //     var $img = $('<img style="padding-bottom: 0px"/>');
+                    //     var $finalImg = ($img).attr({src: model.animals[int].media.photos.photo[1].$t});
+                    //     var $newh4 = $("<h4></h4>").append(document.createTextNode(model.animals[int].name.$t));
+                    //     var $newA = $('<a ng-click="model.selectPet(int)"></a>');
+                    //     $newA.attr(document.createTextNode(model.selectPet(int)));
+                    //     $newA.append($newh4).append($finalImg);
+                    //     var $newdiv = $('<div id="thisClicked" style="text-align: center" class="col-xs-4 col-lg-2">').append($newA);
+                    //     if ((int + 1) % 3 === 0) {
+                    //         $('#petResults').append($newdiv).append($div2);
+                    //     } else {
+                    //         $('#petResults').append($newdiv);
+                    //     }
+                    //
+                    // }
                 });
         }
 

@@ -11,6 +11,7 @@
         model.selectPet = selectPet;
         var petId = $routeParams["petId"];
         function init(){
+
             // PetService
             // .findPetById(petId)
             // .then(function (pet) {

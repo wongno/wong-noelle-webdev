@@ -18,6 +18,7 @@
 
         function registerAdopter(user) {
             user.role = "adopter";
+            user.isAdmin = false;
             if (!user) {
                 model.errorMessage = "Please enter information";
                 return;
@@ -43,6 +44,7 @@
         }
         function registerShelter(user) {
             user.role = "shelter";
+            user.isAdmin = false;
             if (!user) {
                 model.errorMessage = "Please enter information";
                 return;

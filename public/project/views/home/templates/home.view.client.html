@@ -14,15 +14,15 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a ng-show="!currentUser"
+                <li><a ng-show="!model.user"
                        href="#!/login">Login</a></li>
-                <li><a ng-show="!currentUser"
+                <li><a ng-show="!model.user"
                        href="#!/register">Register</a></li>
-                <li><a ng-show="currentUser"
-                       href="#!/profile/{{currentUser._id}}">Profile</a></li>
-                <li><a ng-show="currentUser"
+                <li><a ng-show="model.user"
+                       href="#!/profile/{{model.user._id}}">Profile</a></li>
+                <li><a ng-show="model.user"
                        href="#!/logout">Logout</a></li>
-                <li><a ng-show="currentUser.isAdmin"
+                <li><a ng-show="model.user.isAdmin"
                        href="#!/admin">Admin</a></li>
             </ul>
         </div><!--/.nav-collapse -->
