@@ -23,9 +23,6 @@
         };
         return api;
 
-        // function login(user) {
-        //     return $http.post("/api/login", user);
-        // }
 
         function getAllUsers() {
             var url = "/api/users/all";
@@ -85,9 +82,7 @@
 
         function login(username, password) {
             var url = "/api/login";
-            // /user?username=alice&password=alice
             return $http.post(url,{username:username, password:password});
-
         }
 
         function logout(user) {

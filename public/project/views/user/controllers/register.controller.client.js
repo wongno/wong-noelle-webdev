@@ -8,6 +8,7 @@
 
         model.registerAdopter = registerAdopter;
         model.registerShelter = registerShelter;
+        model.login = login;
 
         function init() {
 
@@ -25,15 +26,16 @@
                 .then(function (response) {
                     var _user = response.data;
                     if(_user === null) {
-                        return UserService
-                            .register(user)
-                            .then(function (response) {
-                                var _user = response.data;
-                                if(_user){
-                                    $rootScope.currentUser = _user;
-                                    $location.url("adopter-form/" + _user._id);
-                                }
-                            });
+                        if(user.password && (user.password === user.password2)){
+                            return UserService
+                                .createUser(user)
+                                .then(function (response) {
+                                    var _user = response.data;
+                                    login(user);
+                                });
+                        } else {
+                            model.errorMessage = "Passwords don't match";
+                        }
                     } else {
                         model.errorMessage = "User already exists";
                     }
@@ -49,18 +51,37 @@
                 .then(function (response) {
                     var _user = response.data;
                     if(_user === null) {
-                        return UserService
-                            .register(user)
-                            .then(function (response) {
-                                var _user = response.data;
-                                $rootScope.currentUser = _user;
-                                $location.url("shelter-form/" + _user._id);
-                            });
-
+                        if(_user.password === _user.password2){
+                            return UserService
+                                .createUser(user)
+                                .then(function (response) {
+                                    var _user = response.data;
+                                    login(user);
+                                });
+                        } else {
+                            model.errorMessage = "Passwords don't match";
+                        }
                     } else {
                         model.errorMessage = "User already exists";
                     }
                 });
+        }
+        function login(user) {
+            if(!user) {
+                model.errorMessage = "User not found";
+            } else {
+                UserService
+                    .login(user.username, user.password)
+                    .then(function(res){
+                        var _user = res.data;
+                        if(_user === null) {
+                            model.errorMessage = "User not found";
+                        } else {
+                            $rootScope.currentUser = _user;
+                            $location.url("adopter-form/" + _user._id);
+                        }
+                    });
+            }
         }
     }
 })();

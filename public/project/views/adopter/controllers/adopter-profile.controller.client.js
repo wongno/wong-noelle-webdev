@@ -145,7 +145,7 @@
                 .logout()
                 .then(
                     function (response) {
-                        $location.url("/project/login");
+                        $location.url("/login");
                     });
 
         }

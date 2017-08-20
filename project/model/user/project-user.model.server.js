@@ -23,7 +23,9 @@ projectUserModel.findUserByGoogleId = findUserByGoogleId;
 module.exports = projectUserModel;
 
 function getAllUsers() {
-    return projectUserModel.find({collection:"user"});
+    return projectUserModel
+        .find({})
+        .select('username firstName lastName dateCreated isAdmin role');
 }
 
 function findUserByGoogleId(googleId) {
@@ -77,7 +79,8 @@ function addWebsite(developerId, websiteId) {
 }
 
 function createUser(user) {
-    return projectUserModel.create(user);
+        user.username = user.username.toLowerCase();
+        return projectUserModel.create(user);
 }
 
 function findUserById(userId) {

@@ -1,7 +1,7 @@
 var app = require("../../express");
+var bcrypt = require("bcrypt-nodejs");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-//var passport = require('passport')
 // var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // var googleConfig = {
 //     clientID     : process.env.GOOGLE_CLIENT_ID,
@@ -10,7 +10,6 @@ var LocalStrategy = require('passport-local').Strategy;
 // };
 
 //passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-
 
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
@@ -25,7 +24,7 @@ app.get("/api/user", findUser);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
-app.post  ('/api/login', passport.authenticate('local'), login);
+app.post("/api/login", passport.authenticate('local'), login);
 app.get   ('/api/loggedin',       loggedin);
 app.post  ('/api/logout',         logout);
 app.post  ('/api/register',       register);
@@ -42,7 +41,10 @@ function getAllUsers(req,res) {
         .getAllUsers
         .then(function (users) {
             req.json(users);
-        })
+        }, function(err) {
+            res.status(404).send(err);
+        });
+
 }
 
 function checkLogin(req, res) {
@@ -51,21 +53,20 @@ function checkLogin(req, res) {
 
 function localStrategy(username, password, done) {
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(
             function(user) {
-                if (!user) { return done(null, false); }
-                return done(null, user);
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
             },
             function(err) {
                 if (err) { return done(err); }
             }
         );
 }
-
-
-
-
 
 function register (req, res) {
     var user = req.body;
@@ -85,14 +86,6 @@ function register (req, res) {
     );
 }
 
-//
-// function authorized (req, res, next) {
-//     if (!req.isAuthenticated()) {
-//         res.send(401);
-//     } else {
-//         next();
-//     }
-// };
 function loggedin(req, res) {
     res.send(req.isAuthenticated() ? req.user : '0');
 }
@@ -114,22 +107,15 @@ function deserializeUser(user, done) {
             }
         );
 }
+
 function login(req, res) {
-    var user = req.user;
-    res.json(user);
+    res.json(req.user);
 }
 
 function logout(req, res) {
     req.logOut();
     res.send(200);
 }
-
-
-
-
-
-
-
 
 function deleteUser(req,res) {
     userModel
@@ -154,18 +140,17 @@ function updateUser(req, res) {
         });
 }
 
-function createUser(req,res) {
+function createUser(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModel
         .createUser(user)
-        .then(function (user) {
+        .then(function(user) {
             res.json(user);
-        })
-
+        }, function(err) {
+            res.status(404).send(err);
+        });
 }
-
-
-
 
 function findUser(req, res) {
     var username = req.query.username;
