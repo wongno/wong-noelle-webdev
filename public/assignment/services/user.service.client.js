@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("PetAppMaker")
+        .module("WebAppMaker")
         .factory("UserService", UserService);
 
     function UserService($http) {

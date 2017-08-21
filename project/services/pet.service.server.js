@@ -74,6 +74,7 @@ function updatePet(req,res) {
             res.sendStatus(404).send(err);
         });
 }
+
 function findPetById(req,res) {
     var petId = req.params.petId;
     petModel

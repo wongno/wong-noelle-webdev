@@ -81,7 +81,7 @@
                .updatePet(pet._id, pet)
            .then(function () {
                console.log(model.animal);
-             //   $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+             $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
             });
         }
 
@@ -92,7 +92,7 @@
                 .updatePet(pet._id, pet)
             .then(function () {
                 console.log(model.animal);
-              //  $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
+              $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
             });
 
         }

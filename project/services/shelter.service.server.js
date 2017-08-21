@@ -68,6 +68,7 @@ function findShelterById(req, res) {
             res.json(shelter);
         });
 }
+
 function createShelter(req, res) {
     console.log('here');
     var shelter = req.body;
