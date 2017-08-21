@@ -67,6 +67,12 @@
             // })
         }
         init();
+
+        function goBack() {
+            model.pet=null;
+            $location.url("/");
+        }
+
         function selectPet(pet) {
             var petTmp = Object();
             petTmp.apiId = pet.id.$t.toString();
@@ -83,13 +89,54 @@
             petTmp.sex = pet.sex.$t.toString();
             petTmp.size = pet.size.$t.toString();
             petTmp.age = pet.age.$t.toString();
-            PetService
-                .choosePet(petTmp)
-                .then(function (response) {
-                    var resPet = response;
-                    console.log(response);
-                   // $location.url("/pet/"+resPet._id+"/profile");
-                });
+            model.pet = petTmp;
+            model.largePhotos = [];
+            for(i=0;i<model.pet.photos.length;i++){
+                var pic = model.pet.photos[i];
+                if(pic.includes("width=500")){
+                    model.largePhotos.push(pic);
+                }
+            }
+            $('#left-button').on({
+                'click': function() {
+                    var size = model.largePhotos.length-1;
+                    var src = "";
+                    var int = 0;
+                    if($('img').attr('src') === model.largePhotos[0]){
+                        int = size;
+                        src = model.largePhotos[int];
+                        $('img').attr('src', src);
+                    }else{
+                        int = model.largePhotos.indexOf($('img').attr('src'));
+                        src = model.largePhotos[int-1];
+                        $('img').attr('src', src);
+                    }
+                }
+            });
+            $('#right-button').on({
+                'click': function() {
+                    var size = model.largePhotos.length-1;
+                    var src = "";
+                    var int = 0;
+                    if($('img').attr('src') === model.largePhotos[size]){
+                        int = 0;
+                        src = model.largePhotos[int];
+                        $('img').attr('src', src);
+                    }else{
+                        int = model.largePhotos.indexOf($('img').attr('src'));
+                        src = model.largePhotos[int+1];
+                        $('img').attr('src', src);
+                    }
+                }
+            });
+            return model.pet;
+            // PetService
+            //     .choosePet(petTmp)
+            //     .then(function (response) {
+            //         var resPet = response;
+            //         console.log(response);
+            //        // $location.url("/pet/"+resPet._id+"/profile");
+            //     });
         }
         function searchAnimals(list){
             var search="";

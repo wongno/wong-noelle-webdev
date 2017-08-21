@@ -5,7 +5,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left pull-left">
                         <li><a class="navbar-header"
-                               href="#!/"
+                               ng-click="model.goBack()"
                                role="button">
                             <span class="glyphicon glyphicon-chevron-left"
                                   aria-hidden="true"></span>
@@ -16,7 +16,7 @@
 
             <div class="navbar-header">
                 <a class="navbar-toggle collapsed nw-back-button"
-                   href="#!/"
+                   ng-click="model.goBack()"
                    role="button"
                    aria-expanded="false">
                     <span class="glyphicon glyphicon-chevron-left"
@@ -24,32 +24,32 @@
                     </span>
                 </a>
                 <a class="navbar-brand"
-                   href="#">{{model.animal.name}}'s Profile</a>
+                   href="#">{{model.pet.name}}'s Profile</a>
             </div>
         </div>
     </nav>
 
     <div class="container-fluid nw-editPetPadding">
-        <h1>{{model.animal.name}}</h1>
-        <h3>Id: {{model.animal.apiId}}</h3>
+        <h1>{{model.pet.name}}</h1>
+        <h3>Id: {{model.pet.apiId}}</h3>
         <ul class="list-inline">
             <li><h3>Information:</h3></li>
-            <li>animal: {{model.animal.animal}}</li>
-            <li>breed: {{model.animal.breed}}</li>
-            <li>age: {{model.animal.age}}</li>
-            <li>size: {{model.animal.size}}</li>
-            <li>sex: {{model.animal.sex}}</li>
+            <li>animal: {{model.pet.animal}}</li>
+            <li>breed: {{model.pet.breed}}</li>
+            <li>age: {{model.pet.age}}</li>
+            <li>size: {{model.pet.size}}</li>
+            <li>sex: {{model.pet.sex}}</li>
         </ul>
         <img class="" src="{{model.largePhotos[0]}}">
         <ul class="list-inline">
             <li><a id="left-button"><span class="glyphicon-chevron-left glyphicon "></span></a></li>
             <li><a id="right-button"><span class="glyphicon-chevron-right glyphicon"></span></a></li></ul>
-        <h3>About {{model.animal.name}}</h3>
-        <p class="-align-justify">{{model.animal.description}}</p>
-        <h2>My Shelter</h2>
-        <a class="btn btn-default btn-primary btn-block"
-           ng-click="model.login(model.user)"
-           role="button">{{model.animalShelterName(model.animal.shelterId)}}</a>
+        <h3>About {{model.pet.name}}</h3>
+        <p class="-align-justify">{{model.pet.description}}</p>
+        <!--<h2>My Shelter</h2>-->
+        <!--<a class="btn btn-default btn-primary btn-block"-->
+           <!--ng-click="model.login(model.user)"-->
+           <!--role="button">{{model.animalShelterName(model.animal.shelterId)}}</a>-->
         <a class="btn btn-default btn-success btn-block"
            href="#!/login"
            role="button">Follow</a>
@@ -59,27 +59,27 @@
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="navbar-header pull-right">
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="navbar-header nw-user-button-1"
-                           href="#!/login"
-                           role="button">
-                        <span class="glyphicon glyphicon-user"
-                              aria-hidden="true"></span>
-                    </a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="navbar-header">
+        <!--<div class="navbar-header pull-right">-->
+            <!--<div class="collapse navbar-collapse">-->
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                    <!--<li><a class="navbar-header nw-user-button-1"-->
+                           <!--href="#!/login"-->
+                           <!--role="button">-->
+                        <!--<span class="glyphicon glyphicon-user"-->
+                              <!--aria-hidden="true"></span>-->
+                    <!--</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="navbar-header">-->
 
-            <a class="navbar-toggle collapsed nw-user-button-2"
-               href="#!/login"
-               role="button"
-               aria-expanded="false">
-                <span class="glyphicon glyphicon-user"
-                      aria-hidden="true"></span>
-            </a>
-        </div>
+            <!--<a class="navbar-toggle collapsed nw-user-button-2"-->
+               <!--href="#!/login"-->
+               <!--role="button"-->
+               <!--aria-expanded="false">-->
+                <!--<span class="glyphicon glyphicon-user"-->
+                      <!--aria-hidden="true"></span>-->
+            <!--</a>-->
+        <!--</div>-->
     </nav>
 </div>
