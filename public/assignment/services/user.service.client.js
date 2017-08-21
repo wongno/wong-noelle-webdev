@@ -9,12 +9,17 @@
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
             "updateUser": updateUser,
+            "createUser": createUser,
             "deleteUser": deleteUser,
         };
         return api;
 
+        function createUser(user) {
+            var url ="/api/user";
+            return $http.post(url,user);
+        }
+
         function deleteUser(userId) {
-            console.log("delete");
             var url = "/api/user/"+userId;
             return $http.delete(url);
         }

@@ -8,7 +8,7 @@
         $httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript';
         $httpProvider.defaults.headers.post['Access-Control-Max-Age'] = '1728000';
         $routeProvider
-            .when("/hw-login", {
+            .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
