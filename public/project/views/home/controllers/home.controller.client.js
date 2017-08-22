@@ -11,60 +11,6 @@
         model.selectPet = selectPet;
         var petId = $routeParams["petId"];
         function init(){
-
-            // PetService
-            // .findPetById(petId)
-            // .then(function (pet) {
-            //     model.animal = pet;
-            //     console.log(pet);
-            //     model.largePhotos = [];
-            //     model.mediumPhotos = [];
-            //     model.smallPhotos = [];
-            //     for(i=0;i<model.animal.photos.length;i++){
-            //         var pic = model.animal.photos[i];
-            //         if(pic.includes("width=500")){
-            //             model.largePhotos.push(pic);
-            //         }
-            //         if(pic.includes("width=95")){
-            //             model.smallPhotos.push(pic);
-            //         }
-            //         if(pic.includes("width=300")){
-            //             model.mediumPhotos.push(pic);
-            //         }
-            //     }
-            //     $('#left-button').on({
-            //         'click': function() {
-            //             var size = model.largePhotos.length-1;
-            //             var src = "";
-            //             var int = 0;
-            //             if($('img').attr('src') === model.largePhotos[0]){
-            //                 int = size;
-            //                 src = model.largePhotos[int];
-            //                 $('img').attr('src', src);
-            //             }else{
-            //                 int = model.largePhotos.indexOf($('img').attr('src'));
-            //                 src = model.largePhotos[int-1];
-            //                 $('img').attr('src', src);
-            //             }
-            //         }
-            //     });
-            //     $('#right-button').on({
-            //         'click': function() {
-            //             var size = model.largePhotos.length-1;
-            //             var src = "";
-            //             var int = 0;
-            //             if($('img').attr('src') === model.largePhotos[size]){
-            //                 int = 0;
-            //                 src = model.largePhotos[int];
-            //                 $('img').attr('src', src);
-            //             }else{
-            //                 int = model.largePhotos.indexOf($('img').attr('src'));
-            //                 src = model.largePhotos[int+1];
-            //                 $('img').attr('src', src);
-            //             }
-            //         }
-            //     });
-            // })
         }
         init();
 
@@ -142,7 +88,6 @@
             var search="";
             var searchLabels = ["animal=","size=", "sex=","age=","location=","breed="];
             for (var type in list) {
-                console.log("&"+searchLabels[type]+list[type]);
                 if(list[type] === undefined){
                     continue;
                 }
@@ -159,7 +104,6 @@
                 .searchShelterByLocation(location)
                 .then(function(response) {
                     model.shelters = response.petfinder.shelters.shelter;
-                    console.log(model.shelters);
                 });
         }
 

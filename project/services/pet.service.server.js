@@ -16,11 +16,9 @@ app.delete ("/api/shelter/:shelterId/pet/:petId", deletePet);
 
 function selectPet(req,res) {
     var pet = req.body;
-    console.log("selectPet");
     petModel
         .selectPet(pet)
         .then(function (pet) {
-            console.log(pet);
             res.json(pet);
         })
 }

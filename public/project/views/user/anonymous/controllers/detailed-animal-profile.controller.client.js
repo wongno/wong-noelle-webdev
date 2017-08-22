@@ -19,7 +19,6 @@
                 .findPetById(petId)
                 .then(function (pet) {
                     model.animal = pet;
-                    console.log(pet);
                     model.largePhotos = [];
                     model.mediumPhotos = [];
                     model.smallPhotos = [];
@@ -74,13 +73,10 @@
         init();
 
         function followPet(pet) {
-            console.log(pet);
             pet._followedBy.push(model.adopterId.toString());
-            console.log(pet);
            PetService
                .updatePet(pet._id, pet)
            .then(function () {
-               console.log(model.animal);
              $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
             });
         }
@@ -91,7 +87,6 @@
             PetService
                 .updatePet(pet._id, pet)
             .then(function () {
-                console.log(model.animal);
               $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/search");
             });
 

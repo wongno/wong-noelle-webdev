@@ -70,7 +70,6 @@ function findShelterById(req, res) {
 }
 
 function createShelter(req, res) {
-    console.log('here');
     var shelter = req.body;
     var userId = req.params.userId;
     projectUserModel

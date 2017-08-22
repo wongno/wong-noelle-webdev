@@ -46,7 +46,6 @@
             var url = "/api/user"
         }
         function deleteUser(userId) {
-            console.log("delete");
             var url = "/api/user/"+userId;
             return $http.delete(url);
         }

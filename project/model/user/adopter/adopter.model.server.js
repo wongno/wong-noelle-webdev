@@ -13,7 +13,6 @@ adopterModel.updateAdopter = updateAdopter;
 module.exports = adopterModel;
 
 function updateAdopter(adopterId,adopter) {
-    console.log(adopter);
     return adopterModel.update({_id: adopterId},
         {$set: adopter});
 }

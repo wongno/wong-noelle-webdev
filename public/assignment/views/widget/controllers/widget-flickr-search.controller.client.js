@@ -23,13 +23,9 @@
             FlickrService
                 .searchPhotos(searchTerm)
                 .then(function(response) {
-                    console.log(response.data);
                     data = response.data.replace("jsonFlickrApi(","");
-                    console.log(data);
                     data = data.substring(0,data.length - 1);
-                    console.log(data);
                     data = JSON.parse(data);
-                    console.log(data);
                     model.photos = data.photos;
                 });
         }

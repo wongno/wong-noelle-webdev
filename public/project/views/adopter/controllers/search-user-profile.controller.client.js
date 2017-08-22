@@ -13,7 +13,6 @@
         function init() {
             UserService.findUserById(model.userId)
                 .then(function (response) {
-                    console.log(response);
                     model.user = response.data;
                 });
             AdopterService
@@ -25,14 +24,10 @@
                 .findUserByUsername(model.username)
                 .then(function (response) {
                     model.searchUser = response.data;
-                    console.log(model.username);
-                    console.log(model.searchUser);
                     if(model.searchUser.role[0] === "adopter"){
-                        console.log(model.searchUser._id);
                         AdopterService
                             .findAdopterByUserId(model.searchUser._id)
                             .then(function (response) {
-                                console.log(response);
                                 model.searchAdopter = response.data;
                             });
                     }
@@ -122,7 +117,6 @@
 
                     ShelterService.addShelter(adopterId,shelterTmp)
                         .then(function (shelter) {
-                            console.log(shelter.data);
                             var resShelter = shelter.data;
                             $location.url( "/user/"+userId+"/adopter/"+adopterId+"/shelter/"
                                 +resShelter._id+"/profile");

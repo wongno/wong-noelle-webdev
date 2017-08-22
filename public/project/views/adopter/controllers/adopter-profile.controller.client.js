@@ -27,7 +27,6 @@
                             UserService
                                 .findUserById(model.user.following[int])
                                 .then(function (response) {
-                                    console.log(response);
                                     var rUser = response.data;
                                     var $newh4 = $( "<h4></h4>" );
                                     var $newli = $('<li class="list-group-item"></li>');
@@ -44,7 +43,6 @@
                             UserService
                                 .findUserById(model.user.following[int])
                                 .then(function (response) {
-                                    console.log(response);
                                     var rUser = response.data;
                                     var $newh4 = $( "<h4></h4>" );
                                     var header = $newh4.append( document.createTextNode( rUser.username.toString() ) );
@@ -124,7 +122,6 @@
 
                     ShelterService.addShelter(adopterId,shelterTmp)
                         .then(function (shelter) {
-                            console.log(shelter.data);
                             var resShelter = shelter.data;
                             $location.url( "/user/"+userId+"/adopter/"+adopterId+"/shelter/"
                                 +resShelter._id+"/profile");
@@ -138,7 +135,6 @@
         }
 
         function deleteUser(user) {
-            console.log(user);
             UserService
                 .deleteUser(user._id)
                 .then(function() {

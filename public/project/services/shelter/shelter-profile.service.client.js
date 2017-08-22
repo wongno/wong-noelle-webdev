@@ -41,7 +41,6 @@
                 .replace("foo", model.animal)
                 .replace("arg2", "output")
                 .replace("foo2", "basic");
-            console.log(url);
             return $http.get(url);
         }
 

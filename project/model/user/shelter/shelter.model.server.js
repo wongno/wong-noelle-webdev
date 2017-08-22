@@ -18,7 +18,6 @@ function findSheltersByAdopter(adopterId) {
 }
 
 function updateShelter(shelterId,shelter) {
-    console.log("updateShelter2");
     return shelterModel.update({_id: shelterId},
         {$set: shelter});
 }

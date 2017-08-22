@@ -20,7 +20,6 @@
                 });
             ShelterService.findShelterById(shelterId)
                 .then(function (response) {
-                    console.log(response.data);
                     model.shelter = response;
                 });
 

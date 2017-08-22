@@ -22,7 +22,6 @@
             ShelterService
                 .findShelterById(shelterId)
                 .then(function (shelter) {
-                    console.log(shelter);
                     model.shelter = shelter;
                 });
         }
@@ -41,7 +40,6 @@
         }
 
         function selectShelterPet(pet) {
-            console.log(pet);
             var petTmp = Object();
             petTmp.apiId = pet.id.$t.toString();
             petTmp.name = pet.name.$t.toString();
@@ -59,22 +57,12 @@
             petTmp.age = pet.age.$t.toString();
             PetService.addPet(model.adopterId,petTmp)
                 .then(function (pet) {
-                    console.log(pet.data);
                     var resPet = pet.data;
                     $location.url("/user/"+model.userId+"/adopter/"+model.adopterId+"/pet/"+resPet._id+"/profile");
                 });
         }
         function followShelter(shelter) {
-            // model.adopter.following.push(shelterId);
-            // console.log(model.adopter);
-            // AdopterService
-            //     .updateAdopter(model.adopterId, model.adopter)
-            //     .then(function () {
-            //         console.log(model.adopter);
-            //     });
-            // console.log(shelter);
             shelter._followedBy.push(model.adopter._id.toString());
-            console.log(shelter);
             ShelterService
                 .updateShelter(shelter._id, shelter)
                 .then(function () {
@@ -94,12 +82,10 @@
         }
 
         function showPets() {
-            console.log(model.shelter.apiId);
             AnimalSearchService
                 .findPetsForShelter(model.shelter.apiId)
                 .then(function (response) {
                     model.shelterPets = response.petfinder.pets.pet;
-                    console.log(model.shelterPets);
                 });
         }
 

@@ -31,7 +31,6 @@
                                         model.errorMessage = "User not found";
                                     } else {
                                         if(user.role[0]==="shelter"){
-                                            console.log(user);
                                             ShelterService
                                                 .findShelterByUserId(user._id)
                                                 .then(function (response) {

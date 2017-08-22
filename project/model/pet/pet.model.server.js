@@ -14,7 +14,6 @@ petModel.selectPet = selectPet;
 module.exports = petModel;
 
 function selectPet(pet) {
-    console.log(pet);
     return petModel.create(pet);
 }
 function findPetsByAdopter(adopterId) {

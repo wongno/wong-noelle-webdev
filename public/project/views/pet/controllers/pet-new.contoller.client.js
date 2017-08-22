@@ -16,7 +16,6 @@
         init();
 
         function createPet(pet) {
-            console.log(pet);
             PetService
                 .createPet(model.shelterId,pet)
                 .then(function () {

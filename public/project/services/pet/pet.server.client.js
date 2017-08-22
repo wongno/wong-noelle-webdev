@@ -29,7 +29,6 @@
 
         function findPetById(petId){
             var url = "/api/pet/"+petId;
-            console.log(petId);
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -39,7 +38,6 @@
 
         function choosePet(pet) {
             var url ="/api/pet/select";
-            console.log(pet);
             return $http.post(url,pet);
         }
 

@@ -19,8 +19,6 @@
 
 
         function findPetById(petId) {
-            console.log("findPetById");
-            console.log(petId +" findPetById");
             var url = urlBase2
                 .replace("my.method", "pet.get")
                 .replace("12345", key)
@@ -49,7 +47,6 @@
                 .replace("arg1", "id")
                 .replace("foo", shelterId);
             return $.getJSON($sce.trustAsResourceUrl(url+"&callback=?"),function (data) {
-                console.log(data);
                 return data;
             });
         }
@@ -83,7 +80,6 @@
                 .replace("&arg1=foo","")
                 .concat(string)
                 .concat("&callback=?");
-            console.log(url);
             return $.getJSON($sce.trustAsResourceUrl(url),function (data) {
                 return data;
             });
