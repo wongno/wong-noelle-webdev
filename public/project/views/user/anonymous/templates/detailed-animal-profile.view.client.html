@@ -46,10 +46,6 @@
             <li><a id="right-button"><span class="glyphicon-chevron-right glyphicon"></span></a></li></ul>
         <h3>About {{model.animal.name}}</h3>
     <p class="-align-justify">{{model.animal.description}}</p>
-    <h2>My Shelter</h2>
-    <a class="btn btn-default btn-primary btn-block"
-       ng-click="model.login(model.user)"
-       role="button">{{model.animalShelterName(model.animal.shelterId)}}</a>
     <a class="btn btn-default btn-success btn-block"
        ng-click="model.followPet(model.animal)"
        role="button">Follow</a>
